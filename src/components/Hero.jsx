@@ -28,7 +28,7 @@ const Hero = () => {
                 Presentation Template
             </span>
 
-            <h1 className="text-[64px] md:text-[120px] font-extrabold leading-tight tracking-tight text-gray-900 relative text-center">
+            <h1 className="text-[64px] md:text-[120px] font-extrabold leading-tight tracking-tight text-gray-900 relative text-center font-heading">
                 PORTFOLIO
                 <span className="absolute -top-6 -right-4 text-orange-500 text-5xl font-black">
                     *

@@ -1,1 +1,152 @@
 @import "tailwindcss";
+
+.font-heading {
+	font-family: "Heading";
+}
+.font-brittany {
+	font-family: "Brittany";
+}
+.font-poppins {
+	font-family: "Poppins";
+}
+
+@font-face {
+	font-family: "Heading";
+	src: url("../fonts/Heading/f-1.ttf");
+	src: url("../fonts/Heading/f-2.ttf");
+	src: url("../fonts/Heading/f-3.ttf");
+	src: url("../fonts/Heading/f-4.ttf");
+	src: url("../fonts/Heading/f-5.ttf");
+	src: url("../fonts/Heading/f-6.ttf");
+	src: url("../fonts/Heading/f-7.ttf");
+	src: url("../fonts/Heading/f-8.ttf");
+	src: url("../fonts/Heading/f-9.ttf");
+	src: url("../fonts/Heading/f-10.ttf");
+	src: url("../fonts/Heading/f-11.ttf");
+	src: url("../fonts/Heading/f-12.ttf");
+	src: url("../fonts/Heading/f-13.ttf");
+	src: url("../fonts/Heading/f-14.ttf");
+	src: url("../fonts/Heading/f-15.ttf");
+	src: url("../fonts/Heading/f-16.ttf");
+	src: url("../fonts/Heading/f-17.ttf");
+	src: url("../fonts/Heading/f-18.ttf");
+	src: url("../fonts/Heading/f-19.ttf");
+	src: url("../fonts/Heading/f-20.ttf");
+	src: url("../fonts/Heading/f-21.ttf");
+	src: url("../fonts/Heading/f-22.ttf");
+	src: url("../fonts/Heading/f-23.ttf");
+	src: url("../fonts/Heading/f-24.ttf");
+	src: url("../fonts/Heading/f-25.ttf");
+	src: url("../fonts/Heading/f-26.ttf");
+	src: url("../fonts/Heading/f-27.ttf");
+	src: url("../fonts/Heading/f-28.ttf");
+	src: url("../fonts/Heading/f-29.ttf");
+	src: url("../fonts/Heading/f-30.ttf");
+	src: url("../fonts/Heading/f-31.ttf");
+	src: url("../fonts/Heading/f-32.ttf");
+	src: url("../fonts/Heading/f-33.ttf");
+	src: url("../fonts/Heading/f-34.ttf");
+	src: url("../fonts/Heading/f-35.ttf");
+	src: url("../fonts/Heading/f-36.ttf");
+	src: url("../fonts/Heading/f-37.ttf");
+	src: url("../fonts/Heading/f-38.ttf");
+	src: url("../fonts/Heading/f-39.ttf");
+	src: url("../fonts/Heading/f-40.ttf");
+	src: url("../fonts/Heading/f-41.ttf");
+	src: url("../fonts/Heading/f-42.ttf");
+	src: url("../fonts/Heading/f-43.ttf");
+	src: url("../fonts/Heading/f-44.ttf");
+	src: url("../fonts/Heading/f-45.ttf");
+	src: url("../fonts/Heading/f-46.ttf");
+	src: url("../fonts/Heading/f-47.ttf");
+	src: url("../fonts/Heading/f-48.ttf");
+	src: url("../fonts/Heading/f-49.ttf");
+	src: url("../fonts/Heading/f-50.ttf");
+	src: url("../fonts/Heading/f-51.ttf");
+	src: url("../fonts/Heading/f-52.ttf");
+	src: url("../fonts/Heading/f-53.ttf");
+	src: url("../fonts/Heading/f-54.ttf");
+	src: url("../fonts/Heading/f-55.ttf");
+	src: url("../fonts/Heading/f-56.ttf");
+	src: url("../fonts/Heading/f-57.ttf");
+	src: url("../fonts/Heading/f-58.ttf");
+	src: url("../fonts/Heading/f-59.ttf");
+	src: url("../fonts/Heading/f-60.ttf");
+	src: url("../fonts/Heading/f-61.ttf");
+	src: url("../fonts/Heading/f-62.ttf");
+	src: url("../fonts/Heading/f-63.ttf");
+	src: url("../fonts/Heading/f-64.ttf");
+	src: url("../fonts/Heading/f-65.ttf");
+	src: url("../fonts/Heading/f-66.ttf");
+	src: url("../fonts/Heading/f-67.ttf");
+	src: url("../fonts/Heading/f-68.ttf");
+	src: url("../fonts/Heading/f-69.ttf");
+	src: url("../fonts/Heading/f-70.ttf");
+	src: url("../fonts/Heading/f-71.ttf");
+	src: url("../fonts/Heading/f-72.ttf");
+	src: url("../fonts/Heading/f-73.ttf");
+	src: url("../fonts/Heading/f-74.ttf");
+	src: url("../fonts/Heading/f-75.ttf");
+	src: url("../fonts/Heading/f-76.ttf");
+	src: url("../fonts/Heading/f-77.ttf");
+	src: url("../fonts/Heading/f-78.ttf");
+	src: url("../fonts/Heading/f-79.ttf");
+	src: url("../fonts/Heading/f-80.ttf");
+	src: url("../fonts/Heading/f-81.ttf");
+	src: url("../fonts/Heading/f-82.ttf");
+	src: url("../fonts/Heading/f-83.ttf");
+	src: url("../fonts/Heading/f-84.ttf");
+	src: url("../fonts/Heading/f-85.ttf");
+	src: url("../fonts/Heading/f-86.ttf");
+	src: url("../fonts/Heading/f-87.ttf");
+	src: url("../fonts/Heading/f-88.ttf");
+	src: url("../fonts/Heading/f-89.ttf");
+	src: url("../fonts/Heading/f-90.ttf");
+	src: url("../fonts/Heading/f-91.ttf");
+	src: url("../fonts/Heading/f-92.ttf");
+	src: url("../fonts/Heading/f-93.ttf");
+	src: url("../fonts/Heading/f-94.ttf");
+	src: url("../fonts/Heading/f-95.ttf");
+	src: url("../fonts/Heading/f-96.ttf");
+	src: url("../fonts/Heading/f-97.ttf");
+	src: url("../fonts/Heading/f-98.ttf");
+	src: url("../fonts/Heading/f-99.ttf");
+	src: url("../fonts/Heading/f-100.ttf");
+	src: url("../fonts/Heading/f-101.ttf");
+	src: url("../fonts/Heading/f-102.ttf");
+	src: url("../fonts/Heading/f-103.ttf");
+	src: url("../fonts/Heading/f-104.ttf");
+	src: url("../fonts/Heading/f-105.ttf");
+	src: url("../fonts/Heading/f-106.ttf");
+	src: url("../fonts/Heading/f-107.ttf");
+	src: url("../fonts/Heading/f-108.ttf");
+	src: url("../fonts/Heading/f-109.ttf");
+	src: url("../fonts/Heading/f-110.ttf");
+	src: url("../fonts/Heading/f-111.ttf");
+	src: url("../fonts/Heading/f-112.ttf");
+}
+@font-face {
+	font-family: "Brittany";
+	src: url("../fonts/brittany/BrittanySignature.ttf");
+}
+@font-face {
+	font-family: "Poppins";
+	src: url("../fonts/Poppins/Poppins-Black.ttf");
+	src: url("../fonts/Poppins/Poppins-BlackItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-Bold.ttf");
+	src: url("../fonts/Poppins/Poppins-BoldItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-ExtraBold.ttf");
+	src: url("../fonts/Poppins/Poppins-ExtraBoldItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
+	src: url("../fonts/Poppins/Poppins-ExtraLightItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-Italic.ttf");
+	src: url("../fonts/Poppins/Poppins-Light.ttf");
+	src: url("../fonts/Poppins/Poppins-LightItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-Medium.ttf");
+	src: url("../fonts/Poppins/Poppins-MediumItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-Regular.ttf");
+	src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+	src: url("../fonts/Poppins/Poppins-SemiBoldItalic.ttf");
+	src: url("../fonts/Poppins/Poppins-Thin.ttf");
+	src: url("../fonts/Poppins/Poppins-ThinItalic.ttf");
+}
