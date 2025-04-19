@@ -1,11 +1,11 @@
 import React from 'react'
 
-const NavWrappers = () => {
+const Services = () => {
     return (
         <div>
-
+            Services
         </div>
     )
 }
 
-export default NavWrappers
+export default Services

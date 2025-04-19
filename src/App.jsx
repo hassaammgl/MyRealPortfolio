@@ -4,8 +4,13 @@ import gsap from 'gsap'
 import { ReactLenis, useLenis } from 'lenis/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
+
 const Hero = lazy(() => import("./components/Hero"))
 const About = lazy(() => import("./components/About"))
+const Hobby = lazy(() => import("./components/Hobby"))
+const Reads = lazy(() => import("./components/Reads"))
+const Projects = lazy(() => import("./components/Projects"))
+const Contact = lazy(() => import("./components/Contact"))
 
 const App = () => {
   const lenisRef = useRef()
@@ -25,6 +30,10 @@ const App = () => {
         <Suspense fallback={<Loader />} >
           <Hero />
           <About />
+          <Hobby />
+          <Reads />
+          <Projects />
+          <Contact />
         </Suspense>
         <Footer />
       </div>
