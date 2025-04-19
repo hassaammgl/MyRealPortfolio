@@ -1,34 +1,78 @@
 @import "tailwindcss";
 
+@theme {
+	--color-primary: #1a1a2e;
+	--color-secondary: #16213e;
+	--color-tertiary: #0f3460;
+	--color-accent: #e94560;
+}
+
+@font-face {
+	font-family: "Brittany";
+	src: url("../fonts/brittany/BrittanySignature.ttf");
+}
+
+@theme {
+	--font-brittany: "Brittany", cursive;
+	--font-ruslan: "Ruslan Display", sans-serif;
+	--font-srisakdi: "Srisakdi", system-ui;
+	--font-srisakdi-bold: "Srisakdi", system-ui;
+	--font-rubik: "Rubik Distressed", system-ui;
+	--font-boldonse: "Boldonse", system-ui;
+	--font-roboto: "Roboto", sans-serif;
+}
+
+/* @import "tailwindcss";
+
 .font-brittany {
 	font-family: "Brittany";
 }
-
-.ruslan-display-regular {
+.font-ruslan {
 	font-family: "Ruslan Display", sans-serif;
 }
-
-.festive-regular {
+.font-festive {
 	font-family: "Festive", cursive;
 }
-
-.srisakdi-regular {
+.font-srisakdi {
 	font-family: "Srisakdi", system-ui;
 }
-
-.srisakdi-bold {
+.font-srisakdi-bold {
 	font-family: "Srisakdi", system-ui;
+	font-weight: bold;
 }
-
-.rubik-distressed-regular {
+.font-rubik {
 	font-family: "Rubik Distressed", system-ui;
 }
-
-.boldonse-regular {
+.font-boldonse {
 	font-family: "Boldonse", system-ui;
-}
+} */
+/* 
+	.ruslan-display-regular {
+		font-family: "Ruslan Display", sans-serif;
+	}
 
-.color-primary {
+	.festive-regular {
+		font-family: "Festive", cursive;
+	}
+
+	.srisakdi-regular {
+		font-family: "Srisakdi", system-ui;
+	}
+
+	.srisakdi-bold {
+		font-family: "Srisakdi", system-ui;
+	}
+
+	.rubik-distressed-regular {
+		font-family: "Rubik Distressed", system-ui;
+	}
+
+	.boldonse-regular {
+		font-family: "Boldonse", system-ui;
+	}
+	
+*/
+/* .color-primary {
 	color: #1a1a2e;
 }
 
@@ -63,4 +107,4 @@
 @font-face {
 	font-family: "Brittany";
 	src: url("../fonts/brittany/BrittanySignature.ttf");
-}
+} */
