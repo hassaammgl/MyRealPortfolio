@@ -28,7 +28,7 @@ const Hero = () => {
                     <img
                         src={heroImage}
                         alt="Hassaam portrait"
-                        className="w-full h-auto max-w-lg "
+                        className="w-full max-w-[35vw] min-w-[200px]"
                     />
                 </div>
             </section>
