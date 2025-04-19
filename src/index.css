@@ -4,6 +4,62 @@
 	font-family: "Brittany";
 }
 
+.ruslan-display-regular {
+	font-family: "Ruslan Display", sans-serif;
+}
+
+.festive-regular {
+	font-family: "Festive", cursive;
+}
+
+.srisakdi-regular {
+	font-family: "Srisakdi", system-ui;
+}
+
+.srisakdi-bold {
+	font-family: "Srisakdi", system-ui;
+}
+
+.rubik-distressed-regular {
+	font-family: "Rubik Distressed", system-ui;
+}
+
+.boldonse-regular {
+	font-family: "Boldonse", system-ui;
+}
+
+.color-primary {
+	color: #1a1a2e;
+}
+
+.color-secondary {
+	color: #16213e;
+}
+
+.color-tertiary {
+	color: #0f3460;
+}
+
+.color-accent {
+	color: #e94560;
+}
+
+.bg-primary {
+	background-color: #1a1a2e;
+}
+
+.bg-secondary {
+	background-color: #16213e;
+}
+
+.bg-tertiary {
+	background-color: #0f3460;
+}
+
+.bg-accent {
+	background-color: #e94560;
+}
+
 @font-face {
 	font-family: "Brittany";
 	src: url("../fonts/brittany/BrittanySignature.ttf");
