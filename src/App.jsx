@@ -1,19 +1,25 @@
-import React, { Suspense, lazy, useRef } from 'react'
-import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
+import React, { Suspense, lazy, useEffect, useRef } from 'react'
 import Loader from "./components/Loader";
-import "./App.css"
+import gsap from 'gsap'
+import { ReactLenis, useLenis } from 'lenis/react'
 const Hero = lazy(() => import("./components/Hero"))
 const About = lazy(() => import("./components/About"))
 const WhoIAm = lazy(() => import("./components/WhoIAm"))
 
 const App = () => {
-  const containerRef = useRef(null);
+  const lenisRef = useRef()
+  useLenis()
+  useEffect(() => {
+    function update(time) {
+      lenisRef.current?.lenis?.raf(time * 1000)
+    }
+    gsap.ticker.add(update)
+    return () => gsap.ticker.remove(update)
+  }, [])
 
   return (
-    <LocomotiveScrollProvider options={{ smooth: true }}
-      watch={[]}
-      containerRef={containerRef}>
-      <div data-scroll-container ref={containerRef} className='w-full h-fit overflow-x-hidden bg-[#f9f9f7]'>
+    <ReactLenis options={{ autoRaf: false }} ref={lenisRef} root>
+      <div className='w-full h-fit overflow-x-hidden bg-[#f9f9f7] font-poppins'>
         {/* <Navbar /> */}
         <Suspense fallback={<Loader />} >
           <Hero />
@@ -21,7 +27,7 @@ const App = () => {
           <WhoIAm />
         </Suspense>
       </div>
-    </LocomotiveScrollProvider>
+    </ReactLenis>
   )
 }
 
