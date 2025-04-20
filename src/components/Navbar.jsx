@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react"
 const navLinks = [
     { name: "Home", link: "#" },
     { name: "About", link: "#" },
-    { name: "Services", link: "#" },
+    { name: "Skills", link: "#" },
     { name: "Reads", link: "#" },
     { name: "Hobby", link: "#" },
     { name: "Projects", link: "#" },
@@ -51,7 +51,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='group w-full h-16 bg-primary transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white z-50 relative'>
+            <nav className='group w-full h-16 bg-primary transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white relative z-40'>
                 <h1 className='group-hover:text-black font-extrabold text-xl'>HSM<span className='text-accent group-hover:text-white'>.</span></h1>
                 <button onClick={handleToggle} className='text-white group-hover:text-black font-bold'>
                     {open ? <IoCloseSharp className='text-2xl' /> : <FaBars />}
@@ -59,7 +59,7 @@ const Navbar = () => {
             </nav>
             <div
                 ref={navRef}
-                className='w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 translate-y-[-100px]'
+                className='w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 translate-y-[-100px] z-30'
                 style={{
                     clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)"
                 }}

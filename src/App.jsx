@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 const Hero = lazy(() => import("./components/Hero"))
 const About = lazy(() => import("./components/About"))
+const Skills = lazy(() => import("./components/Skills"))
 const Hobby = lazy(() => import("./components/Hobby"))
 const Reads = lazy(() => import("./components/Reads"))
 const Projects = lazy(() => import("./components/Projects"))
@@ -30,6 +31,7 @@ const App = () => {
         <Suspense fallback={<Loader />} >
           <Hero />
           <About />
+          <Skills />
           <Hobby />
           <Reads />
           <Projects />

@@ -1,10 +1,34 @@
 @import "tailwindcss";
 
 @theme {
+	/* 🌑 Primary Background – Use for full-page sections (body, hero, footer) */
 	--color-primary: #1a1a2e;
+	/* Rich, deep navy tone – perfect for creating a soft dark mode background that reduces eye strain */
+
+	/* 🧊 Secondary Background – Use for cards, containers, section wrappers */
 	--color-secondary: #16213e;
+	/* Slightly lighter than primary to create depth and elevation between content layers */
+
+	/* 🌌 Tertiary Elements – Use for navbars, sticky headers, UI bars, and side menus */
 	--color-tertiary: #0f3460;
+	/* Provides excellent visual separation while maintaining harmony with the background */
+
+	/* ❤️ Accent Color – Use for CTA buttons, highlights, hover states, focus rings, links */
 	--color-accent: #e94560;
+	/* Strong contrast against the blues – grabs attention without overwhelming the design */
+
+	/* 🎨 Neutral/White – Use for headings, paragraphs, default text, and subtle lines */
+	--color-white: #ffffff;
+	/* Essential for contrast on dark backgrounds – avoid overuse to keep minimal feel */
+
+	/* ✍️ Font Styling – Use these across headings, logos, hero text, and special content */
+	--font-brittany: "Brittany", cursive; /* Use for name or hero intro */
+	--font-boldonse: "Boldonse", system-ui; /* Great for bold statements or nav items */
+	--font-srisakdi: "Srisakdi", system-ui; /* Use for section subtitles or quotes */
+	--font-srisakdi-bold: "Srisakdi", system-ui; /* Use for emphasized text in same font family */
+	--font-ruslan: "Ruslan Display", sans-serif; /* Use in titles or accent words */
+	--font-roboto: "Roboto", sans-serif; /* Clean body font for readability */
+	--font-bangers: "Bangers", system-ui; /* Fun, energetic font – use sparingly */
 }
 
 @font-face {
@@ -12,14 +36,42 @@
 	src: url("../fonts/brittany/BrittanySignature.ttf");
 }
 
-@theme {
-	--font-brittany: "Brittany", cursive;
-	--font-boldonse: "Boldonse", system-ui;
-	--font-srisakdi: "Srisakdi", system-ui;
-	--font-srisakdi-bold: "Srisakdi", system-ui;
-	--font-ruslan: "Ruslan Display", sans-serif;
-	--font-roboto: "Roboto", sans-serif;
-	--font-bangers: "Bangers", system-ui;
-}
+/* 
 
-
+/* Regular 
+@font-face {
+	font-family: 'YourFont';
+	src: url('/fonts/YourFont-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+  }
+  
+  /* Italic
+  @font-face {
+	font-family: 'YourFont';
+	src: url('/fonts/YourFont-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+  }
+  
+  /* Bold 
+  @font-face {
+	font-family: 'YourFont';
+	src: url('/fonts/YourFont-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+  }
+  
+  /* Bold Italic 
+  @font-face {
+	font-family: 'YourFont';
+	src: url('/fonts/YourFont-BoldItalic.woff2') format('woff2');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+  }
+  
+*/
