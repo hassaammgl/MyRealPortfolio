@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { useNavStore } from '../store'
 import { Link } from "react-scroll"
 import { useGSAP } from "@gsap/react"
+import Hamburger from 'hamburger-react'
 
 const navLinks = [
     { name: "Home", link: "#" },
@@ -51,10 +52,10 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='group w-full h-16 bg-primary transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white relative z-40'>
+            <nav className='group w-full h-16 bg-transparent transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white fixed z-40'>
                 <h1 className='group-hover:text-black font-extrabold text-xl'>HSM<span className='text-accent group-hover:text-white'>.</span></h1>
-                <button onClick={handleToggle} className='text-white group-hover:text-black font-bold'>
-                    {open ? <IoCloseSharp className='text-2xl' /> : <FaBars />}
+                <button className='text-white group-hover:text-black font-bold text-xl'>
+                    <Hamburger toggled={open} toggle={handleToggle} />
                 </button>
             </nav>
             <div

@@ -1,10 +1,13 @@
 import React from 'react'
+import { Element } from 'react-scroll'
 
 const Skills = () => {
     return (
-        <div>
-            Skills
-        </div>
+        <Element name="Skills">
+            <section className="relative h-[100dvh] w-screen ">
+
+            </section>
+        </Element>
     )
 }
 
