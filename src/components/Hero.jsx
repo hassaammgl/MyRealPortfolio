@@ -71,6 +71,21 @@ const Hero = () => {
         });
     }, { scope: sectionRef });
 
+    useGSAP(() => {
+        gsap.set(".animate", {
+            opacity: 0,
+            // stagger: 0.1,
+            // duration: 1,
+            // ease: "power2.inOut",
+        });
+        gsap.to(".animate", {
+            opacity: 1,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power2.inOut",
+        });
+    });
+
     const handleImageTransition = useCallback(() => {
         const next = (currentIndex + 1) % IMAGES.length;
 
@@ -124,18 +139,17 @@ const Hero = () => {
                 className="relative h-dvh w-screen flex justify-center items-center bg-center bg-cover transition-all duration-1000 ease-in-out"
                 style={{ backgroundImage: `url(${IMAGES[currentIndex].bg_img})` }}
             >
-                {/* Hidden BG animation layer */}
                 <div
                     ref={bgImgRef}
                     className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
                     style={{ backgroundImage: `url(${IMAGES[nextIndex].bg_img})` }}
                 />
 
-                {/* Preview image (next one) */}
+
                 <div
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className="relative flex h-screen w-full items-center justify-center"
+                    className="relative flex h-screen top-0 left-0 w-full items-center justify-center bg-transparent backdrop-blur-xs"
                 >
                     <img
                         ref={imgRef}
@@ -143,9 +157,14 @@ const Hero = () => {
                         src={IMAGES[nextIndex].preview}
                         alt={IMAGES[nextIndex].alt}
                         onClick={handleImageTransition}
-                        className="object-cover h-96 w-64 transition-all duration-300 ease-in-out cursor-pointer"
+                        className="object-cover h-96 w-64 transition-all duration-300 ease-in-out cursor-pointer rounded-lg shadow-lg"
                         style={{ transition: 'transform 0.3s ease-in-out' }}
                     />
+                    <div className='font-bangers font-light text-[9vw] leading-tight absolute flex w-4xl pointer-events-none flex-col '>
+                        <h3 className='animate text-white'>Welcome</h3>
+                        <h3 style={{ WebkitTextStroke: "1px white" }} className='animate text-transparent text-center'>I'm Hassaam</h3>
+                        <h3 className='animate text-white text-end'>Mughal</h3>
+                    </div>
                 </div>
             </section>
         </Element>

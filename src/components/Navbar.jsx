@@ -52,7 +52,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='group w-full h-16 bg-transparent transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white fixed z-40'>
+            <nav className='group w-full h-16 bg-transparent transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
                 <h1 className='group-hover:text-black font-extrabold text-xl'>HSM<span className='text-accent group-hover:text-white'>.</span></h1>
                 <button className='text-white group-hover:text-black font-bold text-xl'>
                     <Hamburger toggled={open} toggle={handleToggle} />
@@ -60,7 +60,7 @@ const Navbar = () => {
             </nav>
             <div
                 ref={navRef}
-                className='w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 translate-y-[-100px] z-30'
+                className='font-boldonse w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 translate-y-[-100px] z-30'
                 style={{
                     clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)"
                 }}
