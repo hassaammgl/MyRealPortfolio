@@ -1,76 +1,102 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Element } from 'react-scroll';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const imgs = [
-    { preview: "/hero/pr-1.jpg", alt: "Hero", bg_img: "/hero/bg-1.jpg" },
-    { preview: "/hero/pr-2.jpg", alt: "Hero", bg_img: "/hero/bg-2.jpg" },
-    { preview: "/hero/pr-3.jpg", alt: "Hero", bg_img: "/hero/bg-3.jpg" },
-    { preview: "/hero/pr-4.jpg", alt: "Hero", bg_img: "/hero/bg-4.jpg" },
-    { preview: "/hero/pr-5.jpg", alt: "Hero", bg_img: "/hero/bg-5.jpg" },
+    {
+        preview: "/hero/pr-1.jpg",
+        alt: "Hero",
+        bg_img: "/hero/bg-1.jpg",
+    },
+    {
+        preview: "/hero/pr-2.jpg",
+        alt: "Hero",
+        bg_img: "/hero/bg-2.jpg",
+    },
+    {
+        preview: "/hero/pr-3.jpg",
+        alt: "Hero",
+        bg_img: "/hero/bg-3.jpg",
+    },
+    {
+        preview: "/hero/pr-4.jpg",
+        alt: "Hero",
+        bg_img: "/hero/bg-4.jpg",
+    },
+    {
+        preview: "/hero/pr-5.jpg",
+        alt: "Hero",
+        bg_img: "/hero/bg-5.jpg",
+    },
 ];
 
 const Hero = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const sectionRef = useRef(null);
-    const imgRef = useRef(null);
-    const bgRef = useRef(null);
 
     const nextIndex = (currentIndex + 1) % imgs.length;
 
     useGSAP(() => {
-        gsap.from(imgRef.current, {
+        gsap.from('img', {
             scale: 0,
             transformOrigin: "center center",
             duration: 1,
             ease: "power2.inOut",
         });
-        gsap.from(bgRef.current, {
-            scale: 0,
+        gsap.from('#bgimg', {
             transformOrigin: "center center",
+            scale: 0,
             duration: 1,
             ease: "power2.inOut",
         });
-    }, []);
-
+    });
     useGSAP(() => {
-        gsap.set(sectionRef.current, {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            borderRadius: "0% 0% 0% 0%",
-        });
+        const img = document.querySelector("#preview-img");
 
-        gsap.to(sectionRef.current, {
-            borderRadius: "0% 0% 40% 10%",
-            clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "center center",
-                end: "bottom center",
-                scrub: true,
+        ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            onUpdate: (self) => {
+                const y = self.progress * 50 - 25; // from -25 to +25
+                gsap.to(img, {
+                    y,
+                    ease: "none",
+                    overwrite: true,
+                });
             },
         });
-    }, []);
+    });
 
     const handleImgs = () => {
-        setCurrentIndex((prev) => (prev + 1) % imgs.length);
+        const next = (currentIndex + 1) % imgs.length;
 
-        gsap.fromTo(bgRef.current, { scale: 0 }, {
+        // Animate background transition
+        gsap.set("#bgimg", { scale: 0 });
+        gsap.to("#bgimg", {
             scale: 1,
             duration: 1,
             ease: "power1.inOut",
-            transformOrigin: "center center",
         });
 
-        gsap.fromTo(imgRef.current, { scale: 0 }, {
+        // Animate preview image
+        gsap.set("img", { scale: 0 });
+        gsap.to("img", {
             scale: 1,
+            transformOrigin: "center center",
             duration: 1,
             ease: "power1.inOut",
-            transformOrigin: "center center",
         });
+
+        // Set new index after small delay to allow animation
+        setTimeout(() => {
+            setCurrentIndex(next);
+        }, 200);
     };
 
     const handleMouse = (e) => {
@@ -79,29 +105,40 @@ const Hero = () => {
         const yOffset = e.clientY - (rect.top + rect.height / 2);
         const x = (xOffset / rect.width) * 100;
         const y = (yOffset / rect.height) * 100;
-
-        imgRef.current.style.transform = 'scale(1.1)';
-        imgRef.current.style.transition = 'transform 0.3s ease-in-out';
-        imgRef.current.style.transformOrigin = `${x}% ${y}%`;
+        const img = document.querySelector('img');
+        img.style.transform = 'scale(1.1)';
+        img.style.transition = 'transform 0.3s ease-in-out';
+        img.style.transformOrigin = `${x}% ${y}%`;
     };
 
     const handleMouseLeave = () => {
-        imgRef.current.style.transform = 'scale(1)';
+        const img = document.querySelector('img');
+        img.style.transform = 'scale(1)';
     };
+
+    // 🔁 Auto-play logic
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleImgs();
+        }, 7000); // change every 7 seconds
+        return () => clearInterval(interval);
+    }, [currentIndex]);
 
     return (
         <Element name="Home">
             <section
                 ref={sectionRef}
-                className="relative h-dvh w-screen flex justify-center items-center bg-center bg-cover"
-                style={{ backgroundImage: `url(${imgs[nextIndex].bg_img})` }}
+                className="relative h-dvh w-screen flex justify-center items-center bg-center bg-cover transition-all duration-1000 ease-in-out"
+                style={{ backgroundImage: `url(${imgs[currentIndex].bg_img})` }}
             >
+                {/* Hidden BG animation layer */}
                 <div
-                    ref={bgRef}
                     id="bgimg"
-                    className="absolute top-0 left-0 h-dvh w-full scale-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${imgs[currentIndex].bg_img})` }}
+                    className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
+                    style={{ backgroundImage: `url(${imgs[nextIndex].bg_img})` }}
                 />
+
+                {/* Preview image (next one) */}
                 <div
                     onMouseMove={handleMouse}
                     onMouseLeave={handleMouseLeave}
@@ -109,11 +146,11 @@ const Hero = () => {
                     className="relative flex h-screen w-full items-center justify-center"
                 >
                     <img
-                        ref={imgRef}
+                        id="preview-img"
                         src={imgs[nextIndex].preview}
-                        alt={imgs[currentIndex].alt}
+                        alt={imgs[nextIndex].alt}
                         onClick={handleImgs}
-                        className="object-cover h-96 w-64 transition-transform duration-1000 ease-in-out"
+                        className="object-cover h-96 w-64 transition-all duration-1000 ease-in-out cursor-pointer"
                     />
                 </div>
             </section>
@@ -122,28 +159,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
-{/* <div className="">
-<div className="">
-    <div className="" />
-    <img
-        src=""
-        alt="Hero"
-        className=""
-    />
-</div>
-<h1 className="">
-    HELLO <br />
-    I'M HABIBI <br />
-    SHEKA
-</h1>
-</div>
-<div className="">
-<p className="">
-    I explore a vibrant world of creativity where every brush-stroke tells a story
-</p>
-<p className="">
-    An artist based in Ireland
-</p>
-</div> */}
