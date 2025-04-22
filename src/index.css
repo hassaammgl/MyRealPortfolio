@@ -28,7 +28,8 @@
 	--font-srisakdi-bold: "Srisakdi", system-ui; /* Use for emphasized text in same font family */
 	--font-ruslan: "Ruslan Display", sans-serif; /* Use in titles or accent words */
 	--font-roboto: "Roboto", sans-serif; /* Clean body font for readability */
-	--font-bangers: "Bangers", system-ui; /* Fun, energetic font – use sparingly */
+	--font-bangers: "Bangers", system-ui;
+	--font-syne-mono: "Syne Mono", monospace; /* Fun, energetic font – use sparingly */
 }
 
 @font-face {

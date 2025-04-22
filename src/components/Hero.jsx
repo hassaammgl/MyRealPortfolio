@@ -45,11 +45,11 @@ const Hero = () => {
     const imgRef = useRef(null);
     const bgImgRef = useRef(null);
 
-    const nextIndex = (currentIndex + 1) % IMAGES.length;
+    const nextIndex = useCallback(() => (currentIndex + 1) % IMAGES.length, [currentIndex]);
 
     // Animation setup
     useGSAP(() => {
-        gsap.from([imgRef.current, bgImgRef.current], {
+        gsap.from([bgImgRef.current], {
             scale: 0,
             transformOrigin: "center center",
             duration: IMAGE_TRANSITION_DURATION,
@@ -80,7 +80,7 @@ const Hero = () => {
         // Animate both images simultaneously
         const tl = gsap.timeline();
 
-        tl.to([imgRef.current, bgImgRef.current], {
+        tl.to([bgImgRef.current], {
             scale: 0,
             duration: IMAGE_TRANSITION_DURATION / 2,
             ease: "power1.inOut",
@@ -88,7 +88,7 @@ const Hero = () => {
 
         tl.call(() => setCurrentIndex(next), null, "+=0.1");
 
-        tl.to([imgRef.current, bgImgRef.current], {
+        tl.to([bgImgRef.current], {
             scale: 1,
             duration: IMAGE_TRANSITION_DURATION / 2,
             ease: "power1.inOut",
@@ -130,7 +130,7 @@ const Hero = () => {
                 <div
                     ref={bgImgRef}
                     className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
-                    style={{ backgroundImage: `url(${IMAGES[nextIndex].bg_img})` }}
+                    style={{ backgroundImage: `url(${IMAGES[nextIndex()].bg_img})` }}
                 />
 
 
@@ -142,16 +142,16 @@ const Hero = () => {
                     <img
                         ref={imgRef}
                         id="preview-img"
-                        src={IMAGES[nextIndex].preview}
-                        alt={IMAGES[nextIndex].alt}
+                        src={IMAGES[nextIndex()].preview}
+                        alt={IMAGES[nextIndex()].alt}
                         onClick={handleImageTransition}
                         className="object-cover h-96 w-64 transition-all duration-300 ease-in-out cursor-pointer rounded-lg shadow-lg"
                         style={{ transition: 'transform 0.3s ease-in-out' }}
                     />
-                    <div className='font-bangers font-light text-[9vw] leading-tight absolute flex w-4xl pointer-events-none flex-col '>
-                        <AnimatedText containerClass=' text-white ' text={"Welcome"} />
-                        <AnimatedText hover={"hover:text-white"} style={{ WebkitTextStroke: "1px white" }} containerClass='text-transparent text-center' text={"I'm Hassaam"} />
-                        <AnimatedText containerClass=' text-white text-end' text={"Mughal"} />
+                    <div className='font-srisakdi-bold font-light text-[9vw] font- leading-tight absolute flex w-4xl pointer-events-none flex-col '>
+                        <AnimatedText containerClass=' text-white font-bold' text={"Welcome"} />
+                        <AnimatedText hover={"hover:text-white"} style={{ WebkitTextStroke: "1px white" }} containerClass='text-transparent text-center font-bangers' text={"I'm Hassaam"} />
+                        <AnimatedText containerClass=' text-white text-end font-brittany' text={"Mughal"} />
                     </div>
                 </div>
             </section>
