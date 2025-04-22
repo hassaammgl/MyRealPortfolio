@@ -4,6 +4,7 @@ import { Element } from 'react-scroll';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AnimatedText from './AnimatedText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,20 +72,7 @@ const Hero = () => {
         });
     }, { scope: sectionRef });
 
-    useGSAP(() => {
-        gsap.set(".animate", {
-            opacity: 0,
-            // stagger: 0.1,
-            // duration: 1,
-            // ease: "power2.inOut",
-        });
-        gsap.to(".animate", {
-            opacity: 1,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power2.inOut",
-        });
-    });
+
 
     const handleImageTransition = useCallback(() => {
         const next = (currentIndex + 1) % IMAGES.length;
@@ -161,9 +149,9 @@ const Hero = () => {
                         style={{ transition: 'transform 0.3s ease-in-out' }}
                     />
                     <div className='font-bangers font-light text-[9vw] leading-tight absolute flex w-4xl pointer-events-none flex-col '>
-                        <h3 className='animate text-white'>Welcome</h3>
-                        <h3 style={{ WebkitTextStroke: "1px white" }} className='animate text-transparent text-center'>I'm Hassaam</h3>
-                        <h3 className='animate text-white text-end'>Mughal</h3>
+                        <AnimatedText containerClass=' text-white ' text={"Welcome"} />
+                        <AnimatedText hover={"hover:text-white"} style={{ WebkitTextStroke: "1px white" }} containerClass='text-transparent text-center' text={"I'm Hassaam"} />
+                        <AnimatedText containerClass=' text-white text-end' text={"Mughal"} />
                     </div>
                 </div>
             </section>
