@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Element } from 'react-scroll'
 
@@ -93,16 +93,16 @@ const AnimatedMarquee = () => {
       >
         <div className="flex gap-8 px-4 text-4xl md:text-6xl items-center h-full marquee-content">
           {items.map((item, index) => (
-            <div key={index} className="flex items-center marquee-item">
+            <div key={index} className="flex items-center gap-4 marquee-item">
               <span className={`text-5xl mr-3 ${item.color} drop-shadow-lg`}>
                 {item.emoji}
               </span>
               <span
-                className={`font-bold bg-clip-text text-transparent bg-gradient-to-r ${item.color} to-white`}
+                className={`font-bold ${item.color} `}
               >
                 {item.text}
               </span>
-              {index < items.length - 1 && <Dot className="mx-4 scale-150" />}
+              {index < items.length - 1 && <Pipe className="mx-4 scale-150" />}
             </div>
           ))}
         </div>
@@ -111,8 +111,8 @@ const AnimatedMarquee = () => {
   );
 };
 
-const Dot = ({ className = "" }) => (
-  <span className={`inline-block w-5 h-5 rounded-full bg-white/50 ${className}`} />
+const Pipe = ({ className = "" }) => (
+  <span className={`inline-block w-1 h-full rounded-full bg-white ${className}`} />
 );
 
 export default About
