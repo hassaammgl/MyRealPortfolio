@@ -66,7 +66,6 @@ const AnimatedMarquee = () => {
   const handleMouseEnter = () => {
     tl.current?.timeScale(0.3);
     gsap.to(".marquee-item", {
-      scale: 1.2,
       duration: 0.3,
       stagger: 0.1,
     });
@@ -75,7 +74,6 @@ const AnimatedMarquee = () => {
   const handleMouseLeave = () => {
     tl.current?.timeScale(1);
     gsap.to(".marquee-item", {
-      scale: 1,
       duration: 0.5,
       stagger: 0.05,
     });
@@ -91,7 +89,7 @@ const AnimatedMarquee = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="flex gap-8 px-4 text-4xl md:text-6xl items-center h-full marquee-content">
+        <div className="font-boldonse flex gap-8 px-4 text-4xl md:text-6xl items-center h-full marquee-content">
           {items.map((item, index) => (
             <div key={index} className="flex items-center gap-4 marquee-item">
               <span className={`text-5xl mr-3 ${item.color} drop-shadow-lg`}>
