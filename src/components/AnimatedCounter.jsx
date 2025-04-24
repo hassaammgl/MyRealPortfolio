@@ -13,7 +13,7 @@ const AnimatedCounter = ({ className, value, duration = 2, delay = 0, suffix = '
 
     useEffect(() => {
         const element = counterRef.current;
-        const obj = { num: 0 };
+        const obj = { num: 1 };
 
         gsap.to(obj, {
             num: value,

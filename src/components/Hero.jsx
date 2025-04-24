@@ -8,6 +8,7 @@ import AnimatedCounter from './AnimatedCounter';
 import { FiLinkedin, FiGithub, FiYoutube } from "react-icons/fi";
 import axios from 'axios';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const IMAGES = [
@@ -302,7 +303,7 @@ const SocialLinks = () => {
 
     return (
         <div ref={containerRef}
-            className='absolute text-white z-10 top-16 right-7'>
+            className='absolute text-white z-10 top-16 right-4'>
             <div className='flex flex-col gap-3'>
                 {LINKS.map((link, index) => (
                     <a
@@ -317,7 +318,6 @@ const SocialLinks = () => {
                             border: '1px solid rgba(255, 255, 255, 0.18)',
                             boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
                         }}
-                        data-name={link.name}
                     >
                         {link.icon}
                     </a>
@@ -347,13 +347,13 @@ const Stats = () => {
                 border: '1px solid rgba(255, 255, 255, 0.18)',
                 boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
             }}
-            className='p-7 absolute bottom-10 left-36 rounded-lg transform -translate-x-1/2 flex gap-5'>
-            <div className='flex flex-col items-center'>
+            className='p-7  group absolute bottom-10 left-1/2 sm:left-36 rounded-lg transform -translate-x-1/2 flex gap-5'>
+            <div className='flex transition-all duration-500 ease-in-out group-hover:scale-110 flex-col items-center'>
                 <AnimatedCounter
-                    value={repos - 1}
+                    value={repos}
                     prefix='+'
                     duration={2}
-                    className='text-white text-9xl font-ruslan'
+                    className='text-white text-7xl sm:text-9xl font-ruslan'
                 />
                 <span className='text-white font-roboto font-extralight'>Repos</span>
             </div>

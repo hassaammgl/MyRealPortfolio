@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import { Link } from 'react-scroll';
 import Hamburger from 'hamburger-react';
 import { useNavStore } from '../store';
+import { useWindowScroll } from "react-use"
 
 const navLinks = [
     { name: "Home", link: "home", value: ".home()" },
@@ -21,6 +22,10 @@ const Navbar = () => {
     const linksRef = useRef([]);
     const tl = useRef();
     const { toggleNavAnimation } = useNavStore();
+
+    const s = useWindowScroll()
+
+    console.log(s)
 
     // Store link refs
     const addToRefs = (el) => {
@@ -92,15 +97,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-full h-16 bg-transparent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
-                <h1 className='font-extrabold text-xl'>HSM<span className='text-accent'>.</span></h1>
-                <button
-                    className='text-white font-bold text-xl'
-                    aria-label="Toggle menu"
-                >
-                    <Hamburger toggled={open} toggle={handleToggle} />
-                </button>
-            </nav>
+            <TopNav open={open} handleToggle={handleToggle} />
             <div
                 ref={navRef}
                 className='font-syne-mono w-full h-screen bg-tertiary flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 z-30'
@@ -135,3 +132,21 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const TopNav = ({ open, handleToggle }) => {
+
+    const navRef = useRef(null);
+    useGSAP(() => { }, { scope: navRef });
+
+    return (
+        <nav ref={navRef} className='w-full h-16 bg-transparent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
+            <h1 className='font-extrabold text-xl'>HSM<span className='text-accent'>.</span></h1>
+            <button
+                className='text-white font-bold text-xl'
+                aria-label="Toggle menu"
+            >
+                <Hamburger toggled={open} toggle={handleToggle} />
+            </button>
+        </nav>
+    )
+}

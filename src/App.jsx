@@ -32,7 +32,7 @@ const App = () => {
         <Navbar />
         <Suspense fallback={<Loader />} >
           <Hero />
-          <GitHubStats />
+          {/* <GitHubStats /> */}
           <ResponsiveTester />
           <About />
           <Skills />
