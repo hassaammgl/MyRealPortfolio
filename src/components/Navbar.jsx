@@ -1,90 +1,4 @@
-// import React, { useState, useRef } from 'react'
-// import { FaBars } from "react-icons/fa";
-// import { IoCloseSharp } from "react-icons/io5";
-// import gsap from 'gsap';
-// import { useNavStore } from '../store'
-// import { Link } from "react-scroll"
-// import { useGSAP } from "@gsap/react"
-// import Hamburger from 'hamburger-react'
-
-// const navLinks = [
-//     { name: "Home", link: "#", value: ".home()" },
-//     { name: "About", link: "#", value: ".about()" },
-//     { name: "Skills", link: "#", value: ".skills()" },
-//     { name: "Reads", link: "#", value: ".reads()" },
-//     { name: "Hobby", link: "#", value: ".hobby()" },
-//     { name: "Projects", link: "#", value: ".projects()" },
-//     { name: "Contact", link: "#", value: ".contact()" },
-// ];
-
-// const Navbar = () => {
-//     const [open, setOpen] = useState(false);
-//     const navRef = useRef(null);
-//     const tl = useRef();
-//     const { toggleNavAnimation } = useNavStore();
-
-//     useGSAP(() => {
-//         tl.current = gsap.timeline({ paused: true })
-//             .to(navRef.current, {
-//                 duration: 0.5,
-//                 opacity: 1,
-//                 y: 0,
-//                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-//                 ease: "power2.out",
-//                 display: "flex",
-//                 onComplete: () => {
-//                     toggleNavAnimation();
-//                 }
-//             });
-//     }, { scope: navRef });
-
-//     const handleToggle = () => {
-//         setOpen(prev => {
-//             const newOpen = !prev;
-//             if (newOpen) {
-//                 tl.current.play();
-//             } else {
-//                 tl.current.reverse();
-//             }
-//             return newOpen;
-//         });
-//     };
-
-//     return (
-//         <>
-//             <nav className='group w-full h-16 bg-transparent transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
-//                 <h1 className='group-hover:text-black font-extrabold text-xl'>HSM<span className='text-accent group-hover:text-white'>.</span></h1>
-//                 <button className='text-white group-hover:text-black font-bold text-xl'>
-//                     <Hamburger toggled={open} toggle={handleToggle} />
-//                 </button>
-//             </nav>
-//             <div
-//                 ref={navRef}
-//                 className='font-syne-mono w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 translate-y-[-100px] z-30'
-//                 style={{
-//                     clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)"
-//                 }}
-//             >
-//                 {navLinks.map((link, i) => (
-//                     <Link
-//                         key={i}
-//                         className='relative group text-2xl font-semibold mb-4 cursor-pointer transition-all duration-700 ease-in-out'
-//                         onClick={handleToggle}
-//                         to={link.name}
-//                         smooth={true}
-//                         duration={500}
-//                     >
-//                         {link.value} <span className='hidden opacity-0 group-hover:inline-block group-hover:opacity-100 transition-all duration-700 ease-in-out'>{`{ // ${link.name} }`}</span>
-//                     </Link>
-//                 ))}
-//             </div>
-//         </>
-//     );
-// };
-
-// export default Navbar;
-
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'react-scroll';
@@ -147,8 +61,8 @@ const Navbar = () => {
             gsap.set(hoverText, { opacity: 0, x: -20 });
 
             link.addEventListener('mouseenter', () => {
-                gsap.to(text, { opacity: 0, x: 20, duration: 0.2 });
-                gsap.to(hoverText, { opacity: 1, x: 0, duration: 0.2 });
+                gsap.to(text, { opacity: 0, x: 20, duration: 0.8 });
+                gsap.to(hoverText, { opacity: 1, x: 0, duration: 0.8 });
             });
 
             link.addEventListener('mouseleave', () => {
@@ -178,10 +92,10 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='group w-full h-16 bg-transparent transition-all duration-500 ease-in-out hover:bg-accent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
-                <h1 className='group-hover:text-black font-extrabold text-xl'>HSM<span className='text-accent group-hover:text-white'>.</span></h1>
+            <nav className='w-full h-16 bg-transparent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
+                <h1 className='font-extrabold text-xl'>HSM<span className='text-accent'>.</span></h1>
                 <button
-                    className='text-white group-hover:text-black font-bold text-xl'
+                    className='text-white font-bold text-xl'
                     aria-label="Toggle menu"
                 >
                     <Hamburger toggled={open} toggle={handleToggle} />
@@ -189,7 +103,7 @@ const Navbar = () => {
             </nav>
             <div
                 ref={navRef}
-                className='font-syne-mono w-full h-screen bg-accent flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 z-30'
+                className='font-syne-mono w-full h-screen bg-tertiary flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 z-30'
                 style={{
                     clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
                     opacity: 0,
@@ -203,15 +117,15 @@ const Navbar = () => {
                         className='overflow-hidden mb-4'
                     >
                         <Link
-                            className='relative group text-2xl font-semibold cursor-pointer inline-block'
+                            className='relative group text-2xl font-semibold cursor-pointer inline-block border-2 w-[12rem] border-transparent rounded-lg transition-all duration-700 ease-in-out'
                             onClick={handleLinkClick}
-                            to={link.link}
+                            to={link.name}
                             smooth={true}
                             duration={500}
                             spy={true}
                         >
                             <span className="nav-text inline-block">{link.value}</span>
-                            <span className='hover-text absolute left-0 top-0 inline-block'>{`{ ()=>${link.name} }`}</span>
+                            <span className='hover-text absolute left-0 top-0 inline-block'>{"{ $" + link.name + " }"}</span>
                         </Link>
                     </div>
                 ))}

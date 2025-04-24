@@ -2,19 +2,19 @@
 
 @theme {
 	/* 🌑 Primary Background – Use for full-page sections (body, hero, footer) */
-	--color-primary: #1a1a2e;
+	--color-primary: #12100e;
 	/* Rich, deep navy tone – perfect for creating a soft dark mode background that reduces eye strain */
 
 	/* 🧊 Secondary Background – Use for cards, containers, section wrappers */
-	--color-secondary: #16213e;
+	--color-secondary: #161622;
 	/* Slightly lighter than primary to create depth and elevation between content layers */
 
 	/* 🌌 Tertiary Elements – Use for navbars, sticky headers, UI bars, and side menus */
-	--color-tertiary: #0f3460;
+	--color-tertiary: #252238;
 	/* Provides excellent visual separation while maintaining harmony with the background */
 
 	/* ❤️ Accent Color – Use for CTA buttons, highlights, hover states, focus rings, links */
-	--color-accent: #e94560;
+	--color-accent: #8d56cc;
 	/* Strong contrast against the blues – grabs attention without overwhelming the design */
 
 	/* 🎨 Neutral/White – Use for headings, paragraphs, default text, and subtle lines */

@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ReactLenis, useLenis } from 'lenis/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
+import ResponsiveTester from './components/ResponsiveTester';
 
 const Hero = lazy(() => import("./components/Hero"))
 const About = lazy(() => import("./components/About"))
@@ -30,6 +31,7 @@ const App = () => {
         <Navbar />
         <Suspense fallback={<Loader />} >
           <Hero />
+          <ResponsiveTester />
           <About />
           <Skills />
           <Hobby />
