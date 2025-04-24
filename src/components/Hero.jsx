@@ -365,7 +365,8 @@ const Hero = () => {
                             transition: 'transform 0.3s ease-in-out',
                         }}
                     />
-                    <div className='font-srisakdi-bold font-light text-[7vw] md:text-[9vw] leading-tight absolute flex w-4xl pointer-events-none flex-col'>
+                    {/* <div className='font-srisakdi-bold font-light text-[9vw] md:text-[7vw] leading-tight absolute flex w-4xl pointer-events-none flex-col'> */}
+                    <div className='font-srisakdi-bold font-light text-[9vw] leading-tight absolute flex w-xs sm:w-md md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl pointer-events-none flex-col'>
                         <AnimatedText containerClass='text-white font-bold' text={"Welcome"} />
                         <AnimatedText
                             hover={"hover:text-white"}
