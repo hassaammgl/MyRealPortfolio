@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'react-scroll';
@@ -22,10 +22,6 @@ const Navbar = () => {
     const linksRef = useRef([]);
     const tl = useRef();
     const { toggleNavAnimation } = useNavStore();
-
-    const s = useWindowScroll()
-
-    console.log(s)
 
     // Store link refs
     const addToRefs = (el) => {
@@ -134,19 +130,50 @@ const Navbar = () => {
 export default Navbar;
 
 const TopNav = ({ open, handleToggle }) => {
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isNavVisible, setIsNavVisible] = useState(true);
 
     const navRef = useRef(null);
-    useGSAP(() => { }, { scope: navRef });
+    const { y: currentScrollY } = useWindowScroll();
+
+    useEffect(() => {
+        // Animate navbar with GSAP on visibility change
+        gsap.to(navRef.current, {
+            y: isNavVisible ? 0 : -100,
+            opacity: isNavVisible ? 1 : 0,
+            ease: "power2.out",
+            duration: 0.5,
+        });
+    }, [isNavVisible]);
+
+    useEffect(() => {
+        // Scroll direction logic
+        if (currentScrollY === 0) {
+            setIsNavVisible(true);
+            navRef.current?.classList.remove('floating-nav');
+        } else if (currentScrollY > lastScrollY) {
+            setIsNavVisible(false);
+            navRef.current?.classList.add('floating-nav');
+        } else if (currentScrollY < lastScrollY) {
+            setIsNavVisible(true);
+            navRef.current?.classList.add('floating-nav');
+        }
+
+        setLastScrollY(currentScrollY);
+    }, [currentScrollY]);
 
     return (
-        <nav ref={navRef} className='w-full h-16 bg-transparent flex items-center justify-between px-4 text-white fixed z-40 font-ruslan'>
-            <h1 className='font-extrabold text-xl'>HSM<span className='text-accent'>.</span></h1>
+        <nav
+            ref={navRef}
+            className="w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 text-white bg-transparent font-ruslan transition-all duration-500"
+        >
+            <h1 className="font-extrabold text-xl">HSM<span className="text-accent">.</span></h1>
             <button
-                className='text-white font-bold text-xl'
+                className="text-white font-bold text-xl"
                 aria-label="Toggle menu"
             >
                 <Hamburger toggled={open} toggle={handleToggle} />
             </button>
         </nav>
-    )
-}
+    );
+};
