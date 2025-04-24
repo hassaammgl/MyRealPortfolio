@@ -303,7 +303,7 @@ const SocialLinks = () => {
 
     return (
         <div ref={containerRef}
-            className='absolute text-white z-10 top-16 right-4'>
+            className='absolute text-white z-10 top-16 right-7'>
             <div className='flex flex-col gap-3'>
                 {LINKS.map((link, index) => (
                     <a

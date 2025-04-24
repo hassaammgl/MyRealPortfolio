@@ -33,8 +33,8 @@ const App = () => {
         <Suspense fallback={<Loader />} >
           <Hero />
           {/* <GitHubStats /> */}
-          <ResponsiveTester />
           <About />
+          <ResponsiveTester />
           <Skills />
           <Hobby />
           <Reads />

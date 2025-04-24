@@ -33,6 +33,10 @@
 	--font-syne-mono: "Syne Mono", monospace; /* Fun, energetic font – use sparingly */
 }
 
+.marquee-track {
+	will-change: transform;
+}
+
 @font-face {
 	font-family: "Brittany";
 	src: url("../fonts/brittany/BrittanySignature.ttf");
