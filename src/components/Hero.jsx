@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedText from './AnimatedText';
 import AnimatedCounter from './AnimatedCounter';
+import { FiLinkedin, FiGithub, FiYoutube } from "react-icons/fi";
+import axios from 'axios';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -153,16 +155,7 @@ const Hero = () => {
                     className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
                     style={{ backgroundImage: `url(${IMAGES[nextIndex()].bg_img})` }}
                 />
-                <div
-                    style={{
-                        background: 'rgba(138, 43, 226, 0.15)', // Transparent purple
-                        backdropFilter: 'blur(12px)',
-                        border: '1px solid rgba(255, 255, 255, 0.18)',
-                        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
-                    }}
-                    className='absolute text-white z-10 top-16 right-0 w-40  border-[1px] border-accent flex items-center justify-center pointer-events-none rounded-md'>
-                    <AnimatedCounter value={56} prefix='+' />
-                </div>
+                <SocialLinks />
 
                 <div
                     ref={containerRef}
@@ -197,9 +190,173 @@ const Hero = () => {
                         <AnimatedText containerClass='text-white text-end font-brittany' text={"Mughal"} />
                     </div>
                 </div>
+                <Stats />
             </section>
         </Element>
     );
 };
 
 export default Hero;
+
+const LINKS = [
+    {
+        name: "LinkedIn",
+        icon: <FiLinkedin />,
+        url: "https://www.linkedin.com/in/m-hassaam-mughal-91668a256/",
+    },
+    {
+        name: "GitHub",
+        icon: <FiGithub />,
+        url: "https://github.com/hassaammgl/"
+    },
+    {
+        name: "Youtube",
+        icon: <FiYoutube />,
+        url: "https://www.youtube.com/@coderglitchx03"
+    }
+];
+
+
+const SocialLinks = () => {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const links = containerRef.current.querySelectorAll('a');
+
+        // Set initial state
+        gsap.set(links, {
+            opacity: 0,
+            y: -30,
+            scale: 0.7
+        });
+
+        // Create name elements for each link
+        links.forEach(link => {
+            const name = document.createElement('span');
+            name.className = 'link-name absolute left-full ml-2 px-2 py-1 rounded-md text-sm whitespace-nowrap';
+            name.style.backgroundColor = 'rgba(138, 43, 226, 0.3)';
+            name.style.backdropFilter = 'blur(12px)';
+            name.style.border = '1px solid rgba(255, 255, 255, 0.18)';
+            name.style.opacity = 0;
+            name.textContent = link.getAttribute('data-name');
+            link.appendChild(name);
+        });
+
+        // Animate entrance
+        gsap.to(links, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        // Add hover effects
+        links.forEach(link => {
+            const name = link.querySelector('.link-name');
+
+            link.addEventListener('mouseenter', () => {
+                gsap.to(link, {
+                    scale: 1.15,
+                    duration: 0.15,
+                    ease: "power2.out",
+                    y: -3
+                });
+
+                gsap.to(name, {
+                    opacity: 1,
+                    x: 10,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            link.addEventListener('mouseleave', () => {
+                gsap.to(link, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out",
+                    y: 0
+                });
+
+                gsap.to(name, {
+                    opacity: 0,
+                    x: 0,
+                    duration: 0.15,
+                    ease: "power2.in"
+                });
+            });
+        });
+
+        return () => {
+            links.forEach(link => {
+                const name = link.querySelector('.link-name');
+                if (name) link.removeChild(name);
+
+                link.removeEventListener('mouseenter', () => { });
+                link.removeEventListener('mouseleave', () => { });
+            });
+        };
+    }, []);
+
+    return (
+        <div ref={containerRef}
+            className='absolute text-white z-10 top-16 right-7'>
+            <div className='flex flex-col gap-3'>
+                {LINKS.map((link, index) => (
+                    <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className='p-3 rounded-full text-white text-2xl hover:text-accent relative'
+                        style={{
+                            background: 'rgba(138, 43, 226, 0.15)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(255, 255, 255, 0.18)',
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
+                        }}
+                        data-name={link.name}
+                    >
+                        {link.icon}
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const Stats = () => {
+
+    const [repos, setRepos] = useState(0);
+    useEffect(() => {
+        axios.get('https://api.github.com/users/hassaammgl')
+            .then((res) => {
+                setRepos(res.data.public_repos);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, [])
+
+    return (
+        <div
+            style={{
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
+            }}
+            className='p-7 absolute bottom-10 left-36 rounded-lg transform -translate-x-1/2 flex gap-5'>
+            <div className='flex flex-col items-center'>
+                <AnimatedCounter
+                    value={repos - 1}
+                    prefix='+'
+                    duration={2}
+                    className='text-white text-9xl font-ruslan'
+                />
+                <span className='text-white font-roboto font-extralight'>Repos</span>
+            </div>
+        </div>
+    )
+}

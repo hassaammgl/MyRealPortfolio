@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const AnimatedCounter = ({ value, duration = 2, delay = 0, suffix = '', prefix = '', decimals = 0 }) => {
+const AnimatedCounter = ({ className, value, duration = 2, delay = 0, suffix = '', prefix = '', decimals = 0 }) => {
     const counterRef = useRef(null);
 
     const formatNumber = (num) => {
@@ -29,7 +29,7 @@ const AnimatedCounter = ({ value, duration = 2, delay = 0, suffix = '', prefix =
     }, [value, duration, delay, prefix, suffix, decimals]);
 
     return (
-        <span ref={counterRef} className="animated-counter">
+        <span ref={counterRef} className={`animated-counter ${className}`}>
             {prefix}{formatNumber(0)}{suffix}
         </span>
     );
