@@ -127,8 +127,6 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
-
 const TopNav = ({ open, handleToggle }) => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isNavVisible, setIsNavVisible] = useState(true);
@@ -177,3 +175,5 @@ const TopNav = ({ open, handleToggle }) => {
         </nav>
     );
 };
+
+export default Navbar;
