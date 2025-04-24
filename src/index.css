@@ -29,6 +29,7 @@
 	--font-ruslan: "Ruslan Display", sans-serif; /* Use in titles or accent words */
 	--font-roboto: "Roboto", sans-serif; /* Clean body font for readability */
 	--font-bangers: "Bangers", system-ui;
+	--font-whisper: "Whisper", cursive;
 	--font-syne-mono: "Syne Mono", monospace; /* Fun, energetic font – use sparingly */
 }
 

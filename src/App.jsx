@@ -5,6 +5,7 @@ import { ReactLenis, useLenis } from 'lenis/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
 import ResponsiveTester from './components/ResponsiveTester';
+import GitHubStats from './components/GithubStats';
 
 const Hero = lazy(() => import("./components/Hero"))
 const About = lazy(() => import("./components/About"))
@@ -31,6 +32,7 @@ const App = () => {
         <Navbar />
         <Suspense fallback={<Loader />} >
           <Hero />
+          <GitHubStats />
           <ResponsiveTester />
           <About />
           <Skills />
