@@ -4,8 +4,7 @@ import { Element } from 'react-scroll'
 const Projects = () => {
   return (
     <Element name="Projects">
-      <section className="relative h-[100dvh] w-screen ">
-
+      <section className="relative h-dvh w-screen bg-gray-200">
       </section>
     </Element>
   )

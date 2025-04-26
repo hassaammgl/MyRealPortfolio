@@ -7,6 +7,7 @@ const About = () => {
     <Element name="About">
       <section className="relative h-dvh w-screen ">
         <AnimatedMarquee />
+        
       </section>
     </Element>
   )
