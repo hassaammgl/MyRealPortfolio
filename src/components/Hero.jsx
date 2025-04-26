@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedText from '@/components/AnimatedText';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import Load from '@/components/Load';
 import axios from 'axios';
 import { IMAGES, LINKS } from '@/constants';
 
@@ -14,6 +15,9 @@ const IMAGE_TRANSITION_DURATION = 1;
 const AUTO_PLAY_INTERVAL = 7000;
 
 const Hero = () => {
+    const [onLoadComplete, setOnLoadComplete] = useState(false);
+    // const [onLoadComplete, setOnLoadComplete] = useState(false);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const sectionRef = useRef(null);
@@ -106,13 +110,14 @@ const Hero = () => {
                 className="relative h-dvh w-screen flex justify-center items-center bg-center bg-cover overflow-hidden"
                 style={{ backgroundImage: `url(${IMAGES[currentIndex].bg_img})` }}
             >
+                <Load setOnLoadComplete={setOnLoadComplete} />
                 <div
                     ref={bgImgRef}
                     className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
                     style={{ backgroundImage: `url(${IMAGES[nextIndex()].bg_img})` }}
                 />
 
-                <SocialLinks />
+                {onLoadComplete && <SocialLinks />}
 
                 <div
                     ref={containerRef}
@@ -134,19 +139,21 @@ const Hero = () => {
                         className="object-cover h-[60vw] w-[40vw] max-h-96 max-w-64 md:h-96 md:w-64 transition-transform duration-300 ease-in-out cursor-pointer rounded-lg shadow-lg"
                     />
 
-                    <div className="font-whisper font-light leading-tight absolute flex flex-col text-[13vw] sm:text-[12vw] md:text-[11vw] lg:text-[9vw] xl:text-[8vw] 2xl:text-[7vw] w-xs sm:w-md md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl pointer-events-none">
-                        <AnimatedText containerClass="text-white font-bold" text="Welcome" />
-                        <AnimatedText
-                            hover="hover:text-white"
-                            style={{ WebkitTextStroke: "1px white" }}
-                            containerClass="text-transparent text-center font-bangers"
-                            text="I'm Hassaam"
-                        />
-                        <AnimatedText containerClass="text-white text-end font-brittany" text="Mughal" />
-                    </div>
+                    {
+                        onLoadComplete && <div className="font-whisper font-light leading-tight absolute flex flex-col text-[13vw] sm:text-[12vw] md:text-[11vw] lg:text-[9vw] xl:text-[8vw] 2xl:text-[7vw] w-xs sm:w-md md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl pointer-events-none">
+                            <AnimatedText containerClass="text-white font-bold" text="Welcome" />
+                            <AnimatedText
+                                hover="hover:text-white"
+                                style={{ WebkitTextStroke: "1px white" }}
+                                containerClass="text-transparent text-center font-bangers"
+                                text="I'm Hassaam"
+                            />
+                            <AnimatedText containerClass="text-white text-end font-brittany" text="Mughal" />
+                        </div>
+                    }
                 </div>
 
-                <Stats />
+                {onLoadComplete && <Stats />}
             </section>
         </Element>
     );
@@ -259,12 +266,5 @@ const Stats = () => {
     );
 };
 
-const Load = () => {
-    return (
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            <div className="loader"></div>
-        </div>
-    );
-}
-
 export default Hero;
+

@@ -20,27 +20,27 @@ export const LINKS = [
 
 export const IMAGES = [
     {
-        preview: "/hero/pr-1.jpg",
+        preview: "/hero/bg-1.jpg",
         alt: "Hero",
         bg_img: "/hero/bg-1.jpg",
     },
     {
-        preview: "/hero/pr-2.jpg",
+        preview: "/hero/bg-2.jpg",
         alt: "Hero",
         bg_img: "/hero/bg-2.jpg",
     },
     {
-        preview: "/hero/pr-3.jpg",
+        preview: "/hero/bg-3.jpg",
         alt: "Hero",
         bg_img: "/hero/bg-3.jpg",
     },
     {
-        preview: "/hero/pr-4.jpg",
+        preview: "/hero/bg-4.jpg",
         alt: "Hero",
         bg_img: "/hero/bg-4.jpg",
     },
     {
-        preview: "/hero/pr-5.jpg",
+        preview: "/hero/bg-5.jpg",
         alt: "Hero",
         bg_img: "/hero/bg-5.jpg",
     },
