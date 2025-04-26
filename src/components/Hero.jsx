@@ -260,7 +260,7 @@ const Stats = () => {
                     duration={2}
                     className="text-white text-7xl sm:text-9xl font-ruslan"
                 />
-                <span className="text-white font-roboto font-extralight">Repos</span>
+                <span className="text-white font-ruslan font-extralight">Repos</span>
             </div>
         </div>
     );
