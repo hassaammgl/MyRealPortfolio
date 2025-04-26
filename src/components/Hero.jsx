@@ -16,8 +16,6 @@ const AUTO_PLAY_INTERVAL = 7000;
 
 const Hero = () => {
     const [onLoadComplete, setOnLoadComplete] = useState(false);
-    // const [onLoadComplete, setOnLoadComplete] = useState(false);
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const sectionRef = useRef(null);
@@ -265,6 +263,32 @@ const Stats = () => {
         </div>
     );
 };
+
+const CodeImg = ({ src, className }) => {
+    const imgRef = useRef(null);
+
+    useGSAP(() => {
+        gsap.set(imgRef.current, {
+            scale: 0,
+            opacity: 0,
+        });
+        gsap.to(imgRef.current, {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut",
+        });
+    }, { scope: imgRef });
+
+    return (
+        <img
+            ref={imgRef}
+            src={src}
+            alt={"Code Image"}
+            className={className}
+        />
+    )
+}
 
 export default Hero;
 
