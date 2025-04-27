@@ -1,11 +1,41 @@
 import { Element } from 'react-scroll'
 import { AnimatedMarquee } from '@/utils/About'
 import AnimatedText from "@/components/AnimatedText"
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+
+
+gsap.registerPlugin(ScrollTrigger)
 
 const About = () => {
+
+  const section = useRef(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section.current,
+        start: "top 40%",
+        end: "bottom 50%",
+        scrub: 1,
+        // pin: true,
+        markers: true,
+      }
+    })
+
+    tl.fromTo("#code-img-1", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 })
+      .fromTo("#code-img-2", { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "<")
+
+    return () => {
+      tl.kill()
+    }
+  }, { scope: section })
+
   return (
     <Element name="About">
-      <section className="relative h-fit w-screen ">
+      <section ref={section} className="relative h-fit w-screen ">
         <AnimatedMarquee />
 
         <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
@@ -22,14 +52,14 @@ const About = () => {
               className="h-screen w-full object-cover"
             />
 
-            <div className="absolute bottom-10 right-10 w-52 h-36  bg-opacity-50 rounded">
+            <div id='code-img-1' className="absolute bottom-10 right-10 w-52 h-36  bg-opacity-50 rounded">
               <img
                 src="/code.png"
                 alt="code motivation"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded">
+            <div id='code-img-2' className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded">
               <img
                 src="/code-2.png"
                 alt="code motivation"
