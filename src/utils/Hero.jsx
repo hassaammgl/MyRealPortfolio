@@ -56,15 +56,14 @@ const SocialLinks = () => {
 
     return (
         <div ref={containerRef} className="absolute text-white z-10 top-16 right-7">
-            <div className="flex flex-col gap-3">
+            <div data-cursor-hover className="flex flex-col gap-3">
                 {LINKS.map((link, i) => (
                     <a
                         key={i}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-name={link.name}
-                        className="p-3 rounded-full text-white text-2xl hover:text-accent relative"
+                        className="p-3 rounded-full text-white text-2xl peer-hover:text-accent relative"
                         style={{
                             background: 'rgba(138,43,226,0.15)',
                             backdropFilter: 'blur(12px)',

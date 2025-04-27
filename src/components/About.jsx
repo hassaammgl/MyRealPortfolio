@@ -25,8 +25,8 @@ const About = () => {
       }
     })
 
-    tl.fromTo("#code-img-1", { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 })
-      .fromTo("#code-img-2", { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "<")
+    tl.fromTo("#code-img-1", { y: 100, opacity: 0 }, { y: -30, opacity: 1, duration: 1 })
+      .fromTo("#code-img-2", { y: -100, opacity: 0 }, { y: 30, opacity: 1, duration: 1 }, "<")
 
     return () => {
       tl.kill()
@@ -35,13 +35,13 @@ const About = () => {
 
   return (
     <Element name="About">
-      <section ref={section} className="relative h-fit w-screen ">
+      <section data-cursor-hover ref={section} className="relative h-fit w-screen ">
         <AnimatedMarquee />
 
         <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
           <div className="w-full md:w-1/2 p-6 flex items-center">
             <h1 className="text-[6vw] sm:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight uppercase">
-              <AnimatedText splitByWords={true} hover={"hover:text-accent transition-all ease-in-out duration-500"} text={"I'm a full-stack developer who thrives on turning complex challenges into seamless web experiences. From React to Node.js, I craft scalable apps with precision, always learning and adapting to stay ahead of the curve."} />
+              <AnimatedText splitByWords={true} hoverClass={"hover:text-accent"} text={"I'm a full-stack developer who thrives on turning complex challenges into seamless web experiences. From React to Node.js, I craft scalable apps with precision, always learning and adapting to stay ahead of the curve."} />
             </h1>
           </div>
 
@@ -56,14 +56,14 @@ const About = () => {
               <img
                 src="/code.png"
                 alt="code motivation"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-110 transition-all duration-300"
               />
             </div>
             <div id='code-img-2' className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded">
               <img
                 src="/code-2.png"
                 alt="code motivation"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-110 transition-all duration-300"
               />
             </div>
           </div>

@@ -110,7 +110,7 @@ const Hero = () => {
                 <Load setOnLoadComplete={setOnLoadComplete} />
                 <div
                     ref={bgImgRef}
-                    className="absolute top-0 left-0 h-full w-full bg-cover bg-center scale-0"
+                    className="absolute top-0 left-0 h-full w-full bg-cover blur-sm bg-center scale-0"
                     style={{ backgroundImage: `url(${IMAGES[nextIndex()].bg_img})` }}
                 />
 
@@ -120,7 +120,7 @@ const Hero = () => {
                     ref={containerRef}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className="relative flex h-dvh w-full items-center justify-center"
+                    className="relative  flex h-dvh w-full items-center justify-center"
                     style={{
                         transform: window.innerWidth > 768
                             ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`

@@ -1,10 +1,11 @@
 import React, { Suspense, lazy } from 'react'
-import Loader from "./components/Loader";
+import Loader from "@/components/Loader";
 
-import Navbar from './components/Navbar'
-import Footer from './components/Footer';
-import ResponsiveTester from './components/ResponsiveTester';
-import Wrapper from './components/Wrapper';
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer';
+import ResponsiveTester from '@/components/ResponsiveTester';
+import Wrapper from '@/components/Wrapper';
+import AnimatedCursor from '@/utils/Cursor';
 // import GitHubStats from './components/GithubStats';
 
 const Hero = lazy(() => import("./components/Hero"))
@@ -21,12 +22,13 @@ const App = () => {
   return (
     <Wrapper className='w-full h-fit overflow-x-hidden bg-primary font-poppins'>
       <Navbar />
+      <AnimatedCursor />
       <Suspense fallback={<Loader />} >
         <Hero />
         {/* <GitHubStats /> */}
         <About />
-        <ResponsiveTester />
         <Skills />
+        <ResponsiveTester />
         <Hobby />
         <Reads />
         <Projects />
@@ -38,3 +40,4 @@ const App = () => {
 }
 
 export default App
+// data-cursor-hover
