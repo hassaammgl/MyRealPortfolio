@@ -56,7 +56,7 @@ const SocialLinks = () => {
 
     return (
         <div ref={containerRef} className="absolute text-white z-10 top-16 right-7">
-            <div data-cursor-hover className="flex flex-col gap-3">
+            <div data-cursor-hover data-cursor-size="large" className="flex flex-col gap-3">
                 {LINKS.map((link, i) => (
                     <a
                         key={i}
