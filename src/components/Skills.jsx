@@ -207,7 +207,6 @@ const Skills = () => {
     const ctx = useRef();
     const hoverTls = useRef([]);
 
-    // होवर इफेक्ट्स के लिए कॉलबैक
     const handleMouseEnter = useCallback((card, hoverTL) => {
         return () => hoverTL.play();
     }, []);
@@ -218,7 +217,6 @@ const Skills = () => {
 
     useEffect(() => {
         ctx.current = gsap.context(() => {
-            // 3D पर्सपेक्टिव सेटअप
             gsap.set(containerRef.current, {
                 perspective: 2000,
                 transformStyle: "preserve-3d"
@@ -231,7 +229,6 @@ const Skills = () => {
                 cardsRef.current.forEach((card, index) => {
                     if (!card) return;
 
-                    // सेंटर में शुरुआती पोजीशन
                     gsap.set(card, {
                         x: 0,
                         y: 0,
@@ -240,7 +237,6 @@ const Skills = () => {
                         opacity: 1
                     });
 
-                    // होवर एनिमेशन
                     const hoverTL = gsap.timeline({ paused: true });
                     hoverTls.current[index] = hoverTL;
 
@@ -259,13 +255,11 @@ const Skills = () => {
 
             setupCards();
 
-            // विंडो रिसाइज हैंडलर
             const resizeHandler = () => {
                 ScrollTrigger.refresh();
             };
             window.addEventListener("resize", resizeHandler);
 
-            // स्क्रॉल एनिमेशन
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
