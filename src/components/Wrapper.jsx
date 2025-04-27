@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import { ReactLenis, useLenis } from 'lenis/react'
 
-gsap.registerPlugin(ScrollTrigger)
 
 const Wrapper = ({ children, className }) => {
 

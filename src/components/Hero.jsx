@@ -138,14 +138,14 @@ const Hero = () => {
 
                     {
                         onLoadComplete && <div className="font-whisper font-light leading-tight absolute flex flex-col text-[13vw] sm:text-[12vw] md:text-[11vw] lg:text-[9vw] xl:text-[8vw] 2xl:text-[7vw] w-xs sm:w-md md:w-lg lg:w-xl xl:w-2xl 2xl:w-4xl pointer-events-none">
-                            <AnimatedText containerClass="text-white font-bold" text="Welcome" />
+                            <AnimatedText className="text-white font-bold " text="Welcome" />
                             <AnimatedText
-                                hover="hover:text-white"
+                                hoverClass="hover:text-white"
                                 style={{ WebkitTextStroke: "1px white" }}
-                                containerClass="text-transparent text-center font-bangers"
+                                className="text-transparent text-center font-bangers"
                                 text="I'm Hassaam"
                             />
-                            <AnimatedText containerClass="text-white text-end font-brittany" text="Mughal" />
+                            <AnimatedText className="text-white text-end font-brittany" text="Mughal" />
                         </div>
                     }
                 </div>
