@@ -21,7 +21,7 @@ const About = () => {
         end: "top 50%",
         scrub: 1,
         // pin: true,
-        markers: true,
+        // markers: true,
       }
     })
 
@@ -40,7 +40,7 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
           <div className="w-full md:w-1/2 p-6 flex items-center">
-            <h1 className="text-[6vw] sm:text-3xl  font-bold leading-tight uppercase">
+            <h1 className="text-[6vw] sm:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight uppercase">
               <AnimatedText splitByWords={true} hover={"hover:text-accent transition-all ease-in-out duration-500"} text={"I'm a full-stack developer who thrives on turning complex challenges into seamless web experiences. From React to Node.js, I craft scalable apps with precision, always learning and adapting to stay ahead of the curve."} />
             </h1>
           </div>
