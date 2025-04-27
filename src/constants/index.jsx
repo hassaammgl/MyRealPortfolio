@@ -3,7 +3,7 @@ import { AiOutlineJavaScript } from "react-icons/ai";
 import { PiFileHtmlBold, PiFileCssBold } from "react-icons/pi";
 import { RiTailwindCssLine, RiNextjsLine, RiNodejsLine } from "react-icons/ri";
 import { IoLogoReact } from "react-icons/io5";
-import { SiReactrouter, SiPrisma, SiExpress, SiDrizzle } from "react-icons/si";
+import { SiReactrouter, SiPrisma, SiExpress, SiDrizzle, SiTypescript } from "react-icons/si";
 import { BsFiletypeScss } from "react-icons/bs";
 import { DiMongodb } from "react-icons/di";
 
