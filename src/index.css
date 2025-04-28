@@ -42,46 +42,6 @@
 	src: url("../fonts/brittany/BrittanySignature.ttf");
 }
 
-/* 
-
-/* Regular 
-@font-face {
-	font-family: 'YourFont';
-	src: url('/fonts/YourFont-Regular.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-  }
-  
-  /* Italic
-  @font-face {
-	font-family: 'YourFont';
-	src: url('/fonts/YourFont-Italic.woff2') format('woff2');
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-  }
-  
-  /* Bold 
-  @font-face {
-	font-family: 'YourFont';
-	src: url('/fonts/YourFont-Bold.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-  }
-  
-  /* Bold Italic 
-  @font-face {
-	font-family: 'YourFont';
-	src: url('/fonts/YourFont-BoldItalic.woff2') format('woff2');
-	font-weight: 700;
-	font-style: italic;
-	font-display: swap;
-  }
-  
-*/
-/* /styles/skills.css */
 @keyframes particleMove {
 	0% {
 		transform: translateY(0) translateX(0);
@@ -114,12 +74,31 @@
 }
 .transform-style-preserve-3d {
 	transform-style: preserve-3d;
-  }
-  
-  .translate-z-20 {
+}
+
+.translate-z-20 {
 	transform: translateZ(20px);
-  }
-  
-  .backdrop-blur-lg {
+}
+
+.backdrop-blur-lg {
 	backdrop-filter: blur(16px);
-  }
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.animate-float {
+	animation: float 3s ease-in-out infinite;
+}
+
+/* Smooth color transitions */
+transition-colors {
+	transition: background-color 0.5s ease;
+}
