@@ -1,114 +1,104 @@
-// import { useRef } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { useGSAP } from "@gsap/react";
-// import { LANGS } from "@/constants";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { LANGS } from "@/constants";
+import AnimatedText from '@/components/AnimatedText';
+import { ParticlesWrapper } from "@/components/Particles";
+import { Element } from 'react-scroll';
 
-// gsap.registerPlugin(ScrollTrigger);
-
-// const Skills = () => {
-//     const containerRef = useRef(null);
-//     const panelsRef = useRef([]);
-//     const panelWrapperRef = useRef(null);
-
-//     useGSAP(() => {
-//         const ctx = gsap.context(() => {
-//             // Vertical pin setup
-//             ScrollTrigger.create({
-//                 trigger: containerRef.current,
-//                 start: "top top",
-//                 end: "+=300%",
-//                 pin: true,
-//                 anticipatePin: 1,
-//             });
-
-//             // Panel animations
-//             panelsRef.current.forEach((panel, index) => {
-//                 gsap.from(panel, {
-//                     opacity: 0,
-//                     y: 100,
-//                     scale: 0.8,
-//                     rotateY: 45,
-//                     scrollTrigger: {
-//                         trigger: panel,
-//                         containerAnimation: undefined, // Remove container animation reference
-//                         start: "top 80%",
-//                         end: "top 30%",
-//                         scrub: 1,
-//                         toggleActions: "play none none reverse",
-//                     },
-//                     ease: "power2.out",
-//                     duration: 0.8,
-//                     delay: index * 0.1,
-//                 });
-//             });
-
-//             // Horizontal scroll setup
-//             const panelsWidth = panelWrapperRef.current?.scrollWidth || 0;
-//             const movement = panelsWidth - window.innerWidth;
-
-//             gsap.to(panelWrapperRef.current, {
-//                 x: -movement,
-//                 ease: "none",
-//                 scrollTrigger: {
-//                     trigger: containerRef.current,
-//                     start: "top top",
-//                     end: "+=300%",
-//                     scrub: 1,
-//                     invalidateOnRefresh: true,
-//                 },
-//             });
-//         }, containerRef);
-
-//         return () => ctx.revert();
-//     }, { scope: containerRef });
-
-//     return (
-//         <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#0a0a0a]">
-//             <div
-//                 ref={panelWrapperRef}
-//                 className="flex h-screen items-center gap-10 px-4 md:px-20 will-change-transform"
-//             >
-//                 {LANGS.map((lang, index) => (
-//                     <a
-//                         key={lang.name}
-//                         href={lang.url}
-//                         target="_blank"
-//                         rel="noopener noreferrer"
-//                         ref={el => panelsRef.current[index] = el}
-//                         className="flex flex-col items-center justify-center min-w-[300px] md:min-w-[400px] h-[60vh] rounded-3xl bg-white/5 backdrop-blur-md shadow-xl hover:scale-105 transition-transform duration-300 will-change-transform"
-//                         style={{
-//                             backgroundColor: `${lang.bgcolor}20`,
-//                         }}
-//                     >
-//                         <div
-//                             className="text-6xl mb-4"
-//                             style={{ color: lang.bgcolor }}
-//                         >
-//                             {lang.icon}
-//                         </div>
-//                         <h2 className="text-2xl md:text-3xl font-bold text-white">{lang.name}</h2>
-//                     </a>
-//                 ))}
-//             </div>
-//         </section>
-//     );
-// };
-
-// export default Skills;
-
-import React from 'react'
-import AnimatedText from '@/components/AnimatedText'
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Skills = () => {
-    return (
-        <div className='relative w-full h-fit overflow-hidden bg-secondary flex justify-center items-center'>
-            <h1 className='text-white font-brittany hover:text-accent text-5xl '>
-                <AnimatedText text={"Skills"} />
-                <sup><AnimatedText className='text-sm' text={"(Some are even useful!)"} /></sup>
-            </h1>
-        </div>
-    )
-}
+    const containerRef = useRef(null);
 
-export default Skills
+    useGSAP(() => {
+        const cards = gsap.utils.toArray(".card");
+
+        cards.forEach((card, index) => {
+            const nextCard = cards[index + 1];
+
+            if (nextCard) {
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    pinSpacing: false,
+                    anticipatePin: 1,
+                });
+
+                ScrollTrigger.create({
+                    trigger: nextCard,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            opacity: 0.3,
+                            scale: 0.95,
+                            duration: 0.3,
+                            ease: "power2.inOut"
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(card, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.3,
+                            ease: "power2.inOut"
+                        });
+                    },
+                });
+            }
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, { scope: containerRef });
+
+    return (
+        <Element name="Skills">
+            <div className="relative w-full z-10 overflow-hidden bg-secondary flex flex-col justify-center items-center">
+                <h1 className='text-white font-bangers hover:text-accent text-7xl py-8'>
+                    <AnimatedText text={"Skills"} />
+                    <sup>
+                        <AnimatedText className='ml-5 text-sm font-brittany' text={"Some are even useful!"} />
+                    </sup>
+                </h1>
+
+                <div
+                    ref={containerRef}
+                    className="w-full relative"
+                    style={{ height: `${LANGS.length * 60}vh` }}
+                >
+                    {LANGS.map((data, index) => (
+                        <Cards key={index} data={data} index={index} totalCards={LANGS.length} />
+                    ))}
+                </div>
+            </div>
+        </Element>
+    );
+};
+
+const Cards = ({ data, index, totalCards }) => {
+    const cardRef = useRef(null);
+
+    return (
+        <div
+            ref={cardRef}
+            className={`card absolute top-0 left-0 w-full h-[50vh] flex items-center justify-center
+        ${index === totalCards - 1 ? 'sticky' : ''}`}
+            style={{
+                zIndex: index + 10,
+                top: `${index * 60}vh`,
+            }}
+        >
+            <div className="border-2 rounded-xl w-4/5 h-4/5 flex items-center justify-center bg-primary">
+                <h2 className="text-4xl font-bold text-white">{data.name}</h2>
+            </div>
+        </div>
+    );
+};
+
+
+export default Skills;

@@ -17,8 +17,6 @@ const Projects = lazy(() => import("./components/Projects"))
 const Contact = lazy(() => import("./components/Contact"))
 
 const App = () => {
-
-
   return (
     <Wrapper className='w-full h-fit overflow-x-hidden bg-primary font-poppins'>
       <Navbar />
