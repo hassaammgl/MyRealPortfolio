@@ -1,6 +1,7 @@
 import React from 'react'
 import { Element } from 'react-scroll'
 import AnimatedText from "@/components/AnimatedText"
+import { SERVICES } from '@/constants'
 
 const Services = () => {
     return (
@@ -14,9 +15,9 @@ const Services = () => {
                 <div className='flex font-roboto justify-end items-start  text-white m-16 relative '>
                     <Svg className={"m-0 size-4 p-0 md:size-16 bottom-0 absolute left-0"} />
 
-                    <h4 className="text-end mr-8 font-extrabold uppercase text-white/60 overflow-hidden"><AnimatedText text={"( Services )"} /></h4>
-                    <div className='w-1/3 text-xl text-white/70'>
-                    
+                    <h4 className="text-end mr-8 font-extrabold uppercase text-white overflow-hidden"><AnimatedText text={"( Services )"} /></h4>
+                    <div className='w-1/3 text-xl text-white'>
+
                         <p className='font-bold'>
                             Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
                         </p>
@@ -26,6 +27,13 @@ const Services = () => {
 
                     </div>
                 </div>
+                <div className='w-full h-screen relative overflow-hidden text-white'>
+                    {
+                        SERVICES.map((data, index) => {
+                            return <Cards key={index} index={index} data={data} />
+                        })
+                    }
+                </div>
             </section>
         </Element >
     )
@@ -33,6 +41,13 @@ const Services = () => {
 
 export default Services
 
+const Cards = ({ data, index }) => {
+    return (
+        <div className='border-t-2 h-[80vh] overflow-hidden sticky border-white flex justify-center items-center'>
+            <div>{index + 1}</div>
+        </div>
+    )
+}
 
 const Svg = ({ className }) => {
     return (
@@ -42,3 +57,4 @@ const Svg = ({ className }) => {
         </svg>
     )
 }
+
