@@ -8,13 +8,11 @@ import Wrapper from '@/components/Wrapper';
 import AnimatedCursor from '@/utils/Cursor';
 // import GitHubStats from './components/GithubStats';
 
-const Hero = lazy(() => import("./components/Hero"))
-const About = lazy(() => import("./components/About"))
-const Skills = lazy(() => import("./components/Skills"))
-const Hobby = lazy(() => import("./components/Hobby"))
-const Reads = lazy(() => import("./components/Reads"))
-const Projects = lazy(() => import("./components/Projects"))
-const Contact = lazy(() => import("./components/Contact"))
+const Hero = lazy(() => import("@/components/Hero"))
+const About = lazy(() => import("@/components/About"))
+const Services = lazy(() => import("@/components/Services"))
+const Projects = lazy(() => import("@/components/Projects"))
+const Contact = lazy(() => import("@/components/Contact"))
 
 const App = () => {
   return (
@@ -25,12 +23,10 @@ const App = () => {
         <Hero />
         {/* <GitHubStats /> */}
         <About />
-        <Skills />
-        <ResponsiveTester />
-        <Hobby />
-        <Reads />
+        <Services />
         <Projects />
         <Contact />
+        <ResponsiveTester />
       </Suspense>
       <Footer />
     </Wrapper>
