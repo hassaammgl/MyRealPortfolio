@@ -41,7 +41,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
           <div className="w-full md:w-1/2 p-6 flex items-center">
             <h1 data-cursor-hover className="text-[6vw] sm:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight uppercase">
-              <AnimatedText splitByWords={true} hoverClass={"hover:text-accent"} text={"I'm a full-stack developer who thrives on turning complex challenges into seamless web experiences. From React to Node.js, I craft scalable apps with precision, always learning and adapting to stay ahead of the curve."} />
+              <AnimatedText splitByWords={true} hoverClass={"hover:text-accent"} className='transition-all ease-in-out duration-500' text={"I'm a full-stack developer who thrives on turning complex challenges into seamless web experiences. From React to Node.js, I craft scalable apps with precision, always learning and adapting to stay ahead of the curve."} />
             </h1>
           </div>
 

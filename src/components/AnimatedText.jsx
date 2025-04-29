@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const AnimatedText = ({ text, className = '', style = {}, splitByWords = false, hoverClass = '' }) => {
+const AnimatedText = ({ text, className = '', style = {}, splitByWords = false, hoverClass = '', duration = 1 }) => {
     const containerRef = useRef(null)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const AnimatedText = ({ text, className = '', style = {}, splitByWords = false, 
                 },
                 opacity: 0,
                 y: 50,
-                duration: 1,
+                duration: duration,
                 ease: 'power3.out',
                 stagger: 0.05,
             })
