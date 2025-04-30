@@ -35,7 +35,7 @@ const About = () => {
 
   return (
     <Element name="About">
-      <section ref={section} className="relative h-fit w-screen ">
+      <section ref={section} className="sticky h-fit w-screen ">
         <AnimatedMarquee />
 
         <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">

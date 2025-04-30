@@ -8,8 +8,7 @@ const Services = () => {
         <Element name="Services">
             <section className="relative h-fit w-screen bg-accent rounded-4xl p-10">
                 <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-9 flex justify-start items-center gap-4'>
-                    <AnimatedText className='uppercase text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} />
-
+                    <AnimatedText className='uppercase text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} splitByWords />
                 </div>
 
                 <div className='flex font-roboto justify-end items-start  text-white m-16 relative '>
@@ -27,7 +26,7 @@ const Services = () => {
 
                     </div>
                 </div>
-                <div className='w-full h-screen relative overflow-hidden text-white'>
+                <div className='w-full h-fit  text-white'>
                     {
                         SERVICES.map((data, index) => {
                             return <Cards key={index} index={index} data={data} />
@@ -43,18 +42,19 @@ export default Services
 
 const Cards = ({ data, index }) => {
     return (
-        <div className='border-t-2 h-[80vh] overflow-hidden sticky border-white flex justify-center items-center'>
-            <div>{index + 1}</div>
+        <div className='border-t-2 h-[80vh] overflow-hidden sticky border-white flex justify-center items-center flex-col md:flex-row'>
+            <div className='w-1/2'>{index + 1}</div>
+            <div className=''>{data.name}</div>
         </div>
     )
 }
 
+
 const Svg = ({ className }) => {
     return (
-        <svg stroke="currentColor" fill="none" strokeWidth="1.25" viewBox="6 6 12 12" strokeLinecap="round" strokeLinejoin="round" className={className} color="#fff" style={{ color: "#fff" }} height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+        <svg stroke="currentColor" fill="none" strokeWidth="1.25" viewBox="6 6 12 12" strokeLinecap="round" strokeLinejoin="round" className={className} color="#fff" style={{ color: "#fff" }} height="1em" width="1em" >
             <line x1="7" y1="7" x2="17" y2="17"></line>
             <polyline points="17 7 17 17 7 17"></polyline>
         </svg>
     )
 }
-
