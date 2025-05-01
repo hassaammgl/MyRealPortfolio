@@ -103,14 +103,14 @@ const ServiceCard = ({ data, index }) => {
     return (
         <div
             ref={cardRef}
-            className="service-card h-screen w-full p-10 flex flex-col lg:flex-row items-center justify-between relative"
+            className="service-card mt-8 h-screen w-full p-10 flex flex-col lg:flex-row items-center justify-between relative"
             style={{ zIndex: index + 1 }}
         >
-            <div className="absolute inset-0 bg-black/10 backdrop-blur-lg rounded-3xl" />
+            <div className="absolute inset-0 bg-tertiary backdrop-blur-lg rounded-3xl" />
 
             <div className="w-full lg:w-1/2 h-full flex items-center justify-center relative z-10">
                 <h2 className="text-8xl font-boldonse transform -rotate-12 mix-blend-difference">
-                    <span className="text-outline">{data.name}</span>
+                    <span className="text-outline text-center">{data.name}</span>
                 </h2>
             </div>
 
