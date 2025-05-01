@@ -1,11 +1,4 @@
 import { FiLinkedin, FiGithub, FiYoutube } from "react-icons/fi";
-import { AiOutlineJavaScript } from "react-icons/ai";
-import { PiFileHtmlBold, PiFileCssBold } from "react-icons/pi";
-import { RiTailwindCssLine, RiNextjsLine, RiNodejsLine } from "react-icons/ri";
-import { IoLogoReact } from "react-icons/io5";
-import { SiVite, SiFramer, SiReactrouter, SiPrisma, SiExpress, SiDrizzle, SiTypescript, SiGreensock } from "react-icons/si";
-import { BsFiletypeScss } from "react-icons/bs";
-import { DiMongodb } from "react-icons/di";
 
 export const LINKS = [
     {
@@ -88,7 +81,7 @@ export const SERVICES = [
         name: "MY TOOLBOX",
         description:
             "🧰 Here’s a glimpse into the powerful technologies and tools I use daily to bring high-quality web experiences to life. My toolbox is battle-tested, modern, and always evolving with the best industry standards.",
-        techStack: [
+        features: [
             "⚛️ React.js / Next.js / Tailwind CSS",
             "🟩 Node.js / Express.js",
             "🍃 MongoDB / 🐘 PostgreSQL",
