@@ -7,11 +7,11 @@ import { useNavStore } from '../store';
 import { useWindowScroll } from "react-use"
 
 const navLinks = [
-    { name: "Home", link: "home", value: ".home()" },
-    { name: "About", link: "about", value: ".about()" },
-    { name: "Services", link: "services", value: ".services()" },
-    { name: "Projects", link: "projects", value: ".projects()" },
-    { name: "Contact", link: "contact", value: ".contact()" },
+    { name: "Home", link: "home", value: "$.home()" },
+    { name: "About", link: "about", value: "$.about()" },
+    { name: "Services", link: "services", value: "$.services()" },
+    { name: "Projects", link: "projects", value: "$.projects()" },
+    { name: "Contact", link: "contact", value: "$.contact()" },
 ];
 
 const Navbar = () => {

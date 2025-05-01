@@ -1,4 +1,3 @@
-
 import { Element } from 'react-scroll'
 import AnimatedText from "@/components/AnimatedText"
 import { SERVICES } from '@/constants'
@@ -53,16 +52,20 @@ const Services = () => {
                 </div>
                 <div className='flex font-roboto justify-end items-start  text-white m-16 relative '>
                     <Svg className={"m-0 size-4 p-0 md:size-16 bottom-0 absolute left-0"} />
+
                     <h4 className="text-end mr-8 font-extrabold uppercase text-white overflow-hidden"><AnimatedText text={"( Services )"} /></h4>
                     <div className='w-1/3 text-xl text-white'>
+
                         <p className='font-bold'>
                             Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
                         </p>
                         <p className='font-extralight'>
                             If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
                         </p>
+
                     </div>
                 </div>
+
                 <div className='w-full h-fit text-white relative'>
                     {SERVICES.map((data, index) => (
                         <ServiceCard key={index} index={index} data={data} />
@@ -115,7 +118,7 @@ const ServiceCard = ({ data, index }) => {
                 <p className="text-2xl mb-8 font-roboto font-light opacity-90">{data.description}</p>
                 <div className="space-y-4">
                     {data.features?.map((feat, i) => (
-                        <div data-cursor-hover key={i} className="card-feature border-l-4 border-white pl-4 py-2">
+                        <div key={i} className="card-feature border-l-4 border-white pl-4 py-2">
                             <span className="text-lg font-medium">{feat}</span>
                         </div>
                     ))}
