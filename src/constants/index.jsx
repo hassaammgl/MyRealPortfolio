@@ -94,50 +94,45 @@ export const SERVICES = [
 ];
 
 
-export const Projects = [
+export const PROJECTS = [
     {
-        name: "E-Commerce Dashboard",
-        description: "A full-stack e-commerce admin dashboard with real-time analytics, inventory management, and order processing capabilities. Features include user authentication, role-based access control, and dynamic reporting.",
+        name: "Zentry Website Clone",
         tech: [
-            "React", "Node.js", "MongoDB", "Express", "Redux", "Tailwind CSS", "Chart.js"
+            "React", "GSAP", "Tailwind CSS"
         ],
-        githublink: "https://github.com/hassaammgl/ecommerce-dashboard",
-        livelink: "https://ecommerce-dashboard-demo.vercel.app"
+        githublink: "https://github.com/hassaammgl/zentry-awwards-game-website",
+        livelink: "https://awwards-zentry-website-clone.vercel.app/"
     },
     {
-        name: "AI Image Generator",
-        description: "An AI-powered image generation platform using DALL-E API. Users can create unique images from text descriptions, save their favorites, and share creations. Includes social sharing and gallery features.",
+        name: "ARTISUMMER",
         tech: [
-            "Next.js", "OpenAI API", "Prisma", "PostgreSQL", "Framer Motion", "TypeScript"
+            "Next.js", "OpenAI API",
         ],
-        githublink: "https://github.com/hassaammgl/ai-image-gen",
-        livelink: "https://ai-image-generator-demo.vercel.app"
+        githublink: "https://github.com/hassaammgl/article-summerizer",
+        livelink: "https://artisummer.netlify.app/"
     },
     {
-        name: "Real-Time Chat Application",
-        description: "A modern chat application with real-time messaging, file sharing, and user presence indicators. Features include end-to-end encryption, group chats, and message search functionality.",
+        name: "Macbook Pro Clone",
         tech: [
-            "React", "Socket.io", "Express", "MongoDB", "Redux Toolkit", "TailwindCSS"
+            "React", "Threejs", "TailwindCSS"
         ],
-        githublink: "https://github.com/hassaammgl/chat-app",
-        livelink: "https://chat-app-demo.railway.app"
+        githublink: "https://github.com/hassaammgl/Apple-3D-Website-Project",
+        livelink: "https://macbook-pro-clone.netlify.app/"
     },
     {
-        name: "Task Management Platform",
-        description: "A comprehensive project management tool with kanban boards, task tracking, and team collaboration features. Includes time tracking, deadline notifications, and progress analytics.",
+        name: "PARRE Textile",
         tech: [
-            "Next.js", "Node.js", "PostgreSQL", "GraphQL", "TypeScript", "Material UI", "JWT"
+            "Next.js", "SCSS", "React", "Chakra Ui", "Frammer motion"
         ],
-        githublink: "https://github.com/hassaammgl/task-manager",
-        livelink: "https://task-manager-demo.vercel.app"
+        githublink: "https://github.com/hassaammgl/PARRE-Textiles",
+        livelink: "https://www.parretextile.com/"
     },
     {
-        name: "Personal Blog Platform",
-        description: "A modern blogging platform with markdown support, comment system, and social sharing. Features include SEO optimization, category filtering, and responsive design.",
+        name: "Monster Programming",
         tech: [
-            "React", "Express", "MongoDB", "Redux", "TailwindCSS", "Markdown-it", "Cloudinary"
+            "React", "Nextjs", "SCSS", "Frammer motion"
         ],
-        githublink: "https://github.com/hassaammgl/blog-platform",
-        livelink: "https://blog-platform-demo.vercel.app"
+        githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
+        livelink: "https://animated-portfolio-website-project.vercel.app/"
     }
 ]
