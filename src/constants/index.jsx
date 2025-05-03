@@ -92,3 +92,52 @@ export const SERVICES = [
         ],
     },
 ];
+
+
+export const Projects = [
+    {
+        name: "E-Commerce Dashboard",
+        description: "A full-stack e-commerce admin dashboard with real-time analytics, inventory management, and order processing capabilities. Features include user authentication, role-based access control, and dynamic reporting.",
+        tech: [
+            "React", "Node.js", "MongoDB", "Express", "Redux", "Tailwind CSS", "Chart.js"
+        ],
+        githublink: "https://github.com/hassaammgl/ecommerce-dashboard",
+        livelink: "https://ecommerce-dashboard-demo.vercel.app"
+    },
+    {
+        name: "AI Image Generator",
+        description: "An AI-powered image generation platform using DALL-E API. Users can create unique images from text descriptions, save their favorites, and share creations. Includes social sharing and gallery features.",
+        tech: [
+            "Next.js", "OpenAI API", "Prisma", "PostgreSQL", "Framer Motion", "TypeScript"
+        ],
+        githublink: "https://github.com/hassaammgl/ai-image-gen",
+        livelink: "https://ai-image-generator-demo.vercel.app"
+    },
+    {
+        name: "Real-Time Chat Application",
+        description: "A modern chat application with real-time messaging, file sharing, and user presence indicators. Features include end-to-end encryption, group chats, and message search functionality.",
+        tech: [
+            "React", "Socket.io", "Express", "MongoDB", "Redux Toolkit", "TailwindCSS"
+        ],
+        githublink: "https://github.com/hassaammgl/chat-app",
+        livelink: "https://chat-app-demo.railway.app"
+    },
+    {
+        name: "Task Management Platform",
+        description: "A comprehensive project management tool with kanban boards, task tracking, and team collaboration features. Includes time tracking, deadline notifications, and progress analytics.",
+        tech: [
+            "Next.js", "Node.js", "PostgreSQL", "GraphQL", "TypeScript", "Material UI", "JWT"
+        ],
+        githublink: "https://github.com/hassaammgl/task-manager",
+        livelink: "https://task-manager-demo.vercel.app"
+    },
+    {
+        name: "Personal Blog Platform",
+        description: "A modern blogging platform with markdown support, comment system, and social sharing. Features include SEO optimization, category filtering, and responsive design.",
+        tech: [
+            "React", "Express", "MongoDB", "Redux", "TailwindCSS", "Markdown-it", "Cloudinary"
+        ],
+        githublink: "https://github.com/hassaammgl/blog-platform",
+        livelink: "https://blog-platform-demo.vercel.app"
+    }
+]

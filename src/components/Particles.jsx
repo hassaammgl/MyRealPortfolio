@@ -29,7 +29,7 @@ const CanvasParticles = () => {
         // Create particles
         const initParticles = () => {
             particles.length = 0;
-            const numberOfParticles = (canvas.width * canvas.height) / 15000;
+            const numberOfParticles = (canvas.width * canvas.height) / 80000;
 
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push({
@@ -108,7 +108,7 @@ const CanvasParticles = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+            className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-0"
         />
     );
 };

@@ -26,9 +26,9 @@ const App = () => {
         {/* <GitHubStats /> */}
         <About />
         <Services />
+        <ResponsiveTester />
         <Projects />
         <Contact />
-        <ResponsiveTester />
       </Suspense>
       <Footer />
     </Wrapper>

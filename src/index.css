@@ -102,3 +102,15 @@
 transition-colors {
 	transition: background-color 0.5s ease;
 }
+
+.text-outline {
+    -webkit-text-stroke: 2px white;
+    text-stroke: 2px white;
+    color: transparent;
+}
+
+@supports (height: 100dvh) {
+	.service-card {
+	  min-height: 80dvh;
+	}
+  }
