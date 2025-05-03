@@ -16,7 +16,7 @@ const Wrapper = ({ children, className }) => {
     }, [])
 
     return (
-        <ReactLenis options={{ autoRaf: false }} ref={lenisRef} root>
+        <ReactLenis options={{ autoRaf: false,  }} ref={lenisRef} root>
             <div className={className}>
                 {children}
             </div>

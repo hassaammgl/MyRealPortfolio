@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useProjectHoverStore } from '@/store'
+import { GoArrowUpLeft } from "react-icons/go";
 
 const AnimatedCursor = () => {
     const cursorRef = useRef(null);
@@ -10,6 +12,8 @@ const AnimatedCursor = () => {
     const mouse = useRef({ x: 0, y: 0 });
     const speed = 0.2;
     const followerSpeed = 0.15;
+
+    const { isHoverOnProjects, projectLink } = useProjectHoverStore()
 
     useGSAP(() => {
         if (!cursorRef.current || !followerRef.current) return;
@@ -83,14 +87,26 @@ const AnimatedCursor = () => {
 
     return (
         <>
-            <div
-                ref={cursorRef}
-                className="fixed w-2.5 h-2.5 bg-black dark:bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transform -translate-x-1/2 -translate-y-1/2"
-            />
-            <div
-                ref={followerRef}
-                className="fixed w-8 h-8 border-2 border-black dark:border-white rounded-full pointer-events-none z-[9998] mix-blend-difference opacity-70 transform -translate-x-1/2 -translate-y-1/2"
-            />
+            {!isHoverOnProjects && (<>
+                <div
+                    ref={cursorRef}
+                    className="fixed w-2.5 h-2.5 bg-black dark:bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transform -translate-x-1/2 -translate-y-1/2"
+                />
+                <div
+                    ref={followerRef}
+                    className="fixed w-8 h-8 border-2 border-black dark:border-white rounded-full pointer-events-none z-[9998] mix-blend-difference opacity-70 transform -translate-x-1/2 -translate-y-1/2"
+                />
+            </>)}
+            {
+                isHoverOnProjects && (
+                    <a href={projectLink}
+                        ref={cursorRef}
+                        className="fixed bg-tertiary p-8 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <GoArrowUpLeft className='text-3xl text-white transition-all ease-in-out duration-300' />
+                    </a>
+                )
+            }
         </>
     );
 };

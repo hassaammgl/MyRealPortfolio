@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'react-scroll';
 import Hamburger from 'hamburger-react';
-import { useNavStore } from '../store';
 import { useWindowScroll } from "react-use"
 
 const navLinks = [
@@ -19,7 +18,6 @@ const Navbar = () => {
     const navRef = useRef(null);
     const linksRef = useRef([]);
     const tl = useRef();
-    const { toggleNavAnimation } = useNavStore();
 
     // Store link refs
     const addToRefs = (el) => {
@@ -38,9 +36,6 @@ const Navbar = () => {
                 clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
                 ease: "power2.out",
                 display: "flex",
-                onComplete: () => {
-                    toggleNavAnimation();
-                }
             })
             .from(linksRef.current, {
                 y: 50,

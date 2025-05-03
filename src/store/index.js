@@ -1,8 +1,13 @@
 import { create } from 'zustand'
 
-export const useNavStore = create((set) => ({
-    isNavAnimated: false,
-    toggleNavAnimation: () => set((state) => ({
-        isNavAnimated: !state.isNavAnimated
-    })),
+export const useProjectHoverStore = create((set) => ({
+    isHoverOnProjects: false,
+    projectLink: "",
+    setIsHoverOnProjects: (value) =>
+        set(() => ({
+            isHoverOnProjects: value,
+        })),
+    setProjectLink: (value) => set(() => ({
+        projectLink: value
+    }))
 }))
