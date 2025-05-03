@@ -18,8 +18,8 @@ const Projects = () => {
   )
 }
 
-const ProjectCard = ({ className, bgImg, frontImg, name, techStack, repoLink = "https://github.com/hassaammgl/zentry-awwards-game-website", liveLink = null, description }) => {
-  const { setIsHoverOnProjects, setProjectLink } = useProjectHoverStore()
+const ProjectCard = ({ className }) => {
+  const { setIsHoverOnProjects } = useProjectHoverStore()
 
   const cardRef = useRef(null)
 
@@ -27,7 +27,6 @@ const ProjectCard = ({ className, bgImg, frontImg, name, techStack, repoLink = "
     const projCard = cardRef.current
     projCard.addEventListener('mouseenter', () => {
       setIsHoverOnProjects(true)
-      setProjectLink(repoLink)
     })
     projCard.addEventListener('mouseleave', () => setIsHoverOnProjects(false))
 
@@ -39,8 +38,6 @@ const ProjectCard = ({ className, bgImg, frontImg, name, techStack, repoLink = "
 
   return (
     <div ref={cardRef} className={className}>
-      <img className="w-full h-full object-cover absolute top-0 left-0" src={bgImg} alt="bg Project img" />
-      {/* <div>{name} {techStack.map((tech, i) => (<button key={i} >{tech}</button>))}</div> */}
     </div>
   )
 }

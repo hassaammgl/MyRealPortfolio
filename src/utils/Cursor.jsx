@@ -13,7 +13,7 @@ const AnimatedCursor = () => {
     const speed = 0.2;
     const followerSpeed = 0.15;
 
-    const { isHoverOnProjects, projectLink } = useProjectHoverStore()
+    const { isHoverOnProjects } = useProjectHoverStore()
 
     useGSAP(() => {
         if (!cursorRef.current || !followerRef.current) return;
@@ -99,12 +99,12 @@ const AnimatedCursor = () => {
             </>)}
             {
                 isHoverOnProjects && (
-                    <a href={projectLink}
+                    <div
                         ref={cursorRef}
                         className="fixed bg-tertiary p-8 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
                     >
                         <GoArrowUpLeft className='text-3xl text-white transition-all ease-in-out duration-300' />
-                    </a>
+                    </div>
                 )
             }
         </>
