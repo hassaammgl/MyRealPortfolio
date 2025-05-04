@@ -23,7 +23,6 @@ const App = () => {
       <CanvasParticles />
       <Suspense fallback={<Loader />} >
         <Hero />
-        {/* <GitHubStats /> */}
         <About />
         <Services />
         <Projects />

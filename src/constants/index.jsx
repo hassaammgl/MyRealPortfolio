@@ -96,6 +96,7 @@ export const SERVICES = [
 
 export const PROJECTS = [
     {
+        _id: crypto.randomUUID(),
         name: "Zentry Website Clone",
         tech: [
             "React", "GSAP", "Tailwind CSS"
@@ -104,6 +105,7 @@ export const PROJECTS = [
         livelink: "https://awwards-zentry-website-clone.vercel.app/"
     },
     {
+        _id: crypto.randomUUID(),
         name: "ARTISUMMER",
         tech: [
             "Next.js", "OpenAI API",
@@ -112,6 +114,7 @@ export const PROJECTS = [
         livelink: "https://artisummer.netlify.app/"
     },
     {
+        _id: crypto.randomUUID(),
         name: "Macbook Pro Clone",
         tech: [
             "React", "Threejs", "TailwindCSS"
@@ -120,6 +123,7 @@ export const PROJECTS = [
         livelink: "https://macbook-pro-clone.netlify.app/"
     },
     {
+        _id: crypto.randomUUID(),
         name: "PARRE Textile",
         tech: [
             "Next.js", "SCSS", "React", "Chakra Ui", "Frammer motion"
@@ -128,6 +132,16 @@ export const PROJECTS = [
         livelink: "https://www.parretextile.com/"
     },
     {
+        _id: crypto.randomUUID(),
+        name: "Monster Programming",
+        tech: [
+            "React", "Nextjs", "SCSS", "Frammer motion"
+        ],
+        githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
+        livelink: "https://animated-portfolio-website-project.vercel.app/"
+    },
+    {
+        _id: crypto.randomUUID(),
         name: "Monster Programming",
         tech: [
             "React", "Nextjs", "SCSS", "Frammer motion"
