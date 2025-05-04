@@ -124,15 +124,20 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
 
   useGSAP(() => {
     gsap.set("#refLinks", {
-      x: 200,
+      y: -200,
       opacity: 0
     })
     gsap.set("#refLinks", {
-      x: 0,
+      y: 0,
       opacity: 1,
       ease: "power3.inOut",
-      duration: .8,
-      delay: .41,
+      duration: 1,
+      delay: .9,
+      scrollTrigger: {
+        trigger: "#refLinks",
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      }
     })
   })
 
@@ -152,7 +157,7 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
       <p className="text-sm italic font-boldonse text-accent"><AnimatedText text={techs} /></p>
       <h4 className="text-2xl font-boldonse font-semibold text-accent"> <AnimatedText text={name} /> </h4>
       <div className='flex gap-2'>
-        {livelink &&  (
+        {livelink && (
           <>
             <a id='refLinks' href={livelink} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center w-fit text-accent border border-accent px-4 py-1 rounded-full text-sm hover:bg-accent hover:text-white transition">
               View
