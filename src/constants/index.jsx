@@ -102,7 +102,9 @@ export const PROJECTS = [
             "React", "GSAP", "Tailwind CSS"
         ],
         githublink: "https://github.com/hassaammgl/zentry-awwards-game-website",
-        livelink: "https://awwards-zentry-website-clone.vercel.app/"
+        livelink: "https://awwards-zentry-website-clone.vercel.app/",
+        image: "/projects/zentry.gif",
+        preview: "/projects/zentrypreveiw.png",
     },
     {
         _id: crypto.randomUUID(),
@@ -111,6 +113,8 @@ export const PROJECTS = [
             "Next.js", "OpenAI API",
         ],
         githublink: "https://github.com/hassaammgl/article-summerizer",
+        image: "/projects/zentry.gif",
+        preview: "/projects/zentrypreveiw.png",
         livelink: "https://artisummer.netlify.app/"
     },
     {
@@ -120,6 +124,8 @@ export const PROJECTS = [
             "React", "Threejs", "TailwindCSS"
         ],
         githublink: "https://github.com/hassaammgl/Apple-3D-Website-Project",
+        preview: "/projects/zentrypreveiw.png",
+        image: "/projects/zentry.gif",
         livelink: "https://macbook-pro-clone.netlify.app/"
     },
     {
@@ -128,6 +134,8 @@ export const PROJECTS = [
         tech: [
             "Next.js", "SCSS", "React", "Chakra Ui", "Frammer motion"
         ],
+        preview: "/projects/zentrypreveiw.png",
+        image: "/projects/zentry.gif",
         githublink: "https://github.com/hassaammgl/PARRE-Textiles",
         livelink: "https://www.parretextile.com/"
     },
@@ -138,6 +146,8 @@ export const PROJECTS = [
             "React", "Nextjs", "SCSS", "Frammer motion"
         ],
         githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
+        preview: "/projects/zentrypreveiw.png",
+        image: "/projects/zentry.gif",
         livelink: "https://animated-portfolio-website-project.vercel.app/"
     },
     {
@@ -147,6 +157,8 @@ export const PROJECTS = [
             "React", "Nextjs", "SCSS", "Frammer motion"
         ],
         githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
+        preview: "/projects/zentrypreveiw.png",
+        image: "/projects/zentry.gif",
         livelink: "https://animated-portfolio-website-project.vercel.app/"
     }
 ]

@@ -85,6 +85,15 @@ const AnimatedCursor = () => {
         };
     }, []);
 
+    useGSAP(() => {
+        gsap.to("#project-cursor", {
+            scale: 1.3,
+            duration: .7,
+            ease: "power3.inOut"
+        })
+    })
+
+
     return (
         <>
             {!isHoverOnProjects && (<>
@@ -101,9 +110,10 @@ const AnimatedCursor = () => {
                 isHoverOnProjects && (
                     <div
                         ref={cursorRef}
-                        className="fixed bg-tertiary p-8 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
+                        id='project-cursor'
+                        className="fixed bg-tertiary p-2 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
                     >
-                        <GoArrowUpLeft className='text-3xl text-white transition-all ease-in-out duration-300' />
+                        <GoArrowUpLeft className='text-sm text-white transition-all ease-in-out duration-300' />
                     </div>
                 )
             }
