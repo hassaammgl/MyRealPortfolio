@@ -118,3 +118,7 @@ transition-colors {
 		min-height: 80dvh;
 	}
 }
+
+.transform-style-preserve-3d {
+	transform-style: preserve-3d;
+}
