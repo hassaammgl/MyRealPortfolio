@@ -213,6 +213,7 @@ import { PROJECTS } from "@/constants"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { FaGithub } from "react-icons/fa"
+import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -271,6 +272,7 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
   const { setIsHoverOnProjects } = useProjectHoverStore()
   const cardRef = useRef(null)
   const previewRef = useRef(null)
+  const techs = `${tech?.join(" ● ")}`
 
   useEffect(() => {
     const projCard = cardRef.current
@@ -314,6 +316,24 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
     }
   }, [])
 
+  useGSAP(() => {
+    gsap.set("#refLinks", {
+      x: 200,
+      opacity: 0
+    })
+    gsap.set("#refLinks", {
+      x: 0,
+      opacity: 1,
+      ease: "power3.inOut",
+      duration: .8,
+      delay: 1,
+      scrollTrigger: {
+        start: "top 95%",
+        end: "top 40%"
+      }
+    })
+  })
+
   return (
     <div ref={cardRef} className="project-card flex flex-col gap-4 group ">
       <div className="overflow-hidden rounded-md shadow-lg relative">
@@ -326,15 +346,16 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
           style={{ transformStyle: 'preserve-3d' }}
         />
       </div>
-      <p className="text-sm italic font-boldonse text-accent">{tech?.join(" ● ")}</p>
-      <h4 className="text-2xl font-boldonse font-semibold text-accent">{name}</h4>
+      {/* <p className="text-sm italic font-boldonse text-accent"><AnimatedText text={name} />{tech?.join(" ● ")}</p> */}
+      <p className="text-sm italic font-boldonse text-accent"><AnimatedText text={techs} /></p>
+      <h4 className="text-2xl font-boldonse font-semibold text-accent"> <AnimatedText text={name} /> </h4>
       <div className='flex gap-2'>
         {livelink && (
           <>
-            <a href={livelink} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center w-fit text-accent border border-accent px-4 py-1 rounded-full text-sm hover:bg-accent hover:text-white transition">
+            <a id='refLinks' href={livelink} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center w-fit text-accent border border-accent px-4 py-1 rounded-full text-sm hover:bg-accent hover:text-white transition">
               View
             </a>
-            <a href={livelink} target="_blank" rel="noopener noreferrer" className="inline-block text-accent border border-accent p-3 rounded-full text-sm hover:bg-accent hover:text-white transition">
+            <a id='refLinks' href={livelink} target="_blank" rel="noopener noreferrer" className="inline-block text-accent border border-accent p-3 rounded-full text-sm hover:bg-accent hover:text-white transition">
               <FaGithub />
             </a>
           </>
