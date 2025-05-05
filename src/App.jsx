@@ -17,7 +17,7 @@ import CanvasParticles from './components/Particles';
 
 const App = () => {
   return (
-    <Wrapper className='w-full h-fit overflow-x-hidden bg-primary font-poppins'>
+    <Wrapper className='w-full bg-primary font-poppins'>
       <Navbar />
       <AnimatedCursor />
       <CanvasParticles />
@@ -26,10 +26,10 @@ const App = () => {
         <About />
         <Services />
         <Projects />
-        <ResponsiveTester />
+        {/* <ResponsiveTester /> */}
         <Contact />
+        <Footer />
       </Suspense>
-      <Footer />
     </Wrapper>
   )
 }
