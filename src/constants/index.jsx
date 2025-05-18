@@ -162,3 +162,23 @@ export const PROJECTS = [
         livelink: "https://animated-portfolio-website-project.vercel.app/"
     }
 ]
+
+
+export const CONTACTS = [
+    {
+        name: "Email",
+        url: "mailto:someone@example.com"
+    },
+    {
+        name: "Linkedin",
+        url: "https://www.linkedin.com/in/m-hassaam-mughal-91668a256/"
+    },
+    {
+        name: "GIthub",
+        url: "https://github.com/hassaammgl/"
+    },
+    {
+        name: "Youtube",
+        url: "https://www.youtube.com/@coderglitchx03"
+    },
+]
