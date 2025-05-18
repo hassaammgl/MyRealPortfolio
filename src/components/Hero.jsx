@@ -6,6 +6,7 @@ import AnimatedText from '@/components/AnimatedText';
 import Load from '@/components/Load';
 import { useGSAP } from '@gsap/react';
 import { FiArrowDownRight } from 'react-icons/fi';
+import Button from '@/ui/Buttons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,10 +33,10 @@ const Hero = () => {
                                     hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
                                 />
                             </h1>
-                            <div className="flex items-start justify-between relative">
+                            <div className="flex items-start justify-between relative font-Audiowide ">
                                 <div className="w-1/3 px-10">
                                     <FiArrowDownRight className='text-white text-5xl' />
-                                    <p className="text-xl md:text-2xl mb-8 font-Audiowide leading-relaxed text-stone-200">
+                                    <p className="text-xl md:text-2xl mb-8 leading-relaxed text-stone-200">
                                         I help growing brands and startups
                                         <br />gain an unfair advantage through
                                         <br />premium, results driven websites.
@@ -59,10 +60,10 @@ const Hero = () => {
                                     />
                                 </div>
 
-                                <div className="w-1/3 text-right px-20 h-full ">
-                                    <div className='text-white mt-auto'>
+                                <div className="w-1/3 text-right px-20 h-full  mt-auto">
+                                    <div className='text-white '>
                                         <p className="text-stone-600 text-sm mb-1">AVAILABLE FOR WORK</p>
-                                        <h3 className="text-5xl md:text-6xl font-bold tracking-tighter">{Months[new Date().getMonth()]} '{new Date().getDate()}</h3>
+                                        <h3 className="text-5xl md:text-6xl font-bold tracking-tighter">{Months[new Date().getMonth()]}' {new Date().getDate()}</h3>
                                     </div>
                                 </div>
                             </div>
