@@ -1,18 +1,11 @@
-import React from 'react'
-
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer';
-import ResponsiveTester from '@/components/ResponsiveTester';
-import Wrapper from '@/components/Wrapper';
+import React, { lazy, Suspense } from 'react'
+import Wrapper from '@/layout/Wrapper'
+import ResponsiveTester from '@/utils/Tester'
 import AnimatedCursor from '@/utils/Cursor';
-// import GitHubStats from './components/GithubStats';
+import CanvasParticles from '@/utils/Particles';
+import Navbar from '@/layout/Navbar'
 
-import CanvasParticles from './components/Particles';
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+const Hero = lazy(() => import('@/components/Hero'))
 
 const App = () => {
   return (
@@ -21,12 +14,9 @@ const App = () => {
       <AnimatedCursor />
       <CanvasParticles />
       <ResponsiveTester />
-      <Hero />
-      <About />
-      <Services />
-      <Projects />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
+        <Hero />
+      </Suspense>
     </Wrapper>
   )
 }
