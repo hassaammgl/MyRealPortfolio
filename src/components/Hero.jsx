@@ -164,10 +164,10 @@ const Hero = () => {
     const [onLoadComplete, setOnLoadComplete] = useState(false);
     const sectionRef = useRef(null);
     const buttonref = useRef(null);
-    const heroref = useRef(null);
+    const heroRef = useRef(null);
 
     useGSAP(() => {
-        if (heroref.current) {
+        if (buttonref.current) {
             gsap.set(buttonref.current, {
                 x: -400,
                 opacity: 0,
@@ -179,25 +179,14 @@ const Hero = () => {
                 opacity: 0,
             });
 
-            gsap.set(heroref.current, {
-                y: 100,
-                clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+            gsap.set(heroRef.current, {
+                y: 600,
+                opacity: 0,
             });
 
             const tl = gsap.timeline();
 
             tl
-                // .to(heroref.current, {
-                //     clipPath: "inset(0 0 0 0)",
-                //     y: 0,
-                //     duration: 1.2,
-                //     ease: "power3.inOut",
-                // })
-                // .to(heroref.current, {
-                //     scale: 1,
-                //     duration: 1.5,
-                //     ease: "power3.out",
-                // }, 0)
                 .to(buttonref.current, {
                     x: 0,
                     opacity: 1,
@@ -206,6 +195,12 @@ const Hero = () => {
                 }, 0.2)
                 .to("#arrow", {
                     x: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.inOut",
+                }, 0.2)
+                .to(heroRef.current, {
                     y: 0,
                     opacity: 1,
                     duration: 1,
@@ -223,7 +218,7 @@ const Hero = () => {
         <Element name="Home">
             <section
                 ref={sectionRef}
-                className="relative h-screen w-screen flex justify-center items-center bg-center bg-cover overflow-hidden"
+                className="relative h-[110vh] w-screen flex justify-center items-center bg-center bg-cover overflow-hidden"
             >
                 <Load setOnLoadComplete={setOnLoadComplete} />
                 {onLoadComplete && (
@@ -236,26 +231,17 @@ const Hero = () => {
                                 hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
                             />
                         </h1>
-
                         <div className="flex items-start justify-between relative font-Audiowide">
                             <div className="w-1/3 px-10">
                                 <FiArrowDownRight id='arrow' className='text-white text-5xl mb-4' />
                                 <p className="text-xl md:text-2xl mb-8 leading-relaxed text-stone-200">
                                     <AnimatedText
-                                        text={"I help growing brands and startups"}
+                                        text={"I help growing brands and startups gain an unfair advantage through premium, results driven websites."}
                                         className="text-center"
                                         splitByWords
                                         hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
                                     />
-                                    <br />
-                                    <AnimatedText
-                                        text={"gain an unfair advantage through premium, results driven websites."}
-                                        className="text-start"
-                                        splitByWords
-                                        hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
-                                    />
                                 </p>
-
                                 <button
                                     ref={buttonref}
                                     className="inline-flex items-center px-8 py-4 bg-stone-800 text-white rounded-full hover:bg-stone-700 transition-colors"
@@ -266,21 +252,19 @@ const Hero = () => {
                                     </svg>
                                 </button>
                             </div>
-
-                            <div className="w-1/3 relative overflow-hidden z-20">
+                            <div className="w-1/3 relative ">
                                 <img
-                                    ref={heroref}
+                                    ref={heroRef}
                                     src="/hero/hero.png"
                                     alt="Portrait photo of hassaam"
-                                    className="absolute inset-0 object-cover w-full h-full"
+                                    className="absolute object-cover -top-72"
                                 />
                             </div>
-
                             <div className="w-1/3 text-right px-20 h-full mt-auto">
                                 <div className='text-white'>
-                                    <p className=" text-stone-600 text-sm mb-1"><AnimatedText start='top 90%' text={"AVAILABLE FOR WORK"} /></p>
+                                    <p className=" text-stone-600 text-sm mb-1"><AnimatedText start='top bottom' text={"AVAILABLE FOR WORK"} /></p>
                                     <h3 className=" text-5xl md:text-6xl font-bold tracking-tighter">
-                                        <AnimatedText start='top 90%' text={date} />
+                                        <AnimatedText start='top bottom' text={date} />
                                     </h3>
                                 </div>
                             </div>
