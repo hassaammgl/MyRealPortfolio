@@ -123,3 +123,8 @@ transition-colors {
 .transform-style-preserve-3d {
 	transform-style: preserve-3d;
 }
+
+
+.br-test{
+	@apply border-2 border-red-500;
+}

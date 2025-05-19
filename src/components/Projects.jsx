@@ -56,16 +56,16 @@ const Projects = () => {
 
   return (
     <Element name="Projects">
-      <section ref={projectsSectionRef} className="relative h-fit w-screen">
+      <section ref={projectsSectionRef} className="relative md:h-fit w-screen">
         <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-9 flex justify-start items-start flex-col gap-4'>
           <AnimatedText className='uppercase text-[7vw] hover:text-accent text-center transition-all ease-in-out duration-500' text={"Selected"} />
           <AnimatedText className=' text-end w-1/3 font-extralight font-brittany text-[9vw] hover:text-accent transition-all ease-in-out duration-500' text={"Cases"} />
         </div>
-        <div className="w-full p-12 flex">
-          <div ref={column1Ref} className="w-1/2 flex justify-start gap-72 items-center flex-col px-9">
+        <div className="w-full p-12 flex flex-col lg:flex-row gap-20 ">
+          <div ref={column1Ref} className="lg:w-1/2 w-full flex justify-start gap-20 lg:gap-72 items-center flex-col px-9">
             {projects1.map((value) => <ProjectCard key={value._id} {...value} />)}
           </div>
-          <div ref={column2Ref} className="w-1/2 mt-48 flex justify-start gap-72 items-center flex-col">
+          <div ref={column2Ref} className="lg:w-1/2 w-full lg:mt-48 flex justify-start gap-20 lg:gap-72 items-center flex-col px-9">
             {projects2.map((value) => <ProjectCard key={value._id} {...value} />)}
           </div>
         </div>

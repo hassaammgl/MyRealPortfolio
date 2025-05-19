@@ -4,11 +4,8 @@ import AnimatedText from '@/components/AnimatedText'
 const Footer = () => {
     return (
         <footer className=" text-white">
-            <h1 className=" text-[15vw] font-ruslan text-center font-light mt-10 uppercase leading-48">
+            <h1 className="text-[15vw] font-ruslan text-center font-light mt-10 uppercase leading-48">
                 <AnimatedText className='text-tertiary' text={"HASSAAM"} />
-                {/* <div className='bg-red-500 w-52 h-52' style={{
-                    clipPath: "inset(0% 0% 0% 35%)"
-                }}></div> */}
             </h1>
             <div className="bg-accent text-white text-sm py-4 px-6 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p>Copyright © hassaammgl {new Date().getFullYear()}</p>

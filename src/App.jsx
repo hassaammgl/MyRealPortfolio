@@ -2,7 +2,7 @@ import React from 'react'
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer';
-// import ResponsiveTester from '@/components/ResponsiveTester';
+import ResponsiveTester from '@/components/ResponsiveTester';
 import Wrapper from '@/components/Wrapper';
 import AnimatedCursor from '@/utils/Cursor';
 // import GitHubStats from './components/GithubStats';
@@ -20,13 +20,13 @@ const App = () => {
       <Navbar />
       <AnimatedCursor />
       <CanvasParticles />
+      <ResponsiveTester />
       <Hero />
-      {/* <About />
+      <About />
       <Services />
-      <Projects /> */}
-      {/* <ResponsiveTester /> */}
-      {/* <Contact />
-      <Footer /> */}
+      <Projects />
+      <Contact />
+      <Footer />
     </Wrapper>
   )
 }
