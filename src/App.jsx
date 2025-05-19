@@ -21,12 +21,12 @@ const App = () => {
       <AnimatedCursor />
       <CanvasParticles />
       <Hero />
-      <About />
+      {/* <About />
       <Services />
-      <Projects />
+      <Projects /> */}
       {/* <ResponsiveTester /> */}
-      <Contact />
-      <Footer />
+      {/* <Contact />
+      <Footer /> */}
     </Wrapper>
   )
 }

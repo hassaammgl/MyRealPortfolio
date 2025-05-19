@@ -5,27 +5,54 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const AnimatedText = ({ text, className = '', style = {}, splitByWords = false, hoverClass = '', duration = 1 }) => {
+const AnimatedText = ({
+    text,
+    className = '',
+    style = {},
+    splitByWords = false,
+    hoverClass = '',
+    duration = 1,
+    revert = false,
+    start = 'top 80%',
+}) => {
     const containerRef = useRef(null)
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from('.char', {
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse',
-                    // markers: true,
-                },
-                opacity: 0,
-                y: 50,
-                duration: duration,
-                ease: 'power3.out',
-                stagger: 0.05,
-            })
-        }, containerRef)
+        if (!revert) {
+            const ctx = gsap.context(() => {
+                gsap.from('.char', {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: start,
+                        toggleActions: 'play none none reverse',
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: duration,
+                    ease: 'power3.out',
+                    stagger: 0.05,
+                })
+            }, containerRef)
 
-        return () => ctx.revert()
+            return () => ctx.revert()
+        } else {
+            const ctx = gsap.context(() => {
+                gsap.from('.char', {
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    },
+                    opacity: 0,
+                    y: -50,
+                    duration: duration,
+                    ease: 'power3.out',
+                    stagger: 0.05,
+                })
+            }, containerRef)
+
+            return () => ctx.revert()
+        }
     }, [])
 
     const renderText = () => {
