@@ -56,6 +56,7 @@ export const SERVICES = [
             "⚡ High-performance UI/UX focused builds, fully accessible and SEO-optimized",
             "🌐 Cross-browser and device compatibility with smooth, interactive animations",
         ],
+        img: "/services/frontend.jpg",
     },
     {
         name: "BACKEND",
@@ -66,9 +67,10 @@ export const SERVICES = [
             "🗄️ Efficient database design and API development with secure data practices",
             "🛡️ Robust authentication and integrations with custom APIs",
         ],
+        img: "/services/backend.jpg",
     },
     {
-        name: "FULL STACK",
+        name: "FULLSTACK",
         description:
             "🧠 I bring frontend and backend together into a seamless, fully integrated web solution. From stunning interfaces to rock-solid server-side logic, I deliver complete applications that perform flawlessly across every layer.",
         features: [
@@ -76,9 +78,10 @@ export const SERVICES = [
             "💬 Real-time features like live chat and notifications with rapid deployment",
             "🌱 End-to-end tested systems built to scale and evolve",
         ],
+        img: "/services/fullstack.jpg",
     },
     {
-        name: "MY TOOLBOX",
+        name: "TOOLBOX",
         description:
             "🧰 Here’s a glimpse into the powerful technologies and tools I use daily to bring high-quality web experiences to life. My toolbox is battle-tested, modern, and always evolving with the best industry standards.",
         features: [
@@ -87,9 +90,11 @@ export const SERVICES = [
             "🍃 MongoDB / 🐘 PostgreSQL",
             "🛠️ Prisma ORM / Mongoose",
             "🎥 GSAP / Framer Motion",
-            "🐳 Docker / ▲ Vercel / 🚂 Railway",
+            "▲ Vercel / Netlify",
+            "🗂️ Git / GitHub",
             "🔐 JWT / OAuth / Clerk Authentication",
         ],
+        img: "/services/tool.jpg",
     },
 ];
 
