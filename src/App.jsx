@@ -4,13 +4,13 @@ import ResponsiveTester from '@/utils/Tester'
 import AnimatedCursor from '@/utils/Cursor';
 import CanvasParticles from '@/utils/Particles';
 import Navbar from '@/layout/Navbar'
-import About from '@/components/About';
-import Services from '@/components/Services';
-import Projects from './components/Projects';
-import Contact from '@/components/Contact';
 import Footer from '@/layout/Footer';
 
 const Hero = lazy(() => import('@/components/Hero'))
+const About = lazy(() => import('@/components/About'))
+const Services = lazy(() => import('@/components/Services'))
+const Projects = lazy(() => import('@/components/Projects'))
+const Contact = lazy(() => import('@/components/Contact'))
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
       <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
         <Hero />
         <About />
-        {/* <Services /> */}
+        <Services />
         <Projects />
         <Contact />
         <Footer />
