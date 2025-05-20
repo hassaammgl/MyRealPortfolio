@@ -61,11 +61,11 @@ const Projects = () => {
                     <AnimatedText className='uppercase text-[7vw] hover:text-accent text-center transition-all ease-in-out duration-500' text={"Selected"} />
                     <AnimatedText className=' text-end w-1/3 font-extralight font-brittany text-[9vw] hover:text-accent transition-all ease-in-out duration-500' text={"Cases"} />
                 </div>
-                <div className="w-full p-12 flex flex-col lg:flex-row gap-20 ">
-                    <div ref={column1Ref} className="lg:w-1/2 w-full flex justify-start gap-20 lg:gap-72 items-center flex-col px-9">
+                <div className="w-full p-4 sm:p-12 flex flex-col lg:flex-row gap-20 ">
+                    <div ref={column1Ref} className="lg:w-1/2 w-full flex justify-start gap-20 lg:gap-72 items-center flex-col sm:px-9">
                         {projects1.map((value) => <ProjectCard key={value._id} {...value} />)}
                     </div>
-                    <div ref={column2Ref} className="lg:w-1/2 w-full lg:mt-48 flex justify-start gap-20 lg:gap-72 items-center flex-col px-9">
+                    <div ref={column2Ref} className=" lg:w-1/2 w-full lg:mt-48 flex justify-start gap-20 lg:gap-72 items-center flex-col sm:px-9">
                         {projects2.map((value) => <ProjectCard key={value._id} {...value} />)}
                     </div>
                 </div>
@@ -142,7 +142,7 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
     })
 
     return (
-        <div ref={cardRef} className="project-card flex flex-col gap-4 group ">
+        <div ref={cardRef} className="project-card flex flex-col gap-4 group w-full  h-fit bg-primary p-6 rounded-lg ">
             <div className="overflow-hidden rounded-md shadow-lg relative">
                 <img src={image} alt={name} className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <img
