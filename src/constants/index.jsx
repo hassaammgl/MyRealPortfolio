@@ -114,8 +114,8 @@ export const PROJECTS = [
             "Next.js", "OpenAI API",
         ],
         githublink: "https://github.com/hassaammgl/article-summerizer",
-        image: "/projects/zentry.gif",
-        preview: "/projects/zentrypreveiw.png",
+        image: "/projects/article.gif",
+        preview: "/projects/articlepre.png",
         livelink: "https://artisummer.netlify.app/"
     },
     {
@@ -125,8 +125,8 @@ export const PROJECTS = [
             "React", "Threejs", "TailwindCSS"
         ],
         githublink: "https://github.com/hassaammgl/Apple-3D-Website-Project",
-        preview: "/projects/zentrypreveiw.png",
-        image: "/projects/zentry.gif",
+        preview: "/projects/macbookpre.png",
+        image: "/projects/macbook.gif",
         livelink: "https://macbook-pro-clone.netlify.app/"
     },
     {
@@ -135,8 +135,8 @@ export const PROJECTS = [
         tech: [
             "Next.js", "SCSS", "React", "Chakra Ui", "Frammer motion"
         ],
-        preview: "/projects/zentrypreveiw.png",
-        image: "/projects/zentry.gif",
+        preview: "/projects/parrepre.png",
+        image: "/projects/parre.gif",
         githublink: "https://github.com/hassaammgl/PARRE-Textiles",
         livelink: "https://www.parretextile.com/"
     },
@@ -147,20 +147,20 @@ export const PROJECTS = [
             "React", "Nextjs", "SCSS", "Frammer motion"
         ],
         githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
-        preview: "/projects/zentrypreveiw.png",
-        image: "/projects/zentry.gif",
+        preview: "/projects/portfoliopre.png",
+        image: "/projects/portfolio.gif",
         livelink: "https://animated-portfolio-website-project.vercel.app/"
     },
     {
         _id: crypto.randomUUID(),
-        name: "Monster Programming",
+        name: "Appointment Booking",
         tech: [
-            "React", "Nextjs", "SCSS", "Frammer motion"
+            "React", "Tailwindcss", "MongoDb", "Express", "Nodejs", "JWT"
         ],
-        githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
-        preview: "/projects/zentrypreveiw.png",
-        image: "/projects/zentry.gif",
-        livelink: "https://animated-portfolio-website-project.vercel.app/"
+        githublink: "https://github.com/hassaammgl/Appointment-app",
+        preview: "/projects/appointmentpre.png",
+        image: "/projects/appointment.gif",
+        livelink: "https://github.com/hassaammgl/Appointment-app"
     }
 ]
 
