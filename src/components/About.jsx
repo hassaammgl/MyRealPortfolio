@@ -34,7 +34,7 @@ const About = () => {
         <Element name="About">
 
             <AnimatedMarquee />
-            <section ref={section} className="h-screen w-screen ">
+            <section ref={section} className="h-fit md:h-screen w-screen ">
                 <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
                     <div className="w-full md:w-1/2 p-6 flex items-center">
                         <h1 data-cursor-hover className="font-Audiowide text-[6vw] sm:text-3xl xl:text-4xl 2xl:text-5xl font-bold leading-tight uppercase">
@@ -58,7 +58,7 @@ const About = () => {
                                 className="w-full h-full object-cover hover:scale-110 transition-all duration-300"
                             />
                         </div>
-                        <div id='code-img-2' className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded">
+                        <div id='code-img-2' className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded-xl">
                             <img
                                 src="/code-2.png"
                                 data-cursor-hover

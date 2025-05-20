@@ -68,31 +68,33 @@ const Services = () => {
                     <AnimatedText className='uppercase text-4xl md:text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} splitByWords />
                 </div>
 
-                <div className='flex flex-col md:flex-row font-roboto justify-end items-start text-white mx-4 md:m-16 relative'>
-                    <Svg className="m-0 size-8 md:size-16 absolute -top-4 left-0 md:static md:mr-4" />
+                <ServicesTop />
 
-                    <h4 className="text-end md:mr-8 font-extrabold uppercase text-white overflow-hidden mt-4 md:mt-0">
-                        <AnimatedText text={"( Services )"} />
-                    </h4>
-
-                    <div className='w-full md:w-1/3 text-lg md:text-xl text-white mt-8 md:mt-0'>
-                        <p className='font-bold'>
-                            Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
-                        </p>
-                        <p className='font-extralight mt-4'>
-                            If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
-                        </p>
-                    </div>
-                </div>
-
-                <div className='w-full h-fit text-white relative'>
+                {/* <div className='w-full h-fit text-white relative'>
                     {SERVICES.map((data, index) => (
                         <ServiceCard key={index} index={index} data={data} />
                     ))}
-                </div>
+                </div> */}
             </section>
         </Element>
     )
+}
+
+const ServicesTop = () => {
+    return <div className='flex flex-col lg:flex-row font-roboto justify-end items-start text-white mx-4 md:m-16 relative'>
+        <h4 className="text-end md:mr-8 font-extrabold uppercase text-white overflow-hidden mt-4 md:mt-0">
+            <AnimatedText text={"( Services )"} />
+        </h4>
+
+        <div className='w-full lg:w-1/3 text-lg md:text-xl text-white mt-8 lg:mt-0'>
+            <p className='font-bold'>
+                Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
+            </p>
+            <p className='font-extralight mt-4'>
+                If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
+            </p>
+        </div>
+    </div>
 }
 
 const ServiceCard = ({ data, index }) => {
