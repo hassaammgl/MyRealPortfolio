@@ -56,7 +56,6 @@ export const SERVICES = [
             "⚡ High-performance UI/UX focused builds, fully accessible and SEO-optimized",
             "🌐 Cross-browser and device compatibility with smooth, interactive animations",
         ],
-        img: "/services/frontend.jpg",
     },
     {
         name: "BACKEND",
@@ -67,7 +66,6 @@ export const SERVICES = [
             "🗄️ Efficient database design and API development with secure data practices",
             "🛡️ Robust authentication and integrations with custom APIs",
         ],
-        img: "/services/backend.jpg",
     },
     {
         name: "FULLSTACK",
@@ -78,7 +76,6 @@ export const SERVICES = [
             "💬 Real-time features like live chat and notifications with rapid deployment",
             "🌱 End-to-end tested systems built to scale and evolve",
         ],
-        img: "/services/fullstack.jpg",
     },
     {
         name: "TOOLBOX",
@@ -94,7 +91,6 @@ export const SERVICES = [
             "🗂️ Git / GitHub",
             "🔐 JWT / OAuth / Clerk Authentication",
         ],
-        img: "/services/tool.jpg",
     },
 ];
 

@@ -74,7 +74,7 @@ const Projects = () => {
     )
 }
 
-const ProjectCard = ({ name, tech, image, livelink, preview }) => {
+const ProjectCard = ({ name, tech, image, livelink, preview, githublink }) => {
     const { setIsHoverOnProjects } = useProjectHoverStore()
     const cardRef = useRef(null)
     const previewRef = useRef(null)
@@ -161,7 +161,7 @@ const ProjectCard = ({ name, tech, image, livelink, preview }) => {
                         <a id='refLinks' href={livelink} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center w-fit text-white border border-accent px-4 py-1 rounded-full text-sm hover:bg-accent hover:text-white transition-colors ease-in-out duration-500">
                             View
                         </a>
-                        <a id='refLinks' href={livelink} target="_blank" rel="noopener noreferrer" className="inline-block text-white border border-accent p-3 rounded-full text-sm hover:bg-accent hover:text-white transition-colors ease-in-out duration-500">
+                        <a id='refLinks' href={githublink} target="_blank" rel="noopener noreferrer" className="inline-block text-white border border-accent p-3 rounded-full text-sm hover:bg-accent hover:text-white transition-colors ease-in-out duration-500">
                             <FaGithub />
                         </a>
                     </>
