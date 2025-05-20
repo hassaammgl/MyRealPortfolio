@@ -20,7 +20,7 @@ const Hero = () => {
             >
                 <Load setOnLoadComplete={setOnLoadComplete} />
                 {onLoadComplete && (
-                    <div className='flex flex-col items-stretch justify-center w-full px-4 md:px-8'>
+                    <div className='w-full px-4 md:px-8'>
                         <TopSection />
                         <BottomSection onLoadComplete={onLoadComplete} />
                     </div>
@@ -40,11 +40,11 @@ const Months = [
 ];
 
 const TopSection = () => {
-    return <h1 className="text-[11vw] lg:text-[12vw] flex justify-center items-center text-white font-boldonse z-10">
+    return <h1 className=" h-[50vh] text-[11vw] lg:text-[12vw] flex justify-center items-center text-white font-boldonse z-10">
         <AnimatedText
             revert={true}
             text={"Hassaammgl"}
-            className="text-center"
+            className="text-center relative z-10"
             hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
         />
     </h1>
@@ -106,10 +106,10 @@ const BottomSection = ({ onLoadComplete }) => {
 
 
     return (
-        <div ref={sectionRef} className="flex flex-col font-Audiowide lg:flex-row items-start justify-between gap-8 md:gap-12 w-full">
+        <div ref={sectionRef} className="lg:h-[50vh] flex flex-col font-Audiowide lg:flex-row items-start justify-between gap-8 md:gap-12 w-full">
             {/* Left Column - Content */}
-            <div className="w-full lg:w-1/3 px-0 md:px-2 lg:px-4">
-                <div className='text-white text-left w-full mt-42 p-4 md:p-6 lg:p-8'>
+            <div className="w-full lg:w-1/3  px-0 md:px-2 lg:px-4 lg:h-[50vh]">
+                <div className='text-white text-start'>
                     <FiArrowDownRight id='arrow' className='text-white text-3xl md:text-4xl lg:text-5xl mb-4' />
                     <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 leading-relaxed text-stone-200">
                         <AnimatedText
@@ -132,18 +132,18 @@ const BottomSection = ({ onLoadComplete }) => {
             </div>
 
             {/* Center Image */}
-            <div className="w-full hidden lg:w-1/3 relative h-[300px] md:h-[400px] lg:h-[600px] lg:flex items-center justify-center">
+            <div className="w-full hidden lg:w-1/3  lg:flex items-center justify-center h-[80vh] relative">
                 <img
                     ref={heroRef}
                     src="/hero/hero.png"
                     alt="Portrait photo of hassaam"
-                    className="absolute object-contain w-full h-full lg:object-cover"
+                    className="absolute object-contain w-full h-full lg:object-cover -top-52"
                 />
             </div>
 
             {/* Right Column - Date (aligned bottom on desktop) */}
-            <div className="w-full lg:w-1/3 px-0 md:px-2 lg:px-4 lg:flex lg:flex-col lg:justify-end lg:items-end lg:self-stretch">
-                <div className='text-white text-right w-full lg:mt-auto'>
+            <div className="w-full lg:w-1/3 px-0  md:px-2 lg:px-4 lg:flex lg:flex-col lg:justify-end lg:items-end lg:self-stretch lg:h-[50vh]">
+                <div className='text-white text-right w-full lg:mt-auto lg:mb-10'>
                     <p className="text-stone-600 text-xs md:text-sm mb-1">
                         <AnimatedText
                             splitByWords
@@ -157,7 +157,6 @@ const BottomSection = ({ onLoadComplete }) => {
                             splitByWords
                             text={date}
                         />
-                        {/* {date} */}
                     </h3>
                 </div>
             </div>

@@ -13,10 +13,10 @@ const App = () => {
       <Navbar />
       <AnimatedCursor />
       <CanvasParticles />
-      <ResponsiveTester />
       <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
         <Hero />
       </Suspense>
+      <ResponsiveTester />
     </Wrapper>
   )
 }
