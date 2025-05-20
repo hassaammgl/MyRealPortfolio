@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger)
 const About = () => {
 
     const section = useRef(null)
-
     useGSAP(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -47,7 +46,7 @@ const About = () => {
                             data-cursor-hover
                             src="/about.png"
                             alt="Portrait photography scene"
-                            className="h-screen w-full object-cover"
+                            className="about-img h-screen w-full object-cover"
                         />
 
                         <div id='code-img-1' className="absolute bottom-10 right-10 w-52 h-36  bg-opacity-50 rounded">

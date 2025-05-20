@@ -3,7 +3,7 @@ import AnimatedText from '@/utils/AnimatedText'
 
 const Footer = () => {
     return (
-        <footer className=" text-white">
+        <footer className=" text-white font-Audiowide">
             <h1 className="text-[15vw] font-ruslan text-center font-light mt-10 uppercase leading-48">
                 <AnimatedText start='top 100%' className='text-tertiary' text={"HASSAAM"} />
             </h1>

@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
 import Wrapper from '@/layout/Wrapper'
-import ResponsiveTester from '@/utils/Tester'
 import AnimatedCursor from '@/utils/Cursor';
 import CanvasParticles from '@/utils/Particles';
 import Navbar from '@/layout/Navbar'
@@ -26,7 +25,6 @@ const App = () => {
         <Contact />
         <Footer />
       </Suspense>
-      <ResponsiveTester />
     </Wrapper>
   )
 }
