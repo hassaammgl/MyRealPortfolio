@@ -142,14 +142,14 @@ export const PROJECTS = [
     },
     {
         _id: crypto.randomUUID(),
-        name: "Monster Programming",
+        name: "Claudia Silvia",
         tech: [
-            "React", "Nextjs", "SCSS", "Frammer motion"
+            "React", "GSAP", "Tailwindcss",
         ],
-        githublink: "https://github.com/hassaammgl/monster-programming-portfolio",
+        githublink: "https://github.com/hassaammgl/Modern-portfolio-HSM",
         preview: "/projects/portfoliopre.png",
         image: "/projects/portfolio.gif",
-        livelink: "https://animated-portfolio-website-project.vercel.app/"
+        livelink: "https://modern-portfolio-hsm.vercel.app/"
     },
     {
         _id: crypto.randomUUID(),
