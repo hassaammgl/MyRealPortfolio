@@ -159,7 +159,7 @@ const TopNav = ({ open, handleToggle }) => {
             className="w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 text-white bg-transparent font-ruslan transition-all duration-500"
         >
             <a href="/">
-                <h1 className="font-extrabold text-xl">HSM<span className="text-accent">.</span></h1>
+                <img src="/logo.png" className='size-9 object-contain' alt="logo" />
             </a>
             <button
                 className="text-white font-bold text-xl"
