@@ -18,33 +18,6 @@ export const LINKS = [
     }
 ];
 
-export const IMAGES = [
-    {
-        preview: "/hero/bg-1.jpg",
-        alt: "Hero",
-        bg_img: "/hero/bg-1.jpg",
-    },
-    {
-        preview: "/hero/bg-2.jpg",
-        alt: "Hero",
-        bg_img: "/hero/bg-2.jpg",
-    },
-    {
-        preview: "/hero/bg-3.jpg",
-        alt: "Hero",
-        bg_img: "/hero/bg-3.jpg",
-    },
-    {
-        preview: "/hero/bg-4.jpg",
-        alt: "Hero",
-        bg_img: "/hero/bg-4.jpg",
-    },
-    {
-        preview: "/hero/bg-5.jpg",
-        alt: "Hero",
-        bg_img: "/hero/bg-5.jpg",
-    },
-];
 
 export const SERVICES = [
     {
@@ -104,8 +77,8 @@ export const PROJECTS = [
         ],
         githublink: "https://github.com/hassaammgl/zentry-awwards-game-website",
         livelink: "https://awwards-zentry-website-clone.vercel.app/",
-        image: "/projects/zentry.gif",
-        preview: "/projects/zentrypreveiw.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337810/portfolio/portfolio/projects/zentry_ibkwrv.gif",
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337808/portfolio/portfolio/projects/zentrypreveiw_et5km8.png",
     },
     {
         _id: crypto.randomUUID(),
@@ -114,8 +87,8 @@ export const PROJECTS = [
             "Next.js", "OpenAI API",
         ],
         githublink: "https://github.com/hassaammgl/article-summerizer",
-        image: "/projects/article.gif",
-        preview: "/projects/articlepre.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337807/portfolio/portfolio/projects/article_pl0vve.gif",
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337808/portfolio/portfolio/projects/articlepre_c5k8cn.png",
         livelink: "https://artisummer.netlify.app/"
     },
     {
@@ -125,8 +98,8 @@ export const PROJECTS = [
             "React", "Threejs", "TailwindCSS"
         ],
         githublink: "https://github.com/hassaammgl/Apple-3D-Website-Project",
-        preview: "/projects/macbookpre.png",
-        image: "/projects/macbook.gif",
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337808/portfolio/portfolio/projects/macbookpre_gelaew.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337807/portfolio/portfolio/projects/macbook_drffhk.gif",
         livelink: "https://macbook-pro-clone.netlify.app/"
     },
     {
@@ -135,8 +108,8 @@ export const PROJECTS = [
         tech: [
             "Next.js", "SCSS", "React", "Chakra Ui", "Frammer motion"
         ],
-        preview: "/projects/parrepre.png",
-        image: "/projects/parre.gif",
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337809/portfolio/portfolio/projects/parrepre_acqcqq.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337810/portfolio/portfolio/projects/parre_poxdjq.gif",
         githublink: "https://github.com/hassaammgl/PARRE-Textiles",
         livelink: "https://www.parretextile.com/"
     },
@@ -147,9 +120,9 @@ export const PROJECTS = [
             "React", "GSAP", "Tailwindcss",
         ],
         githublink: "https://github.com/hassaammgl/Modern-portfolio-HSM",
-        preview: "/projects/portfoliopre.png",
-        image: "/projects/portfolio.gif",
-        livelink: "https://modern-portfolio-hsm.vercel.app/"
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337806/portfolio/portfolio/projects/portfoliopre_j919ai.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337806/portfolio/portfolio/projects/portfolio_gnvwdn.gif",
+        livelink: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337806/portfolio/portfolio/projects/portfoliopre_j919ai.png"
     },
     {
         _id: crypto.randomUUID(),
@@ -158,8 +131,8 @@ export const PROJECTS = [
             "React", "Tailwindcss", "MongoDb", "Express", "Nodejs", "JWT"
         ],
         githublink: "https://github.com/hassaammgl/Appointment-app",
-        preview: "/projects/appointmentpre.png",
-        image: "/projects/appointment.gif",
+        preview: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337807/portfolio/portfolio/projects/appointmentpre_pwittb.png",
+        image: "https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337806/portfolio/portfolio/projects/appointment_mjnb6l.gif",
         livelink: "https://github.com/hassaammgl/Appointment-app"
     }
 ]
@@ -168,7 +141,7 @@ export const PROJECTS = [
 export const CONTACTS = [
     {
         name: "Email",
-        url: "mailto:someone@example.com"
+        url: "mailto:contact@hassaammgl.xyz"
     },
     {
         name: "Linkedin",

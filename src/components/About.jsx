@@ -44,14 +44,15 @@ const About = () => {
                     <div className="w-full md:w-1/2 relative overflow-hidden">
                         <img
                             data-cursor-hover
-                            src="/about.png"
+                            loading='lazy'
+                            src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337391/portfolio/about_ts5fqu.png"
                             alt="Portrait photography scene"
                             className="about-img h-screen w-full object-cover"
                         />
 
                         <div id='code-img-1' className="absolute bottom-10 right-10 w-52 h-36  bg-opacity-50 rounded">
                             <img
-                                src="/code.png"
+                                src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337805/portfolio/portfolio/code_peehjo.png"
                                 data-cursor-hover
                                 alt="code motivation"
                                 className="w-full h-full object-cover hover:scale-110 transition-all duration-300"
@@ -59,7 +60,7 @@ const About = () => {
                         </div>
                         <div id='code-img-2' className="absolute top-10 left-10 w-52 h-36  bg-opacity-50 rounded-xl">
                             <img
-                                src="/code-2.png"
+                                src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337805/portfolio/portfolio/code-2_qijuqf.png"
                                 data-cursor-hover
                                 alt="code motivation"
                                 className="w-full h-full object-cover hover:scale-110 transition-all duration-300"
