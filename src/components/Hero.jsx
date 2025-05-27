@@ -119,15 +119,17 @@ const BottomSection = ({ onLoadComplete }) => {
                             hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
                         />
                     </p>
-                    <button
-                        ref={buttonref}
-                        className="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-stone-800 text-white rounded-full hover:bg-stone-700 transition-colors text-sm md:text-base"
-                    >
-                        BOOK A CALL
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </button>
+                    <a href="tel:+923268821210">
+                        <button
+                            ref={buttonref}
+                            className="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-stone-800 text-white rounded-full hover:bg-stone-700 transition-colors text-sm md:text-base"
+                        >
+                            BOOK A CALL
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </a>
                 </div>
             </div>
 
