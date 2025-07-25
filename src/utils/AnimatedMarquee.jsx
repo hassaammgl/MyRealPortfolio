@@ -6,14 +6,14 @@ const AnimatedMarquee = () => {
     const tl = useRef(null);
 
     const items = [
-        { emoji: "👋", text: "Full Stack Developer", color: "text-purple-400" },
-        { emoji: "💻", text: "JavaScript Expert", color: "text-yellow-400" },
-        { emoji: "⚛️", text: "React Specialist", color: "text-blue-400" },
-        { emoji: "🛠️", text: "Problem Solver", color: "text-red-400" },
-        { emoji: "🔧", text: "Clean Code Advocate", color: "text-green-400" },
-        { emoji: "🚀", text: "Performance Optimizer", color: "text-pink-400" },
-        { emoji: "📱", text: "Responsive Design", color: "text-indigo-400" },
-        { emoji: "🤝", text: "Team Player", color: "text-cyan-400" },
+        { emoji: "👋", text: "Full Stack Developer", color: "text-white/90" },
+        { emoji: "💻", text: "JavaScript Expert", color: "text-white/90" },
+        { emoji: "⚛️", text: "React Specialist", color: "text-white/90" },
+        { emoji: "🛠️", text: "Problem Solver", color: "text-white/90" },
+        { emoji: "🔧", text: "Clean Code Advocate", color: "text-white/90" },
+        { emoji: "🚀", text: "Performance Optimizer", color: "text-white/90" },
+        { emoji: "📱", text: "Responsive Design", color: "text-white/90" },
+        { emoji: "🤝", text: "Team Player", color: "text-white/90" },
     ];
 
     useEffect(() => {
