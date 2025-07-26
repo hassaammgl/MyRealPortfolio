@@ -7,10 +7,14 @@ const Load = ({ setOnLoadComplete }) => {
     const innerContainerRef = useRef(null);
 
     useEffect(() => {
+        const container = containerRef.current;
+        const innerContainer = innerContainerRef.current;
+
         return () => {
-            gsap.killTweensOf([containerRef.current, innerContainerRef.current, ".load"]);
+            gsap.killTweensOf([container, innerContainer, ".load"]);
         };
     }, []);
+
 
     useGSAP(() => {
         gsap.set(".load", {

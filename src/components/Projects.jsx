@@ -120,7 +120,7 @@ const ProjectCard = ({ name, tech, image, livelink, preview, githublink }) => {
             previewImg.removeEventListener('mousemove', handleMouseMove)
             previewImg.removeEventListener('mouseleave', handleMouseLeave)
         }
-    }, [])
+    }, [setIsHoverOnProjects])
 
     useGSAP(() => {
         gsap.set("#refLinks", {

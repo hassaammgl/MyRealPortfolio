@@ -121,7 +121,7 @@ const Navbar = () => {
 };
 
 const TopNav = ({ open, handleToggle }) => {
-    const [lastScrollY, setLastScrollY] = useState(0);
+    // const [lastScrollY, setLastScrollY] = useState(0);
     const [isNavVisible, setIsNavVisible] = useState(true);
 
     const navRef = useRef(null);
@@ -137,21 +137,22 @@ const TopNav = ({ open, handleToggle }) => {
         });
     }, [isNavVisible]);
 
+    const lastScrollYRef = useRef(0); 
     useEffect(() => {
-        // Scroll direction logic
         if (currentScrollY === 0) {
             setIsNavVisible(true);
             navRef.current?.classList.remove('floating-nav');
-        } else if (currentScrollY > lastScrollY) {
+        } else if (currentScrollY > lastScrollYRef.current) {
             setIsNavVisible(false);
             navRef.current?.classList.add('floating-nav');
-        } else if (currentScrollY < lastScrollY) {
+        } else if (currentScrollY < lastScrollYRef.current) {
             setIsNavVisible(true);
             navRef.current?.classList.add('floating-nav');
         }
 
-        setLastScrollY(currentScrollY);
-    }, [currentScrollY]);
+        lastScrollYRef.current = currentScrollY; // ✅ update manually
+    }, [currentScrollY]); // ✅ now lastScrollYRef isn't a dep
+
 
     return (
         <nav
