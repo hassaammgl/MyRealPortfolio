@@ -5,9 +5,13 @@ import { useFrame } from '@react-three/fiber'
 export default function Person() {
     const ref = useRef()
 
-    const { scene } = useGLTF('/3d/3d.glb') 
+    const { scene } = useGLTF('/3d/3d.glb')
 
-    const animation = useFBX('/3d/animations/Male-Standing-Pose-side.fbx') 
+    // const animation = useFBX('/3d/animations/male-standing-pose-side.fbx')
+    // const animation = useFBX('/3d/animations/rest-from-back.fbx')
+    const animation = useFBX('/3d/animations/normal-idle.fbx')
+    // const animation = useFBX('/3d/animations/standing-idle.fbx')
+    // const animation = useFBX('/3d/animations/standing-with-elbow.fbx')
 
     animation.animations[0].name = 'Standing'
 
