@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,memo } from 'react';
 import { Element } from 'react-scroll';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -30,7 +30,7 @@ const Hero = () => {
 
 export default Hero;
 
-const TopSection = () => {
+const TopSection = memo(() => {
     return <h1 className=" h-[50vh] text-[11vw] lg:text-[12vw] flex justify-center items-center text-white font-boldonse z-10">
         <AnimatedText
             revert={true}
@@ -39,4 +39,4 @@ const TopSection = () => {
             hoverClass="hover:text-accent transition-colors duration-500 ease-in-out"
         />
     </h1>
-}
+})
