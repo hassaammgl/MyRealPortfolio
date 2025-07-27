@@ -1,4 +1,4 @@
-import { useState,memo } from 'react';
+import { useState, memo } from 'react';
 import { Element } from 'react-scroll';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,6 +14,7 @@ const Hero = () => {
     return (
         <Element name="Home">
             <section
+                id='hero'
                 className="relative min-h-screen w-screen flex justify-center items-center bg-center bg-cover overflow-hidden px-4 md:px-8"
             >
                 <Load setOnLoadComplete={setOnLoadComplete} />

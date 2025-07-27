@@ -97,9 +97,13 @@ const Services = () => {
 }
 
 const ServiceCard = ({ data, index }) => {
+    console.log("indexx:", index);
+
     const cardRef = useRef(null)
     const contentRef = useRef(null)
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
+
+
 
     useGSAP(() => {
         const triggerConfig = {
@@ -133,24 +137,47 @@ const ServiceCard = ({ data, index }) => {
             className="service-card mt-8 min-h-[80dvh]  md:h-screen w-full p-5 md:p-10 flex flex-col lg:flex-row items-center justify-between relative"
             style={{ zIndex: index + 1 }}
         >
-            <div className="absolute inset-0 bg-tertiary backdrop-blur-lg rounded-3xl" />
-
-            <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
-                <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
-                    <span className="text-outline text-center">{data.name}</span>
-                </h2>
-            </div>
-
-            <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
-                <p className="text-lg md:text-2xl mb-4 md:mb-8 font-roboto font-light opacity-90">{data.description}</p>
-                <div className="space-y-2 md:space-y-4">
-                    {data.features?.map((feat, i) => (
-                        <div key={i} className="card-feature border-l-2 md:border-l-4 border-white pl-2 md:pl-4 py-1 md:py-2">
-                            <span className="text-base md:text-lg font-medium">{feat}</span>
+            {/* <div className="absolute inset-0 bg-tertiary backdrop-blur-lg rounded-3xl" /> */}
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-xl rounded-3xl border border-white/10 shadow-xl transition-all duration-500 hover:bg-white/40 hover:shadow-2xl" />
+            {(index + 1) % 2 === 0 ? (
+                <>
+                    <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
+                        <p className="text-lg md:text-2xl mb-4 md:mb-8 font-roboto font-light opacity-90">{data.description}</p>
+                        <div className="space-y-2 md:space-y-4">
+                            {data.features?.map((feat, i) => (
+                                <div key={i} className="card-feature border-l-2 md:border-l-4 border-white pl-2 md:pl-4 py-1 md:py-2">
+                                    <span className="text-base md:text-lg font-medium">{feat}</span>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </div>
+                    </div>
+                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
+                        <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
+                            <span className="text-outline text-center">{data.name}</span>
+                        </h2>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
+                        <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
+                            <span className="text-outline text-center">{data.name}</span>
+                        </h2>
+                    </div>
+
+                    <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
+                        <p className="text-lg md:text-2xl mb-4 md:mb-8 font-roboto font-light opacity-90">{data.description}</p>
+                        <div className="space-y-2 md:space-y-4">
+                            {data.features?.map((feat, i) => (
+                                <div key={i} className="card-feature border-l-2 md:border-l-4 border-white pl-2 md:pl-4 py-1 md:py-2">
+                                    <span className="text-base md:text-lg font-medium">{feat}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
+
         </div>
     )
 }
