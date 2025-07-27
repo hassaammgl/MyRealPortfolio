@@ -33,7 +33,7 @@ const About = () => {
         <Element name="About">
 
             <AnimatedMarquee />
-            <section ref={section} className="h-fit md:h-screen w-screen ">
+            <section ref={section} className="h-fit md:h-screen w-screen z-10">
                 <div className="flex flex-col md:flex-row bg-primary text-white sm:h-fit w-full">
                     <div className="w-full md:w-1/2 p-6 flex items-center">
                         <h1 data-cursor-hover className="font-Audiowide text-[6vw] sm:text-3xl xl:text-4xl 2xl:text-5xl font-bold leading-tight uppercase">
