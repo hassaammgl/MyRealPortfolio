@@ -1,100 +1,100 @@
 
-// import { Element } from 'react-scroll'
-// import AnimatedText from "@/utils/AnimatedText"
-// import { SERVICES } from '@/constants'
-// import { useGSAP } from "@gsap/react"
-// import gsap from "gsap"
-// import { ScrollTrigger } from "gsap/ScrollTrigger"
-// import { useRef, useEffect } from "react"
+import { Element } from 'react-scroll'
+import AnimatedText from "@/utils/AnimatedText"
+import { SERVICES } from '@/constants'
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRef, useEffect } from "react"
 
-// gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
-// const Services = () => {
-//     const containerRef = useRef(null)
-//     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
+const Services = () => {
+    const containerRef = useRef(null)
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
 
-//     useGSAP(() => {
-//         const cards = gsap.utils.toArray(".service-card")
+    useGSAP(() => {
+        const cards = gsap.utils.toArray(".service-card")
 
-//         cards.forEach((card, i) => {
-//             const offset = i * (isMobile ? 25 : 50)
-//             const startPos = isMobile ? "top 90%" : "top bottom-=10%"
-//             const endPos = isMobile ? "top 50%" : "top 30%"
+        cards.forEach((card, i) => {
+            const offset = i * (isMobile ? 25 : 50)
+            const startPos = isMobile ? "top 90%" : "top bottom-=10%"
+            const endPos = isMobile ? "top 50%" : "top 30%"
 
-//             gsap.fromTo(card,
-//                 {
-//                     y: (isMobile ? 100 : 200) + offset,
-//                     scale: 0.85,
-//                     rotation: isMobile ? -2 : -5,
-//                     opacity: 0,
-//                     zIndex: 1
-//                 },
-//                 {
-//                     y: 0,
-//                     scale: 1,
-//                     rotation: 0,
-//                     opacity: 1,
-//                     zIndex: i + 2,
-//                     ease: "back.out(2)",
-//                     scrollTrigger: {
-//                         trigger: card,
-//                         start: startPos,
-//                         end: endPos,
-//                         scrub: 1.5,
-//                         markers: false,
-//                         invalidateOnRefresh: true,
-//                         onEnter: () => gsap.to(card, { zIndex: SERVICES.length + 1 }),
-//                         onLeaveBack: () => gsap.to(card, { zIndex: 1 })
-//                     }
-//                 }
-//             )
-//         })
+            gsap.fromTo(card,
+                {
+                    y: (isMobile ? 100 : 200) + offset,
+                    scale: 0.85,
+                    rotation: isMobile ? -2 : -5,
+                    opacity: 0,
+                    zIndex: 1
+                },
+                {
+                    y: 0,
+                    scale: 1,
+                    rotation: 0,
+                    opacity: 1,
+                    zIndex: i + 2,
+                    ease: "back.out(2)",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: startPos,
+                        end: endPos,
+                        scrub: 1.5,
+                        markers: false,
+                        invalidateOnRefresh: true,
+                        onEnter: () => gsap.to(card, { zIndex: SERVICES.length + 1 }),
+                        onLeaveBack: () => gsap.to(card, { zIndex: 1 })
+                    }
+                }
+            )
+        })
 
-//         // Handle window resize
-//         const onResize = () => ScrollTrigger.refresh()
-//         window.addEventListener('resize', onResize)
-//         return () => window.removeEventListener('resize', onResize)
-//     }, { scope: containerRef })
+        // Handle window resize
+        const onResize = () => ScrollTrigger.refresh()
+        window.addEventListener('resize', onResize)
+        return () => window.removeEventListener('resize', onResize)
+    }, { scope: containerRef })
 
-//     useEffect(() => {
-//         if ('scrollRestoration' in window.history) {
-//             window.history.scrollRestoration = 'manual'
-//         }
-//     }, [])
+    useEffect(() => {
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual'
+        }
+    }, [])
 
-//     return (
-//         <Element name="Services">
-//             <section ref={containerRef} className="relative h-fit w-screen bg-accent rounded-4xl p-5 md:p-10 overflow-hidden scroll-snap-type-y mandatory">
-//                 <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-4 md:p-9 flex justify-start items-center gap-4'>
-//                     <AnimatedText className='uppercase text-4xl md:text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} splitByWords />
-//                 </div>
+    return (
+        <Element name="Services">
+            <section ref={containerRef} className="relative h-fit w-screen bg-accent rounded-4xl p-5 md:p-10 overflow-hidden scroll-snap-type-y mandatory">
+                <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-4 md:p-9 flex justify-start items-center gap-4'>
+                    <AnimatedText className='uppercase text-4xl md:text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} splitByWords />
+                </div>
 
-//                 <div className='flex flex-col md:flex-row font-roboto justify-end items-start text-white mx-4 md:m-16 relative'>
-//                     <Svg className="m-0 size-8 md:size-16 absolute -top-4 left-0 md:static md:mr-4" />
+                <div className='flex flex-col md:flex-row font-roboto justify-end items-start text-white mx-4 md:m-16 relative'>
+                    <Svg className="m-0 size-8 md:size-16 absolute -top-4 left-0 md:static md:mr-4" />
 
-//                     <h4 className="text-end md:mr-8 font-extrabold uppercase text-white overflow-hidden mt-4 md:mt-0">
-//                         <AnimatedText text={"( Services )"} />
-//                     </h4>
+                    <h4 className="text-end md:mr-8 font-extrabold uppercase text-white overflow-hidden mt-4 md:mt-0">
+                        <AnimatedText text={"( Services )"} />
+                    </h4>
 
-//                     <div className='w-full md:w-1/3 text-lg md:text-xl text-white mt-8 md:mt-0'>
-//                         <p className='font-bold'>
-//                             Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
-//                         </p>
-//                         <p className='font-extralight mt-4'>
-//                             If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
-//                         </p>
-//                     </div>
-//                 </div>
+                    <div className='w-full md:w-1/3 text-lg md:text-xl text-white mt-8 md:mt-0'>
+                        <p className='font-bold'>
+                            Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
+                        </p>
+                        <p className='font-extralight mt-4'>
+                            If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
+                        </p>
+                    </div>
+                </div>
 
-//                 <div className='w-full h-fit text-white relative'>
-//                     {SERVICES.map((data, index) => (
-//                         <ServiceCard key={index} index={index} data={data} />
-//                     ))}
-//                 </div>
-//             </section>
-//         </Element>
-//     )
-// }
+                <div className='w-full h-fit text-white relative'>
+                    {SERVICES.map((data, index) => (
+                        <ServiceCard key={index} index={index} data={data} />
+                    ))}
+                </div>
+            </section>
+        </Element>
+    )
+}
 
 const ServiceCard = ({ data, index }) => {
     console.log("indexx:", index);
@@ -137,7 +137,6 @@ const ServiceCard = ({ data, index }) => {
             className="service-card mt-8 min-h-[80dvh]  md:h-screen w-full p-5 md:p-10 flex flex-col lg:flex-row items-center justify-between relative"
             style={{ zIndex: index + 1 }}
         >
-            {/* <div className="absolute inset-0 bg-tertiary backdrop-blur-lg rounded-3xl" /> */}
             <div className="absolute inset-0 bg-black/30 backdrop-blur-xl rounded-3xl border border-white/10 shadow-xl transition-all duration-500 hover:bg-white/40 hover:shadow-2xl" />
             {(index + 1) % 2 === 0 ? (
                 <>
@@ -177,7 +176,6 @@ const ServiceCard = ({ data, index }) => {
                     </div>
                 </>
             )}
-
         </div>
     )
 }
@@ -188,103 +186,6 @@ const Svg = ({ className }) => {
             <line x1="7" y1="7" x2="17" y2="17"></line>
             <polyline points="17 7 17 17 7 17"></polyline>
         </svg>
-    )
-}
-
-// export default Services
-
-import { Element } from 'react-scroll'
-import AnimatedText from "@/utils/AnimatedText"
-import { SERVICES } from '@/constants'
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
-import { ScrollTrigger, SplitText } from "gsap/all"
-import { useRef } from "react"
-import { useMediaQuery } from "react-responsive"
-
-gsap.registerPlugin(ScrollTrigger, SplitText)
-
-const Services = () => {
-
-    const videoRef = useRef();
-    const isMobile = useMediaQuery({ maxWidth: 767 });
-
-    useGSAP(() => {
-        const titleSplit = new SplitText(".title", { type: 'chars, words' });
-        const paragraphSplit = new SplitText(".subtitle", { type: 'lines' });
-
-        titleSplit.chars.forEach((char) => char.classList.add('text-gadient'))
-
-        gsap.from(titleSplit.chars, {
-            yPercent: 100,
-            duration: 1.8,
-            ease: 'expo.out',
-            stagger: .05
-        })
-        gsap.from(paragraphSplit.lines, {
-            yPercent: 100,
-            opacity: 0,
-            duration: 1.8,
-            ease: 'expo.out',
-            stagger: .05,
-            delay: 1
-        })
-
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#service',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
-        })
-            .to('.right-leaf', { y: 200 }, 0)
-            .to('.left-leaf', { y: -200 }, 0)
-
-        const startValue = isMobile ? 'top 50%' : 'center 60%';
-        const endValue = isMobile ? '120% top' : 'bottom top';
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "video",
-                start: startValue,
-                end: endValue,
-                scrub: true,
-                pin: true,
-            }
-        })
-        videoRef.current.onloadedmetadata = () => {
-            tl.to(videoRef.current, {
-                currentTime: videoRef.current.duration
-            })
-        }
-    })
-
-    return (
-        <Element name="Services">
-            <section id='service' className="relative h-fit w-screen rounded-4xl p-5 md:p-10 overflow-hidden scroll-snap-type-y mandatory">
-                <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-4 md:p-9 flex justify-start items-center gap-4'>
-                    <h3 className="title uppercase text-4xl md:text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500">
-                        How can i help you!
-                    </h3>
-                </div>
-
-                <div className='br-test text-xl flex flex-col md:flex-row justify-between  items-start text-white mx-4 md:m-16 relative'>
-                    <div className='underline font-Audiowide'>
-                        Strategic. Authentic. Elevated.
-                    </div>
-                </div>
-                {/* <div className="video absolute inset-0 w-full h-full">
-                    <video
-                        ref={videoRef}
-                        src="/video/output.mp4"
-                        muted
-                        playsInline
-                        preload="auto"
-                    />
-                </div> */}
-            </section>
-        </Element>
     )
 }
 

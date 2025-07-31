@@ -6,11 +6,11 @@ import Hamburger from 'hamburger-react';
 import { useWindowScroll } from "react-use"
 
 const navLinks = [
-    { name: "Home", link: "home", value: "$.home()" },
-    { name: "About", link: "about", value: "$.about()" },
-    { name: "Services", link: "services", value: "$.services()" },
-    { name: "Projects", link: "projects", value: "$.projects()" },
-    { name: "Contact", link: "contact", value: "$.contact()" },
+    { name: "Home", link: "home", value: "<Home />" },
+    { name: "About", link: "about", value: "<About />" },
+    { name: "Services", link: "services", value: "<Services />" },
+    { name: "Projects", link: "projects", value: "<Projects />" },
+    { name: "Contact", link: "contact", value: "<Contact />" },
 ];
 
 const Navbar = () => {
@@ -111,7 +111,7 @@ const Navbar = () => {
                             spy={true}
                         >
                             <span className="nav-text inline-block">{link.value}</span>
-                            <span className='hover-text absolute left-0 top-0 inline-block'>{"{ $" + link.name + " }"}</span>
+                            <span className='hover-text absolute left-0 top-0 inline-block'>{"<>" + link.name + "</>"}</span>
                         </Link>
                     </div>
                 ))}
@@ -150,8 +150,8 @@ const TopNav = ({ open, handleToggle }) => {
             navRef.current?.classList.add('floating-nav');
         }
 
-        lastScrollYRef.current = currentScrollY; // ✅ update manually
-    }, [currentScrollY]); // ✅ now lastScrollYRef isn't a dep
+        lastScrollYRef.current = currentScrollY; 
+    }, [currentScrollY]); 
 
 
     return (

@@ -22,7 +22,7 @@
 		"clsx": "^2.1.1",
 		"gsap": "^3.13.0",
 		"hamburger-react": "^2.5.2",
-		"lenis": "^1.3.3",
+		"lenis": "^1.3.5",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"react-icons": "^5.5.0",
