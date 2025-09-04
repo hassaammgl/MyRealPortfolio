@@ -91,15 +91,15 @@ const BottomSection = ({ onLoadComplete }) => {
             </div>
 
             {/* Center Image */}
-            <div className="w-full hidden lg:w-1/3  lg:flex items-center justify-center h-[80vh] relative">
+            {/* <div className="w-full hidden lg:w-1/3  lg:flex items-center justify-center h-[80vh] relative">
                 <img
                     ref={heroRef}
                     src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337805/portfolio/portfolio/hero/hero_qhtbdd.png"
                     alt="Portrait photo of hassaam"
                     className="absolute object-contain w-full h-full lg:object-cover -top-52"
                 />
-            </div>
-            {/* <Three /> */}
+            </div> */}
+            <Three />
 
             {/* Right Column - Date (aligned bottom on desktop) */}
             <div className="w-full lg:w-1/3 px-0  md:px-2 lg:px-4 lg:flex lg:flex-col lg:justify-end lg:items-end lg:self-stretch lg:h-[50vh]">
