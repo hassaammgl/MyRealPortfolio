@@ -19,9 +19,9 @@ const App = () => {
       <CanvasParticles />
       <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
         <Hero />
-        <About />
-        <Services />
-        <Projects />
+        {/* <About /> */}
+        {/* <Services /> */}
+        {/* <Projects /> */}
         <Contact />
         <Footer />
       </Suspense>

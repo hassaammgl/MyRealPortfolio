@@ -32,6 +32,9 @@
 	--font-whisper: "Whisper", cursive;
 	--font-syne-mono: "Syne Mono", monospace; /* Fun, energetic font – use sparingly */
 	--font-Audiowide: "Audiowide", sans-serif; /* Fun, energetic font – use sparingly */
+	--font-favter: "Favter", sans-serif; /* Fun, energetic font – use sparingly */
+	--font-dystopian: "dystopian", sans-serif; /* Fun, energetic font – use sparingly */
+	--font-vortania: "vortania", sans-serif; /* Fun, energetic font – use sparingly */
 }
 
 .marquee-track {
@@ -49,6 +52,21 @@ body::-webkit-scrollbar {
 @font-face {
 	font-family: "Brittany";
 	src: url("../fonts/brittany/BrittanySignature.ttf");
+}
+
+@font-face {
+	font-family: "Favter";
+	src: url("../fonts/Favter-Font/Favter.ttf");
+}
+
+@font-face {
+	font-family: "dystopian";
+	src: url("../fonts/dystopian/dystopian.otf");
+}
+
+@font-face {
+	font-family: "vortania";
+	src: url("../fonts/Vortania-Font/VortaniaRegular-XGR4j.ttf");
 }
 
 @keyframes particleMove {
