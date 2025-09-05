@@ -47,6 +47,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Load from "@/layout/Load";
 import AnimatedText from "@/utils/AnimatedText";
+import DecryptedText from "./DecryptedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,6 +66,7 @@ const Hero = () => {
           <div className="w-full px-4 md:px-8">
             <TopSection />
             <HeroImgs />
+            <BottomSection />
           </div>
         )}
       </section>
@@ -99,6 +101,20 @@ const HeroImgs = memo(() => {
         className="absolute hidden dark:block h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
     </>
+  );
+});
+
+const BottomSection = memo(() => {
+  return (
+    <div className="flex text-end justify-between items-center h-64 text-white">
+      <div className="h-full" />
+      <DecryptedText
+        text="// I help growing brands and <br/> startups gain an unfair advantage through premium, results driven websites."
+        animateOn="view"
+        revealDirection="center"
+        className="w-1/2 h-full text-lg md:text-xl lg:text-2xl font-favter text-end"
+      />
+    </div>
   );
 });
 
