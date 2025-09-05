@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "motion/react";
+// import { motion } from "motion/react";
 
 export default function DecryptedText({
   text,
