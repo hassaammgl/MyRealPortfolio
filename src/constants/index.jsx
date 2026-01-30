@@ -141,11 +141,11 @@ export const PROJECTS = [
 export const CONTACTS = [
     {
         name: "Email",
-        url: "mailto:contact@hassaammgl.xyz"
+        url: "mailto:contact@hassaammgl.com"
     },
     {
         name: "Linkedin",
-        url: "https://www.linkedin.com/in/m-hassaam-mughal-91668a256/"
+        url: "https://www.linkedin.com/in/m-hassaam-mehtab-91668a256"
     },
     {
         name: "GIthub",
