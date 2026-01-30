@@ -155,4 +155,21 @@ export const CONTACTS = [
         name: "Youtube",
         url: "https://www.youtube.com/@coderglitchx03"
     },
+
+    {
+        name: "Instagram",
+        url: "https://www.instagram.com/hassaammgl/"
+    },
+    {
+        name: "X",
+        url: "https://x.com/hassaammgl"
+    },
+    {
+        name: "Upwork",
+        url: "https://www.upwork.com/freelancers/~01984a29dcc68bc2db"
+    },
+    {
+        name: "Fiverr",
+        url: "https://www.fiverr.com/hassaam_mgl?public_mode=true"
+    },
 ]
