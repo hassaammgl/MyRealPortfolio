@@ -143,14 +143,13 @@ export const CONTACTS = [
         url: "https://www.linkedin.com/in/m-hassaam-mehtab-91668a256"
     },
     {
-        name: "GIthub",
+        name: "Github",
         url: "https://github.com/hassaammgl/"
     },
     {
         name: "Youtube",
         url: "https://www.youtube.com/@coderglitchx03"
     },
-
     {
         name: "Instagram",
         url: "https://www.instagram.com/hassaammgl/"
