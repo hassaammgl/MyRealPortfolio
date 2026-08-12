@@ -71,9 +71,9 @@ const Services = () => {
                         </p>
                         <h2
                             data-cursor-hover
-                            className="font-boldonse uppercase text-[1.85rem] sm:text-4xl md:text-6xl lg:text-[5.5vw] leading-[1.15] sm:leading-[1.05] max-w-3xl hover:service-title-glow transition-all duration-500"
+                            className="font-boldonse uppercase text-[1.85rem] sm:text-4xl md:text-6xl lg:text-[5.5vw] leading-[1.25] sm:leading-[1.2] max-w-3xl hover:service-title-glow transition-all duration-500"
                         >
-                            <AnimatedText text="How can i help you!" splitByWords />
+                            How can i help you!
                         </h2>
                     </div>
                     <p className="font-roboto text-white/75 text-base md:text-lg max-w-sm lg:text-right leading-relaxed">

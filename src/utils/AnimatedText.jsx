@@ -13,6 +13,8 @@ const AnimatedText = ({
     duration = 1,
     revert = false,
     start = 'top 80%',
+    // y motion overlaps wrapped lines — off by default for word splits
+    move = !splitByWords,
 }) => {
     const containerRef = useRef(null)
 
@@ -22,32 +24,40 @@ const AnimatedText = ({
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start,
-                    toggleActions: 'play none none reverse',
+                    toggleActions: 'play none none none',
                 },
                 opacity: 0,
-                y: revert ? -50 : 50,
+                ...(move ? { y: revert ? -40 : 40 } : {}),
                 duration,
                 ease: 'power3.out',
-                stagger: 0.05,
+                stagger: 0.04,
+                clearProps: move ? 'transform' : '',
             })
         }, containerRef)
 
         return () => ctx.revert()
-    }, [start, duration, revert])
+    }, [start, duration, revert, move])
 
     const renderText = () => {
         if (splitByWords) {
-            return text.split(/(\s+)/).map((part, idx) => (
-                <span key={idx} className={`char inline-block ${hoverClass}`}>
-                    {part === ' ' || part === '' ? '\u00A0' : part}
-                </span>
-            ))
+            return text.split(/(\s+)/).map((part, idx) => {
+                if (part === ' ' || part === '' || /^\s+$/.test(part)) {
+                    return <span key={idx}>{' '}</span>
+                }
+                return (
+                    <span
+                        key={idx}
+                        className={`char inline-block ${hoverClass}`}
+                    >
+                        {part}
+                    </span>
+                )
+            })
         }
 
-        // Keep words together so titles don't break mid-word on mobile
         return text.split(/(\s+)/).map((part, idx) => {
             if (/^\s+$/.test(part) || part === '') {
-                return <span key={idx}>{'\u00A0'}</span>
+                return <span key={idx}>{' '}</span>
             }
 
             return (
