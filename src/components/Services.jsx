@@ -9,7 +9,7 @@ import { useRef, useState, useEffect } from "react"
 gsap.registerPlugin(ScrollTrigger)
 
 // Toggle to restore the previous stacked-card Services UI
-const SHOW_OLD_SERVICES = false
+const SHOW_OLD_SERVICES = true
 
 const Services = () => {
     const containerRef = useRef(null)
