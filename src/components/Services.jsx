@@ -1,15 +1,128 @@
-
 import { Element } from 'react-scroll'
 import AnimatedText from "@/utils/AnimatedText"
 import { SERVICES } from '@/constants'
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useRef, useEffect } from "react"
+import { useRef, useState, useEffect } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Toggle to restore the previous stacked-card Services UI
+const SHOW_OLD_SERVICES = false
+
 const Services = () => {
+    const containerRef = useRef(null)
+    const [activeIndex, setActiveIndex] = useState(0)
+    const active = SERVICES[activeIndex]
+
+    useGSAP(() => {
+        if (SHOW_OLD_SERVICES) return
+
+        gsap.fromTo(
+            ".service-list-item",
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.08,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: "top 75%",
+                    toggleActions: "play none none reverse",
+                },
+            }
+        )
+    }, { scope: containerRef })
+
+    if (SHOW_OLD_SERVICES) {
+        return <OldServicesDesign />
+    }
+
+    return (
+        <Element name="Services">
+            <section
+                ref={containerRef}
+                className="relative w-screen bg-primary text-white py-20 md:py-28 px-6 md:px-12 lg:px-20"
+            >
+                <div className="mb-12 md:mb-16">
+                    <h2
+                        data-cursor-hover
+                        className="font-boldonse uppercase text-4xl md:text-[6vw] leading-none hover:text-accent transition-colors duration-500"
+                    >
+                        <AnimatedText text="How can i help you!" splitByWords />
+                    </h2>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    <div className="lg:col-span-4 lg:sticky lg:top-28">
+                        <p className="font-syne-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-white/40 mb-4">
+                            ( Services )
+                        </p>
+                        <p className="font-roboto text-sm md:text-base text-white/55 leading-relaxed max-w-sm">
+                            <span className="text-white font-medium">I build production backends</span>
+                            {" "}— APIs, data models, payments, integrations, and systems you can keep shipping on.
+                        </p>
+                        <div className="mt-8 md:mt-10 border-l border-white/15 pl-4">
+                            <p className="font-boldonse text-lg md:text-2xl text-accent mb-3 uppercase tracking-wide">
+                                {active.name.replace(/\n/g, " ")}
+                            </p>
+                            <p className="font-roboto text-sm md:text-base text-white/70 leading-relaxed">
+                                {active.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-7 flex flex-col">
+                        {SERVICES.map((service, index) => {
+                            const isActive = index === activeIndex
+                            const label = service.name.replace(/\n/g, " ")
+
+                            return (
+                                <button
+                                    key={label}
+                                    type="button"
+                                    onMouseEnter={() => setActiveIndex(index)}
+                                    onFocus={() => setActiveIndex(index)}
+                                    className="service-list-item group grid grid-cols-[auto_1fr] gap-3 md:gap-5 items-center text-left py-2 md:py-1 border-0 bg-transparent cursor-pointer"
+                                >
+                                    <span
+                                        className={`font-syne-mono text-[9px] md:text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 ${
+                                            isActive ? "text-accent" : "text-white/30 group-hover:text-accent"
+                                        }`}
+                                    >
+                                        Service
+                                    </span>
+                                    <span
+                                        data-cursor-hover
+                                        className={`font-boldonse uppercase text-[9vw] md:text-[5.5vw] lg:text-[4.2vw] leading-[0.95] transition-colors duration-300 ${
+                                            isActive ? "text-accent" : "text-white/85 group-hover:text-accent"
+                                        }`}
+                                    >
+                                        {label}
+                                    </span>
+                                </button>
+                            )
+                        })}
+                    </div>
+
+                    <div className="hidden lg:flex lg:col-span-1 justify-end pt-4">
+                        <div className="flex items-end gap-1 h-8 text-accent">
+                            <span className="w-1 bg-current h-3 rounded-sm" />
+                            <span className="w-1 bg-current h-6 rounded-sm" />
+                            <span className="w-1 bg-current h-4 rounded-sm" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </Element>
+    )
+}
+
+/* ── OLD SERVICES DESIGN (hidden via SHOW_OLD_SERVICES = false) ── */
+const OldServicesDesign = () => {
     const containerRef = useRef(null)
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
 
@@ -50,7 +163,6 @@ const Services = () => {
             )
         })
 
-        // Handle window resize
         const onResize = () => ScrollTrigger.refresh()
         window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
@@ -101,8 +213,6 @@ const ServiceCard = ({ data, index }) => {
     const contentRef = useRef(null)
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
 
-
-
     useGSAP(() => {
         const triggerConfig = {
             trigger: cardRef.current,
@@ -135,7 +245,6 @@ const ServiceCard = ({ data, index }) => {
             className="service-card mt-8 min-h-[80dvh]  md:h-screen w-full p-5 md:p-10 flex flex-col lg:flex-row items-center justify-between relative"
             style={{ zIndex: index + 1 }}
         >
-            {/* <div className="absolute inset-0 bg-tertiary backdrop-blur-lg rounded-3xl" /> */}
             <div className="absolute inset-0 bg-black/30 backdrop-blur-xl rounded-3xl border border-white/10 shadow-xl transition-all duration-500 hover:bg-white/40 hover:shadow-2xl" />
             {(index + 1) % 2 === 0 ? (
                 <>
@@ -171,7 +280,6 @@ const ServiceCard = ({ data, index }) => {
                     </div>
                 </>
             )}
-
         </div>
     )
 }
