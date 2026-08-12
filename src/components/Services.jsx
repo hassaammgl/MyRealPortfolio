@@ -78,10 +78,10 @@ const Services = () => {
 
                     <div className='w-full md:w-1/3 text-lg md:text-xl text-white mt-8 md:mt-0'>
                         <p className='font-bold'>
-                            Your brand deserves more than a <span className='text-white font-bold'>generic website</span> — it deserves a <span className='text-white font-bold'>digital home</span> that truly captures its essence.
+                            Your product needs more than a <span className='text-white font-bold'>pretty UI</span> — it needs a <span className='text-white font-bold'>reliable backend</span> that can handle real business logic.
                         </p>
                         <p className='font-extralight mt-4'>
-                            If your current website feels <span className='text-white font-normal'>outdated</span>, <span className='text-white font-normal'>disconnected</span>, or simply <span className='text-white font-normal'>"not you"</span>, it's time for a change. I design <span className='text-white font-normal'>high-end</span>, thoughtful web experiences that reflect <span className='text-white font-normal'>who you are</span>, tell your story <span className='text-white font-normal'>authentically</span>, and help you build real <span className='text-white font-normal'>momentum</span>. Together, we'll create a website that's not just <span className='text-white font-normal'>beautiful</span>, but <span className='text-white font-normal'>strategic</span> — a true <span className='text-white font-normal'>asset</span> to your brand's <span className='text-white font-normal'>growth</span> and <span className='text-white font-normal'>success</span>.
+                            I help founders and teams design, build, improve, and maintain <span className='text-white font-normal'>production-oriented systems</span> — APIs, databases, payments, integrations, background jobs, and admin workflows. Whether you are launching a SaaS, fixing a fragile backend, or connecting third-party services, I focus on <span className='text-white font-normal'>correctness</span>, <span className='text-white font-normal'>data consistency</span>, and architecture you can keep shipping on.
                         </p>
                     </div>
                 </div>
@@ -97,8 +97,6 @@ const Services = () => {
 }
 
 const ServiceCard = ({ data, index }) => {
-    console.log("indexx:", index);
-
     const cardRef = useRef(null)
     const contentRef = useRef(null)
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
@@ -153,7 +151,7 @@ const ServiceCard = ({ data, index }) => {
                     </div>
                     <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
                         <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
-                            <span className="text-outline text-center">{data.name}</span>
+                            <span className="text-outline text-center whitespace-pre-line">{data.name}</span>
                         </h2>
                     </div>
                 </>
@@ -161,7 +159,7 @@ const ServiceCard = ({ data, index }) => {
                 <>
                     <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
                         <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
-                            <span className="text-outline text-center">{data.name}</span>
+                            <span className="text-outline text-center whitespace-pre-line">{data.name}</span>
                         </h2>
                     </div>
 

@@ -21,48 +21,43 @@ export const LINKS = [
 
 export const SERVICES = [
     {
-        name: "FRONTEND",
+        name: "APIs &\nSYSTEMS",
         description:
-            "🎨 I craft sleek, responsive, and high-performing user interfaces that not only look amazing but deliver unforgettable user experiences. Every pixel is placed with purpose to drive engagement and conversions.",
+            "I design and build production REST APIs that power real products — clear contracts, solid validation, and predictable error handling so your app stays reliable as it grows.",
         features: [
-            "📱 Pixel-perfect, responsive designs with fast load times",
-            "⚡ High-performance UI/UX focused builds, fully accessible and SEO-optimized",
-            "🌐 Cross-browser and device compatibility with smooth, interactive animations",
+            "REST API design, versioning, validation, and structured error responses",
+            "Authentication, authorization, and role-based access control",
+            "PostgreSQL data modeling, ORM workflows, transactions, and data consistency",
         ],
     },
     {
-        name: "BACKEND",
+        name: "PAYMENTS &\nWORKFLOWS",
         description:
-            "🛠️ I build powerful, secure backend systems that act as the reliable engine behind your application. From scalable databases to efficient APIs, I ensure your backend is ready to handle anything you throw at it.",
+            "I implement the business logic clients actually pay for — orders, subscriptions, billing, and multi-step workflows that must work correctly every time money or state is involved.",
         features: [
-            "🔒 Scalable and secure server-side architecture, built for traffic growth",
-            "🗄️ Efficient database design and API development with secure data practices",
-            "🛡️ Robust authentication and integrations with custom APIs",
+            "Payment processing, provider integrations, and webhook handling",
+            "Subscription and billing flows with reliable state transitions",
+            "Background jobs, queues, and scheduled processing for long-running work",
         ],
     },
     {
-        name: "FULLSTACK",
+        name: "INTEGRATIONS &\nOPS",
         description:
-            "🧠 I bring frontend and backend together into a seamless, fully integrated web solution. From stunning interfaces to rock-solid server-side logic, I deliver complete applications that perform flawlessly across every layer.",
+            "I connect your product to the tools your business already depends on — and keep those pipelines reliable with retries, notifications, and operational visibility.",
         features: [
-            "🖥️ Full frontend-backend integration for consistency and performance",
-            "💬 Real-time features like live chat and notifications with rapid deployment",
-            "🌱 End-to-end tested systems built to scale and evolve",
+            "Third-party API integrations, file storage, email, and notification systems",
+            "Redis caching, search/filtering, reporting, and import/export pipelines",
+            "Admin systems, audit logs, real-time updates, and activity tracking",
         ],
     },
     {
-        name: "TOOLBOX",
+        name: "PRODUCTION &\nIMPROVE",
         description:
-            "🧰 Here’s a glimpse into the powerful technologies and tools I use daily to bring high-quality web experiences to life. My toolbox is battle-tested, modern, and always evolving with the best industry standards.",
+            "I take existing systems seriously — fix production bugs, improve performance, refactor messy backends, and ship maintainable architecture you can keep building on.",
         features: [
-            "⚛️ React.js / Next.js / Tailwind CSS",
-            "🟩 Node.js / Express.js",
-            "🍃 MongoDB / 🐘 PostgreSQL",
-            "🛠️ Prisma ORM / Mongoose",
-            "🎥 GSAP / Framer Motion",
-            "▲ Vercel / Netlify",
-            "🗂️ Git / GitHub",
-            "🔐 JWT / OAuth / Clerk Authentication",
+            "Performance improvements, reliability hardening, and production bug fixing",
+            "Refactoring legacy APIs into clearer, maintainable modules",
+            "Dockerized apps, Linux deployment support, and frontend integration when needed",
         ],
     },
 ];
