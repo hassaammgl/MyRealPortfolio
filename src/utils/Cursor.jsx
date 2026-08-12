@@ -1,124 +1,171 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { useProjectHoverStore } from '@/store'
-import { GoArrowUpLeft } from "react-icons/go";
+import { GoArrowUpRight } from "react-icons/go"
 
 const AnimatedCursor = () => {
-    const cursorRef = useRef(null);
-    const followerRef = useRef(null);
-    const posCursor = useRef({ x: 0, y: 0 });
-    const posFollower = useRef({ x: 0, y: 0 });
-    const mouse = useRef({ x: 0, y: 0 });
-    const speed = 0.2;
-    const followerSpeed = 0.15;
+    const cursorRef = useRef(null)
+    const ringRef = useRef(null)
+    const glowRef = useRef(null)
+    const mouse = useRef({ x: 0, y: 0 })
+    const posDot = useRef({ x: 0, y: 0 })
+    const posRing = useRef({ x: 0, y: 0 })
 
     const { isHoverOnProjects } = useProjectHoverStore()
 
     useGSAP(() => {
-        if (!cursorRef.current || !followerRef.current) return;
+        if (!cursorRef.current || !ringRef.current || !glowRef.current) return
 
-        // Set initial positions to center
-        mouse.current.x = window.innerWidth / 2;
-        mouse.current.y = window.innerHeight / 2;
-        posCursor.current = { ...mouse.current };
-        posFollower.current = { ...mouse.current };
+        mouse.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+        posDot.current = { ...mouse.current }
+        posRing.current = { ...mouse.current }
 
-        gsap.set([cursorRef.current, followerRef.current], {
+        gsap.set([cursorRef.current, ringRef.current, glowRef.current], {
             xPercent: -50,
             yPercent: -50,
-        });
+        })
+
+        document.documentElement.classList.add('custom-cursor-active')
 
         const onMouseMove = (e) => {
-            mouse.current.x = e.clientX;
-            mouse.current.y = e.clientY;
-        };
+            mouse.current.x = e.clientX
+            mouse.current.y = e.clientY
+        }
 
-        window.addEventListener('mousemove', onMouseMove);
-
-        // GSAP animation loop
         const animate = () => {
-            const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
-            const followerDT = 1.0 - Math.pow(1.0 - followerSpeed, gsap.ticker.deltaRatio());
+            const dt = 1 - Math.pow(1 - 0.35, gsap.ticker.deltaRatio())
+            const ringDt = 1 - Math.pow(1 - 0.12, gsap.ticker.deltaRatio())
 
-            // Update cursor position
-            posCursor.current.x += (mouse.current.x - posCursor.current.x) * dt;
-            posCursor.current.y += (mouse.current.y - posCursor.current.y) * dt;
+            posDot.current.x += (mouse.current.x - posDot.current.x) * dt
+            posDot.current.y += (mouse.current.y - posDot.current.y) * dt
+            posRing.current.x += (mouse.current.x - posRing.current.x) * ringDt
+            posRing.current.y += (mouse.current.y - posRing.current.y) * ringDt
 
-            // Update follower position
-            posFollower.current.x += (posCursor.current.x - posFollower.current.x) * followerDT;
-            posFollower.current.y += (posCursor.current.y - posFollower.current.y) * followerDT;
+            gsap.set(cursorRef.current, { x: posDot.current.x, y: posDot.current.y })
+            gsap.set(ringRef.current, { x: posRing.current.x, y: posRing.current.y })
+            gsap.set(glowRef.current, { x: posRing.current.x, y: posRing.current.y })
+        }
 
-            gsap.set(cursorRef.current, { x: posCursor.current.x, y: posCursor.current.y });
-            gsap.set(followerRef.current, { x: posFollower.current.x, y: posFollower.current.y });
-        };
-
-        gsap.ticker.add(animate);
-
-        // Hover effects
         const handleHover = () => {
-            gsap.to(cursorRef.current, { scale: 0.5, duration: 0.3 });
-            gsap.to(followerRef.current, { scale: 3, duration: 0.3 });
-        };
+            if (useProjectHoverStore.getState().isHoverOnProjects) return
+            gsap.to(cursorRef.current, {
+                scale: 0.35,
+                backgroundColor: '#ffffff',
+                duration: 0.35,
+                ease: 'power2.out',
+            })
+            gsap.to(ringRef.current, {
+                scale: 2.2,
+                borderColor: 'rgba(141, 86, 204, 0.9)',
+                backgroundColor: 'rgba(141, 86, 204, 0.12)',
+                rotate: 45,
+                duration: 0.4,
+                ease: 'power2.out',
+            })
+            gsap.to(glowRef.current, {
+                scale: 2.6,
+                opacity: 0.55,
+                duration: 0.4,
+            })
+        }
 
         const handleUnhover = () => {
-            gsap.to(cursorRef.current, { scale: 1, duration: 0.3 });
-            gsap.to(followerRef.current, { scale: 1, duration: 0.3 });
-        };
+            if (useProjectHoverStore.getState().isHoverOnProjects) return
+            gsap.to(cursorRef.current, {
+                scale: 1,
+                backgroundColor: '#8d56cc',
+                duration: 0.35,
+                ease: 'power2.out',
+            })
+            gsap.to(ringRef.current, {
+                scale: 1,
+                borderColor: 'rgba(255, 255, 255, 0.55)',
+                backgroundColor: 'rgba(255, 255, 255, 0)',
+                rotate: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+            })
+            gsap.to(glowRef.current, {
+                scale: 1,
+                opacity: 0.25,
+                duration: 0.4,
+            })
+        }
 
-        const interactiveElements = document.querySelectorAll(
-            'a, button, [data-cursor-hover]'
-        );
+        window.addEventListener('mousemove', onMouseMove)
+        gsap.ticker.add(animate)
 
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', handleHover);
-            el.addEventListener('mouseleave', handleUnhover);
-        });
+        const interactiveElements = document.querySelectorAll('a, button, [data-cursor-hover]')
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', handleHover)
+            el.addEventListener('mouseleave', handleUnhover)
+        })
 
         return () => {
-            gsap.ticker.remove(animate);
-            window.removeEventListener('mousemove', onMouseMove);
-            interactiveElements.forEach(el => {
-                el.removeEventListener('mouseenter', handleHover);
-                el.removeEventListener('mouseleave', handleUnhover);
-            });
-        };
-    }, []);
+            document.documentElement.classList.remove('custom-cursor-active')
+            gsap.ticker.remove(animate)
+            window.removeEventListener('mousemove', onMouseMove)
+            interactiveElements.forEach((el) => {
+                el.removeEventListener('mouseenter', handleHover)
+                el.removeEventListener('mouseleave', handleUnhover)
+            })
+        }
+    }, [])
 
     useGSAP(() => {
-        gsap.to("#project-cursor", {
-            scale: 1.3,
-            duration: .7,
-            ease: "power3.inOut"
-        })
-    })
+        if (!cursorRef.current || !ringRef.current || !glowRef.current) return
 
+        if (isHoverOnProjects) {
+            gsap.to(cursorRef.current, {
+                width: 56,
+                height: 56,
+                borderRadius: 999,
+                backgroundColor: 'rgba(141, 86, 204, 0.92)',
+                duration: 0.35,
+            })
+            gsap.to(ringRef.current, { opacity: 0, scale: 0.5, duration: 0.3 })
+            gsap.to(glowRef.current, { opacity: 0.6, scale: 2.2, duration: 0.35 })
+        } else {
+            gsap.to(cursorRef.current, {
+                width: 8,
+                height: 8,
+                borderRadius: 999,
+                backgroundColor: '#8d56cc',
+                duration: 0.35,
+            })
+            gsap.to(ringRef.current, {
+                opacity: 1,
+                scale: 1,
+                borderColor: 'rgba(255, 255, 255, 0.55)',
+                backgroundColor: 'rgba(255, 255, 255, 0)',
+                rotate: 0,
+                duration: 0.35,
+            })
+            gsap.to(glowRef.current, { opacity: 0.25, scale: 1, duration: 0.35 })
+        }
+    }, [isHoverOnProjects])
 
     return (
         <>
-            {!isHoverOnProjects && (<>
-                <div
-                    ref={cursorRef}
-                    className="fixed w-2.5 h-2.5 bg-black dark:bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transform -translate-x-1/2 -translate-y-1/2"
-                />
-                <div
-                    ref={followerRef}
-                    className="fixed w-8 h-8 border-2 border-black dark:border-white rounded-full pointer-events-none z-[9998] mix-blend-difference opacity-70 transform -translate-x-1/2 -translate-y-1/2"
-                />
-            </>)}
-            {
-                isHoverOnProjects && (
-                    <div
-                        ref={cursorRef}
-                        id='project-cursor'
-                        className="fixed bg-tertiary p-2 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2"
-                    >
-                        <GoArrowUpLeft className='text-sm text-white transition-all ease-in-out duration-300' />
-                    </div>
-                )
-            }
+            <div
+                ref={glowRef}
+                className="fixed pointer-events-none z-[9997] size-16 rounded-full bg-accent/40 blur-xl opacity-25"
+            />
+            <div
+                ref={ringRef}
+                className="fixed pointer-events-none z-[9998] size-10 rounded-[4px] border border-white/55"
+            />
+            <div
+                ref={cursorRef}
+                className="fixed pointer-events-none z-[9999] size-2 rounded-full bg-accent shadow-[0_0_12px_rgba(141,86,204,0.9)] flex items-center justify-center overflow-hidden"
+            >
+                {isHoverOnProjects && (
+                    <GoArrowUpRight className="text-white text-xl shrink-0" />
+                )}
+            </div>
         </>
-    );
-};
+    )
+}
 
-export default AnimatedCursor;
+export default AnimatedCursor

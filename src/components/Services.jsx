@@ -5,37 +5,54 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useRef, useState, useEffect } from "react"
+import { FaPlus, FaMinus } from "react-icons/fa6"
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Toggle to restore the previous stacked-card Services UI
-const SHOW_OLD_SERVICES = true
+// Previous stacked-card UI — set true to restore
+const SHOW_OLD_SERVICES = false
 
 const Services = () => {
     const containerRef = useRef(null)
-    const [activeIndex, setActiveIndex] = useState(0)
-    const active = SERVICES[activeIndex]
+    const [openIndex, setOpenIndex] = useState(0)
 
     useGSAP(() => {
         if (SHOW_OLD_SERVICES) return
 
+        const items = gsap.utils.toArray(".service-accordion-item")
+
         gsap.fromTo(
-            ".service-list-item",
-            { opacity: 0, y: 30 },
+            items,
+            { opacity: 0, y: 50 },
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
-                stagger: 0.08,
+                duration: 0.75,
+                stagger: 0.12,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 75%",
+                    start: "top 70%",
                     toggleActions: "play none none reverse",
                 },
             }
         )
+
+        items.forEach((item, i) => {
+            ScrollTrigger.create({
+                trigger: item,
+                start: "top 55%",
+                end: "bottom 45%",
+                onEnter: () => setOpenIndex(i),
+                onEnterBack: () => setOpenIndex(i),
+            })
+        })
     }, { scope: containerRef })
+
+    useEffect(() => {
+        const id = requestAnimationFrame(() => ScrollTrigger.refresh())
+        return () => cancelAnimationFrame(id)
+    }, [openIndex])
 
     if (SHOW_OLD_SERVICES) {
         return <OldServicesDesign />
@@ -45,83 +62,86 @@ const Services = () => {
         <Element name="Services">
             <section
                 ref={containerRef}
-                className="relative w-screen bg-primary text-white py-20 md:py-28 px-6 md:px-12 lg:px-20"
+                className="relative w-screen bg-accent text-white rounded-4xl overflow-hidden py-16 md:py-24 px-5 md:px-12 lg:px-20"
             >
-                <div className="mb-12 md:mb-16">
-                    <h2
-                        data-cursor-hover
-                        className="font-boldonse uppercase text-4xl md:text-[6vw] leading-none hover:text-accent transition-colors duration-500"
-                    >
-                        <AnimatedText text="How can i help you!" splitByWords />
-                    </h2>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    <div className="lg:col-span-4 lg:sticky lg:top-28">
-                        <p className="font-syne-mono text-[10px] md:text-xs tracking-[0.25em] uppercase text-white/40 mb-4">
+                <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-20">
+                    <div>
+                        <p className="font-syne-mono text-xs tracking-[0.3em] uppercase text-white/50 mb-4">
                             ( Services )
                         </p>
-                        <p className="font-roboto text-sm md:text-base text-white/55 leading-relaxed max-w-sm">
-                            <span className="text-white font-medium">I build production backends</span>
-                            {" "}— APIs, data models, payments, integrations, and systems you can keep shipping on.
-                        </p>
-                        <div className="mt-8 md:mt-10 border-l border-white/15 pl-4">
-                            <p className="font-boldonse text-lg md:text-2xl text-accent mb-3 uppercase tracking-wide">
-                                {active.name.replace(/\n/g, " ")}
-                            </p>
-                            <p className="font-roboto text-sm md:text-base text-white/70 leading-relaxed">
-                                {active.description}
-                            </p>
-                        </div>
+                        <h2
+                            data-cursor-hover
+                            className="font-boldonse uppercase text-4xl md:text-6xl lg:text-[5.5vw] leading-[0.95] max-w-3xl hover:service-title-glow transition-all duration-500"
+                        >
+                            <AnimatedText text="How can i help you!" splitByWords />
+                        </h2>
                     </div>
+                    <p className="font-roboto text-white/75 text-base md:text-lg max-w-sm lg:text-right leading-relaxed">
+                        Production backends, clear APIs, and systems that stay reliable when real users and money are involved.
+                    </p>
+                </div>
 
-                    <div className="lg:col-span-7 flex flex-col">
-                        {SERVICES.map((service, index) => {
-                            const isActive = index === activeIndex
-                            const label = service.name.replace(/\n/g, " ")
+                <div className="border-t border-white/20">
+                    {SERVICES.map((service, index) => {
+                        const isOpen = openIndex === index
+                        const title = service.name.replace(/\n/g, " ")
+                        const number = String(index + 1).padStart(2, "0")
 
-                            return (
-                                <button
-                                    key={label}
-                                    type="button"
-                                    onMouseEnter={() => setActiveIndex(index)}
-                                    onFocus={() => setActiveIndex(index)}
-                                    className="service-list-item group grid grid-cols-[auto_1fr] gap-3 md:gap-5 items-center text-left py-2 md:py-1 border-0 bg-transparent cursor-pointer"
-                                >
-                                    <span
-                                        className={`font-syne-mono text-[9px] md:text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 ${
-                                            isActive ? "text-accent" : "text-white/30 group-hover:text-accent"
-                                        }`}
-                                    >
-                                        Service
+                        return (
+                            <div
+                                key={title}
+                                className="service-accordion-item border-b border-white/20"
+                            >
+                                <div className="w-full grid grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-8 py-6 md:py-8">
+                                    <span className="font-syne-mono text-sm text-white/45">
+                                        {number}
                                     </span>
                                     <span
                                         data-cursor-hover
-                                        className={`font-boldonse uppercase text-[9vw] md:text-[5.5vw] lg:text-[4.2vw] leading-[0.95] transition-colors duration-300 ${
-                                            isActive ? "text-accent" : "text-white/85 group-hover:text-accent"
+                                        className={`font-boldonse uppercase text-2xl md:text-4xl lg:text-5xl leading-none transition-all duration-300 ${
+                                            isOpen ? "text-white service-title-glow" : "text-white/80"
                                         }`}
                                     >
-                                        {label}
+                                        {title}
                                     </span>
-                                </button>
-                            )
-                        })}
-                    </div>
+                                    <span className="text-white/70 text-lg">
+                                        {isOpen ? <FaMinus /> : <FaPlus />}
+                                    </span>
+                                </div>
 
-                    <div className="hidden lg:flex lg:col-span-1 justify-end pt-4">
-                        <div className="flex items-end gap-1 h-8 text-accent">
-                            <span className="w-1 bg-current h-3 rounded-sm" />
-                            <span className="w-1 bg-current h-6 rounded-sm" />
-                            <span className="w-1 bg-current h-4 rounded-sm" />
-                        </div>
-                    </div>
+                                <div
+                                    className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+                                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                                    }`}
+                                >
+                                    <div className="overflow-hidden">
+                                        <div className="pb-8 md:pb-10 pl-0 md:pl-14 lg:pl-16 max-w-3xl">
+                                            <p className="font-roboto text-base md:text-xl text-white/85 leading-relaxed mb-6">
+                                                {service.description}
+                                            </p>
+                                            <ul className="space-y-3">
+                                                {service.features?.map((feat) => (
+                                                    <li
+                                                        key={feat}
+                                                        className="font-roboto text-sm md:text-base text-white/70 border-l-2 border-black/40 pl-4"
+                                                    >
+                                                        {feat}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </section>
         </Element>
     )
 }
 
-/* ── OLD SERVICES DESIGN (hidden via SHOW_OLD_SERVICES = false) ── */
+/* ── OLD stacked-card design (SHOW_OLD_SERVICES = true) ── */
 const OldServicesDesign = () => {
     const containerRef = useRef(null)
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
@@ -183,17 +203,15 @@ const OldServicesDesign = () => {
 
                 <div className='flex flex-col md:flex-row font-roboto justify-end items-start text-white mx-4 md:m-16 relative'>
                     <Svg className="m-0 size-8 md:size-16 absolute -top-4 left-0 md:static md:mr-4" />
-
                     <h4 className="text-end md:mr-8 font-extrabold uppercase text-white overflow-hidden mt-4 md:mt-0">
                         <AnimatedText text={"( Services )"} />
                     </h4>
-
                     <div className='w-full md:w-1/3 text-lg md:text-xl text-white mt-8 md:mt-0'>
                         <p className='font-bold'>
                             Your product needs more than a <span className='text-white font-bold'>pretty UI</span> — it needs a <span className='text-white font-bold'>reliable backend</span> that can handle real business logic.
                         </p>
                         <p className='font-extralight mt-4'>
-                            I help founders and teams design, build, improve, and maintain <span className='text-white font-normal'>production-oriented systems</span> — APIs, databases, payments, integrations, background jobs, and admin workflows. Whether you are launching a SaaS, fixing a fragile backend, or connecting third-party services, I focus on <span className='text-white font-normal'>correctness</span>, <span className='text-white font-normal'>data consistency</span>, and architecture you can keep shipping on.
+                            I help founders and teams design, build, improve, and maintain <span className='text-white font-normal'>production-oriented systems</span> — APIs, databases, payments, integrations, background jobs, and admin workflows.
                         </p>
                     </div>
                 </div>
@@ -214,17 +232,15 @@ const ServiceCard = ({ data, index }) => {
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false
 
     useGSAP(() => {
-        const triggerConfig = {
-            trigger: cardRef.current,
-            start: isMobile ? "top 85%" : "top center+=10%",
-            end: "+=250",
-            scrub: 1,
-            markers: false,
-            invalidateOnRefresh: true
-        }
-
         const tl = gsap.timeline({
-            scrollTrigger: triggerConfig
+            scrollTrigger: {
+                trigger: cardRef.current,
+                start: isMobile ? "top 85%" : "top center+=10%",
+                end: "+=250",
+                scrub: 1,
+                markers: false,
+                invalidateOnRefresh: true
+            }
         })
 
         tl.fromTo(contentRef.current,
@@ -242,13 +258,13 @@ const ServiceCard = ({ data, index }) => {
     return (
         <div
             ref={cardRef}
-            className="service-card mt-8 min-h-[80dvh]  md:h-screen w-full p-5 md:p-10 flex flex-col lg:flex-row items-center justify-between relative"
+            className="service-card mt-8 min-h-[80dvh] md:h-screen w-full p-5 md:p-10 flex flex-col lg:flex-row items-center justify-between relative"
             style={{ zIndex: index + 1 }}
         >
             <div className="absolute inset-0 bg-black/30 backdrop-blur-xl rounded-3xl border border-white/10 shadow-xl transition-all duration-500 hover:bg-white/40 hover:shadow-2xl" />
             {(index + 1) % 2 === 0 ? (
                 <>
-                    <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
+                    <div ref={contentRef} className="w-full lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
                         <p className="text-lg md:text-2xl mb-4 md:mb-8 font-roboto font-light opacity-90">{data.description}</p>
                         <div className="space-y-2 md:space-y-4">
                             {data.features?.map((feat, i) => (
@@ -258,17 +274,16 @@ const ServiceCard = ({ data, index }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
+                    <div className="w-full h-[30vh] lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
                         <ServiceTitle name={data.name} />
                     </div>
                 </>
             ) : (
                 <>
-                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
+                    <div className="w-full h-[30vh] lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
                         <ServiceTitle name={data.name} />
                     </div>
-
-                    <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
+                    <div ref={contentRef} className="w-full lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
                         <p className="text-lg md:text-2xl mb-4 md:mb-8 font-roboto font-light opacity-90">{data.description}</p>
                         <div className="space-y-2 md:space-y-4">
                             {data.features?.map((feat, i) => (
@@ -286,7 +301,6 @@ const ServiceCard = ({ data, index }) => {
 
 const ServiceTitle = ({ name }) => {
     const lines = name.split("\n")
-
     return (
         <h2 className="flex flex-col items-center justify-center gap-3 md:gap-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-boldonse -rotate-3 lg:-rotate-6">
             {lines.map((line) => (
@@ -298,13 +312,11 @@ const ServiceTitle = ({ name }) => {
     )
 }
 
-const Svg = ({ className }) => {
-    return (
-        <svg stroke="currentColor" fill="none" strokeWidth="1.25" viewBox="6 6 12 12" strokeLinecap="round" strokeLinejoin="round" className={className} color="#fff" style={{ color: "#fff" }} height="1em" width="1em">
-            <line x1="7" y1="7" x2="17" y2="17"></line>
-            <polyline points="17 7 17 17 7 17"></polyline>
-        </svg>
-    )
-}
+const Svg = ({ className }) => (
+    <svg stroke="currentColor" fill="none" strokeWidth="1.25" viewBox="6 6 12 12" strokeLinecap="round" strokeLinejoin="round" className={className} color="#fff" style={{ color: "#fff" }} height="1em" width="1em">
+        <line x1="7" y1="7" x2="17" y2="17"></line>
+        <polyline points="17 7 17 17 7 17"></polyline>
+    </svg>
+)
 
 export default Services
