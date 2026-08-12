@@ -45,13 +45,13 @@ const Projects = () => {
         <Element name="Projects">
             <section ref={projectsSectionRef} className="relative w-screen overflow-hidden pb-24 md:pb-32">
                 <div className="w-full px-6 md:px-12 pt-10 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                    <div data-cursor-hover className="text-white font-boldonse font-extrabold overflow-hidden">
+                    <div data-cursor-hover className="text-white font-boldonse font-extrabold overflow-hidden flex flex-col gap-1 md:gap-2">
                         <AnimatedText
                             className="uppercase text-[12vw] md:text-[7vw] leading-none hover:text-accent transition-colors duration-500"
                             text="Selected"
                         />
                         <AnimatedText
-                            className="block font-extralight font-brittany text-[14vw] md:text-[8vw] leading-none text-accent -mt-4 md:-mt-6"
+                            className="font-extralight font-brittany text-[12vw] md:text-[6vw] leading-none text-accent"
                             text="Cases"
                         />
                     </div>

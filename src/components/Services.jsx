@@ -150,17 +150,13 @@ const ServiceCard = ({ data, index }) => {
                         </div>
                     </div>
                     <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
-                        <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
-                            <span className="text-outline text-center whitespace-pre-line">{data.name}</span>
-                        </h2>
+                        <ServiceTitle name={data.name} />
                     </div>
                 </>
             ) : (
                 <>
                     <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
-                        <h2 className="text-4xl  md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12 mix-blend-difference">
-                            <span className="text-outline text-center whitespace-pre-line">{data.name}</span>
-                        </h2>
+                        <ServiceTitle name={data.name} />
                     </div>
 
                     <div ref={contentRef} className="w-full  lg:w-1/2 h-full flex flex-col justify-center relative z-10 p-4 md:p-8">
@@ -177,6 +173,20 @@ const ServiceCard = ({ data, index }) => {
             )}
 
         </div>
+    )
+}
+
+const ServiceTitle = ({ name }) => {
+    const lines = name.split("\n")
+
+    return (
+        <h2 className="flex flex-col items-center gap-2 md:gap-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12">
+            {lines.map((line) => (
+                <span key={line} className="text-outline text-center leading-none block">
+                    {line}
+                </span>
+            ))}
+        </h2>
     )
 }
 
