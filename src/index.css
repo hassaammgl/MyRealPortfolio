@@ -47,6 +47,17 @@ body::-webkit-scrollbar {
 	cursor: none !important;
 }
 
+@media (hover: none), (pointer: coarse) {
+	.custom-cursor-active,
+	.custom-cursor-active * {
+		cursor: auto !important;
+	}
+
+	.cursor-root {
+		display: none !important;
+	}
+}
+
 @font-face {
 	font-family: "Brittany";
 	src: url("../fonts/brittany/BrittanySignature.ttf");

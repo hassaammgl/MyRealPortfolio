@@ -1,175 +1,232 @@
-import React, { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { Link } from 'react-scroll';
-import Hamburger from 'hamburger-react';
+import { useState, useRef, useEffect } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { Link } from 'react-scroll'
+import Hamburger from 'hamburger-react'
 import { useWindowScroll } from "react-use"
+import { FaArrowUpRightFromSquare } from "react-icons/fa6"
 
 const navLinks = [
-    { name: "Home", link: "home", value: "$.home()" },
-    { name: "About", link: "about", value: "$.about()" },
-    { name: "Services", link: "services", value: "$.services()" },
-    { name: "Projects", link: "projects", value: "$.projects()" },
-    { name: "Contact", link: "contact", value: "$.contact()" },
-];
+    { name: "Home", label: "Home" },
+    { name: "About", label: "About" },
+    { name: "Services", label: "Services" },
+    { name: "Projects", label: "Projects" },
+    { name: "Contact", label: "Contact" },
+]
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false);
-    const navRef = useRef(null);
-    const linksRef = useRef([]);
-    const tl = useRef();
+    const [open, setOpen] = useState(false)
+    const overlayRef = useRef(null)
+    const panelRef = useRef(null)
+    const linksRef = useRef([])
+    const metaRef = useRef(null)
+    const tl = useRef(null)
 
-    // Store link refs
     const addToRefs = (el) => {
         if (el && !linksRef.current.includes(el)) {
-            linksRef.current.push(el);
+            linksRef.current.push(el)
         }
-    };
+    }
 
     useGSAP(() => {
-        // Main navigation animation
+        gsap.set(overlayRef.current, { autoAlpha: 0 })
+        gsap.set(panelRef.current, { clipPath: "inset(0 0 100% 0)" })
+        gsap.set(linksRef.current, { y: 80, opacity: 0 })
+        gsap.set(metaRef.current, { y: 30, opacity: 0 })
+
         tl.current = gsap.timeline({ paused: true })
-            .to(navRef.current, {
-                duration: 0.5,
-                opacity: 1,
-                y: 0,
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            .set(overlayRef.current, { display: "flex" })
+            .to(overlayRef.current, {
+                autoAlpha: 1,
+                duration: 0.35,
                 ease: "power2.out",
-                display: "flex",
             })
-            .from(linksRef.current, {
-                y: 50,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.3,
-                ease: "back.out(1.7)"
-            }, "-=0.3");
-    }, { scope: navRef });
+            .to(panelRef.current, {
+                clipPath: "inset(0 0 0% 0)",
+                duration: 0.7,
+                ease: "power3.inOut",
+            }, "-=0.1")
+            .to(linksRef.current, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.08,
+                duration: 0.55,
+                ease: "power3.out",
+            }, "-=0.35")
+            .to(metaRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 0.45,
+                ease: "power2.out",
+            }, "-=0.25")
+    }, { scope: overlayRef })
 
-    // Hover animations for links
-    useGSAP(() => {
-        linksRef.current.forEach(link => {
-            const text = link.querySelector('.nav-text');
-            const hoverText = link.querySelector('.hover-text');
+    useEffect(() => {
+        document.body.style.overflow = open ? "hidden" : ""
+        return () => {
+            document.body.style.overflow = ""
+        }
+    }, [open])
 
-            gsap.set(hoverText, { opacity: 0, x: -20 });
-
-            link.addEventListener('mouseenter', () => {
-                gsap.to(text, { opacity: 0, x: 20, duration: 0.8 });
-                gsap.to(hoverText, { opacity: 1, x: 0, duration: 0.8 });
-            });
-
-            link.addEventListener('mouseleave', () => {
-                gsap.to(text, { opacity: 1, x: 0, duration: 0.2 });
-                gsap.to(hoverText, { opacity: 0, x: -20, duration: 0.2 });
-            });
-        });
-    }, { dependencies: [open], scope: navRef });
-
-    const handleToggle = () => {
-        setOpen(prev => {
-            const newOpen = !prev;
-            if (newOpen) {
-                tl.current.play();
-            } else {
-                tl.current.reverse();
-            }
-            return newOpen;
-        });
-    };
-
-    // Close menu when clicking on a link
     const handleLinkClick = () => {
-        setOpen(false);
-        tl.current.reverse();
-    };
+        setOpen(false)
+        tl.current?.reverse()
+    }
+
+    const handleMenuToggle = (next) => {
+        setOpen(next)
+        if (next) tl.current?.play()
+        else tl.current?.reverse()
+    }
 
     return (
         <>
-            <TopNav open={open} handleToggle={handleToggle} />
+            <TopNav open={open} onToggle={handleMenuToggle} />
+
             <div
-                ref={navRef}
-                className='font-syne-mono w-full h-screen bg-tertiary flex flex-col items-center justify-center px-4 text-white fixed top-0 left-0 z-30'
-                style={{
-                    clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-                    opacity: 0,
-                    display: 'none'
-                }}
+                ref={overlayRef}
+                className="fixed inset-0 z-30 hidden flex-col"
+                style={{ visibility: "hidden" }}
             >
-                {navLinks.map((link, i) => (
-                    <div
-                        key={i}
-                        ref={addToRefs}
-                        className='overflow-hidden mb-4'
-                    >
-                        <Link
-                            className='relative group text-2xl font-semibold cursor-pointer inline-block border-2 w-[12rem] border-transparent rounded-lg transition-all duration-700 ease-in-out'
-                            onClick={handleLinkClick}
-                            to={link.name}
-                            smooth={true}
-                            duration={500}
-                            spy={true}
-                        >
-                            <span className="nav-text inline-block">{link.value}</span>
-                            <span className='hover-text absolute left-0 top-0 inline-block'>{"{ $" + link.name + " }"}</span>
-                        </Link>
+                <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm" />
+
+                <div
+                    ref={panelRef}
+                    className="relative m-3 md:m-5 flex-1 min-h-0 rounded-3xl bg-accent text-white overflow-hidden flex flex-col px-6 pt-20 pb-6 md:px-16 md:pt-24 md:pb-10"
+                >
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.12),transparent_50%)] pointer-events-none" />
+
+                    <div className="relative z-10 flex flex-col flex-1 min-h-0">
+                        <p className="font-syne-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-white/50 mb-4 md:mb-6 shrink-0">
+                            ( Navigation )
+                        </p>
+
+                        <nav className="flex flex-col border-t border-white/20 flex-1 min-h-0 overflow-y-auto overscroll-contain">
+                            {navLinks.map((link, i) => (
+                                <div
+                                    key={link.name}
+                                    ref={addToRefs}
+                                    className="border-b border-white/20 shrink-0"
+                                >
+                                    <Link
+                                        to={link.name}
+                                        smooth
+                                        duration={700}
+                                        spy
+                                        onClick={handleLinkClick}
+                                        data-cursor-hover
+                                        className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 md:gap-6 py-3 md:py-4 cursor-pointer"
+                                    >
+                                        <span className="font-syne-mono text-xs text-white/45 group-hover:text-white transition-colors">
+                                            {String(i + 1).padStart(2, "0")}
+                                        </span>
+                                        <span className="font-boldonse uppercase text-2xl sm:text-3xl md:text-5xl lg:text-[4.5vw] leading-none text-white group-hover:text-black transition-colors duration-300">
+                                            {link.label}
+                                        </span>
+                                        <span className="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-black/70">
+                                            <FaArrowUpRightFromSquare className="text-sm md:text-base" />
+                                        </span>
+                                    </Link>
+                                </div>
+                            ))}
+                        </nav>
                     </div>
-                ))}
+
+                    <div
+                        ref={metaRef}
+                        className="relative z-10 mt-4 md:mt-6 pt-4 border-t border-white/15 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 shrink-0"
+                    >
+                        <div>
+                            <p className="font-syne-mono text-[10px] tracking-[0.25em] uppercase text-white/45 mb-1">
+                                Get in touch
+                            </p>
+                            <a
+                                href="mailto:contact@hassaammgl.com"
+                                data-cursor-hover
+                                className="font-roboto text-base md:text-xl text-white hover:text-black transition-colors duration-300"
+                            >
+                                contact@hassaammgl.com
+                            </a>
+                        </div>
+                        <p className="font-brittany text-2xl md:text-3xl text-white/90">
+                            Hassaam
+                        </p>
+                    </div>
+                </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-const TopNav = ({ open, handleToggle }) => {
-    // const [lastScrollY, setLastScrollY] = useState(0);
-    const [isNavVisible, setIsNavVisible] = useState(true);
-
-    const navRef = useRef(null);
-    const { y: currentScrollY } = useWindowScroll();
+const TopNav = ({ open, onToggle }) => {
+    const [isNavVisible, setIsNavVisible] = useState(true)
+    const navRef = useRef(null)
+    const lastScrollYRef = useRef(0)
+    const { y: currentScrollY } = useWindowScroll()
 
     useEffect(() => {
-        // Animate navbar with GSAP on visibility change
         gsap.to(navRef.current, {
-            y: isNavVisible ? 0 : -100,
-            opacity: isNavVisible ? 1 : 0,
+            y: isNavVisible || open ? 0 : -100,
+            opacity: isNavVisible || open ? 1 : 0,
             ease: "power2.out",
-            duration: 0.5,
-        });
-    }, [isNavVisible]);
+            duration: 0.45,
+        })
+    }, [isNavVisible, open])
 
-    const lastScrollYRef = useRef(0); 
     useEffect(() => {
-        if (currentScrollY === 0) {
-            setIsNavVisible(true);
-            navRef.current?.classList.remove('floating-nav');
-        } else if (currentScrollY > lastScrollYRef.current) {
-            setIsNavVisible(false);
-            navRef.current?.classList.add('floating-nav');
-        } else if (currentScrollY < lastScrollYRef.current) {
-            setIsNavVisible(true);
-            navRef.current?.classList.add('floating-nav');
+        if (open) {
+            setIsNavVisible(true)
+            return
         }
 
-        lastScrollYRef.current = currentScrollY; // ✅ update manually
-    }, [currentScrollY]); // ✅ now lastScrollYRef isn't a dep
+        if (currentScrollY === 0) {
+            setIsNavVisible(true)
+            navRef.current?.classList.remove("floating-nav")
+        } else if (currentScrollY > lastScrollYRef.current) {
+            setIsNavVisible(false)
+            navRef.current?.classList.add("floating-nav")
+        } else if (currentScrollY < lastScrollYRef.current) {
+            setIsNavVisible(true)
+            navRef.current?.classList.add("floating-nav")
+        }
 
+        lastScrollYRef.current = currentScrollY
+    }, [currentScrollY, open])
 
     return (
         <nav
             ref={navRef}
-            className="w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 text-white bg-transparent font-ruslan transition-all duration-500"
+            className={`w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 md:px-6 text-white transition-colors duration-500 ${
+                open ? "bg-transparent" : "bg-transparent"
+            }`}
         >
-            <a href="/">
-                <img src="/logo.png" className='size-9 object-contain' alt="logo" />
+            <a href="/" data-cursor-hover className="relative z-50 flex items-center gap-3">
+                <img src="/logo.png" className="size-9 object-contain" alt="logo" />
+                <span className="hidden sm:block font-ruslan text-sm tracking-wide text-white/80">
+                    hassaammgl
+                </span>
             </a>
-            <button
-                className="text-white font-bold text-xl"
-                aria-label="Toggle menu"
-            >
-                <Hamburger toggled={open} toggle={handleToggle} />
-            </button>
-        </nav>
-    );
-};
 
-export default Navbar;
+            <div
+                data-cursor-hover
+                className={`relative z-50 flex items-center gap-2 rounded-full border px-2 pl-4 transition-colors duration-300 ${
+                    open
+                        ? "border-white/30 bg-black/20 text-white"
+                        : "border-white/15 bg-white/5 text-white backdrop-blur-md"
+                }`}
+            >
+                <span className="font-syne-mono text-[10px] tracking-[0.2em] uppercase hidden sm:inline pointer-events-none">
+                    {open ? "Close" : "Menu"}
+                </span>
+                <Hamburger
+                    toggled={open}
+                    toggle={onToggle}
+                    size={18}
+                    label="Toggle menu"
+                />
+            </div>
+        </nav>
+    )
+}
+
+export default Navbar
