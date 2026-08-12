@@ -4,7 +4,6 @@ import { useGSAP } from '@gsap/react'
 import { Link } from 'react-scroll'
 import Hamburger from 'hamburger-react'
 import { useWindowScroll } from "react-use"
-import { FaArrowUpRightFromSquare } from "react-icons/fa6"
 
 const navLinks = [
     { name: "Home", label: "Home" },
@@ -31,34 +30,33 @@ const Navbar = () => {
     useGSAP(() => {
         gsap.set(overlayRef.current, { autoAlpha: 0 })
         gsap.set(panelRef.current, { clipPath: "inset(0 0 100% 0)" })
-        gsap.set(linksRef.current, { y: 80, opacity: 0 })
-        gsap.set(metaRef.current, { y: 30, opacity: 0 })
+        gsap.set(linksRef.current, { y: 40, opacity: 0 })
+        gsap.set(metaRef.current, { opacity: 0 })
 
         tl.current = gsap.timeline({ paused: true })
             .set(overlayRef.current, { display: "flex" })
             .to(overlayRef.current, {
                 autoAlpha: 1,
-                duration: 0.35,
+                duration: 0.3,
                 ease: "power2.out",
             })
             .to(panelRef.current, {
                 clipPath: "inset(0 0 0% 0)",
-                duration: 0.7,
+                duration: 0.55,
                 ease: "power3.inOut",
-            }, "-=0.1")
+            }, "-=0.05")
             .to(linksRef.current, {
                 y: 0,
                 opacity: 1,
-                stagger: 0.08,
-                duration: 0.55,
+                stagger: 0.06,
+                duration: 0.4,
                 ease: "power3.out",
-            }, "-=0.35")
-            .to(metaRef.current, {
-                y: 0,
-                opacity: 1,
-                duration: 0.45,
-                ease: "power2.out",
             }, "-=0.25")
+            .to(metaRef.current, {
+                opacity: 1,
+                duration: 0.35,
+                ease: "power2.out",
+            }, "-=0.2")
     }, { scope: overlayRef })
 
     useEffect(() => {
@@ -85,28 +83,28 @@ const Navbar = () => {
 
             <div
                 ref={overlayRef}
-                className="fixed inset-0 z-30 hidden flex-col"
+                className="fixed inset-0 z-30 hidden h-dvh flex-col p-3 md:p-4"
                 style={{ visibility: "hidden" }}
             >
-                <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm" />
+                <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm" />
 
                 <div
                     ref={panelRef}
-                    className="relative m-3 md:m-5 flex-1 min-h-0 rounded-3xl bg-accent text-white overflow-hidden flex flex-col px-6 pt-20 pb-6 md:px-16 md:pt-24 md:pb-10"
+                    className="menu-panel relative z-10 h-full min-h-0 rounded-3xl bg-accent text-white flex flex-col overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.12),transparent_50%)] pointer-events-none" />
 
-                    <div className="relative z-10 flex flex-col flex-1 min-h-0">
-                        <p className="font-syne-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-white/50 mb-4 md:mb-6 shrink-0">
+                    <div className="relative z-10 flex flex-col h-full min-h-0 px-5 pt-16 pb-4 md:px-12 md:pt-20 md:pb-6">
+                        <p className="font-syne-mono text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2 shrink-0">
                             ( Navigation )
                         </p>
 
-                        <nav className="flex flex-col border-t border-white/20 flex-1 min-h-0 overflow-y-auto overscroll-contain">
+                        <nav className="flex flex-col flex-1 min-h-0 border-t border-white/20">
                             {navLinks.map((link, i) => (
                                 <div
                                     key={link.name}
                                     ref={addToRefs}
-                                    className="border-b border-white/20 shrink-0"
+                                    className="flex-1 min-h-0 border-b border-white/20 flex"
                                 >
                                     <Link
                                         to={link.name}
@@ -115,42 +113,34 @@ const Navbar = () => {
                                         spy
                                         onClick={handleLinkClick}
                                         data-cursor-hover
-                                        className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 md:gap-6 py-3 md:py-4 cursor-pointer"
+                                        className="group w-full h-full grid grid-cols-[2.5rem_1fr] md:grid-cols-[3rem_1fr] items-center gap-2 md:gap-4 cursor-pointer"
                                     >
-                                        <span className="font-syne-mono text-xs text-white/45 group-hover:text-white transition-colors">
+                                        <span className="font-syne-mono text-[10px] md:text-xs text-white/45 group-hover:text-white transition-colors">
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
-                                        <span className="font-boldonse uppercase text-2xl sm:text-3xl md:text-5xl lg:text-[4.5vw] leading-none text-white group-hover:text-black transition-colors duration-300">
+                                        <span className="menu-link-label font-boldonse uppercase leading-none text-white group-hover:text-black transition-colors duration-300">
                                             {link.label}
-                                        </span>
-                                        <span className="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 text-black/70">
-                                            <FaArrowUpRightFromSquare className="text-sm md:text-base" />
                                         </span>
                                     </Link>
                                 </div>
                             ))}
                         </nav>
-                    </div>
 
-                    <div
-                        ref={metaRef}
-                        className="relative z-10 mt-4 md:mt-6 pt-4 border-t border-white/15 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 shrink-0"
-                    >
-                        <div>
-                            <p className="font-syne-mono text-[10px] tracking-[0.25em] uppercase text-white/45 mb-1">
-                                Get in touch
-                            </p>
+                        <div
+                            ref={metaRef}
+                            className="shrink-0 mt-3 pt-3 border-t border-white/15 flex items-center justify-between gap-3"
+                        >
                             <a
                                 href="mailto:contact@hassaammgl.com"
                                 data-cursor-hover
-                                className="font-roboto text-base md:text-xl text-white hover:text-black transition-colors duration-300"
+                                className="font-roboto text-xs md:text-sm text-white/80 hover:text-white transition-colors truncate"
                             >
                                 contact@hassaammgl.com
                             </a>
+                            <p className="font-brittany text-xl md:text-2xl text-white/90 shrink-0">
+                                Hassaam
+                            </p>
                         </div>
-                        <p className="font-brittany text-2xl md:text-3xl text-white/90">
-                            Hassaam
-                        </p>
                     </div>
                 </div>
             </div>
@@ -196,9 +186,7 @@ const TopNav = ({ open, onToggle }) => {
     return (
         <nav
             ref={navRef}
-            className={`w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 md:px-6 text-white transition-colors duration-500 ${
-                open ? "bg-transparent" : "bg-transparent"
-            }`}
+            className="w-full h-16 fixed top-0 z-40 flex items-center justify-between px-4 md:px-6 text-white"
         >
             <a href="/" data-cursor-hover className="relative z-50 flex items-center gap-3">
                 <img src="/logo.png" className="size-9 object-contain" alt="logo" />

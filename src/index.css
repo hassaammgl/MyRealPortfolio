@@ -107,6 +107,10 @@ transition-colors {
 		0 0 48px rgba(141, 86, 204, 0.55);
 }
 
+.menu-link-label {
+	font-size: clamp(1.35rem, 7.2vh, 4.5rem);
+}
+
 @supports (height: 100dvh) {
 	.service-card {
 		min-height: 80dvh;
