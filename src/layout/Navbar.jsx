@@ -96,7 +96,7 @@ const Navbar = () => {
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.12),transparent_50%)] pointer-events-none" />
 
-                    <div className="relative z-10 flex flex-col h-full min-h-0 px-5 pt-16 pb-4 md:px-12 md:pt-20 md:pb-6">
+                    <div className="relative z-10 flex flex-col h-full min-h-0 px-4 pt-16 pb-4 sm:px-6 md:px-12 md:pt-20 md:pb-6">
                         <p className="font-syne-mono text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2 shrink-0">
                             ( Navigation )
                         </p>
@@ -115,12 +115,12 @@ const Navbar = () => {
                                         spy
                                         onClick={handleLinkClick}
                                         data-cursor-hover
-                                        className="group w-full h-full grid grid-cols-[2.5rem_1fr] md:grid-cols-[3rem_1fr] items-center gap-2 md:gap-4 cursor-pointer"
+                                        className="group w-full h-full min-w-0 grid grid-cols-[2rem_minmax(0,1fr)] md:grid-cols-[3rem_minmax(0,1fr)] items-center gap-2 md:gap-4 cursor-pointer"
                                     >
                                         <span className="font-syne-mono text-[10px] md:text-xs text-white/45 group-hover:text-white transition-colors">
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
-                                        <span className="menu-link-label font-boldonse uppercase leading-none text-white group-hover:text-black transition-colors duration-300">
+                                        <span className="menu-link-label font-boldonse uppercase leading-none text-white group-hover:text-black transition-colors duration-300 min-w-0">
                                             {link.label}
                                         </span>
                                     </Link>

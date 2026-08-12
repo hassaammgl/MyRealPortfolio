@@ -108,7 +108,14 @@ transition-colors {
 }
 
 .menu-link-label {
-	font-size: clamp(1.35rem, 7.2vh, 4.5rem);
+	/* Width-first so long labels (Services/Projects/Contact) fit on phones */
+	font-size: clamp(1.25rem, 8vw, 4.5rem);
+}
+
+@media (min-width: 768px) {
+	.menu-link-label {
+		font-size: clamp(2rem, min(7vw, 7vh), 4.5rem);
+	}
 }
 
 @supports (height: 100dvh) {
