@@ -64,7 +64,7 @@ const Services = () => {
 
     return (
         <Element name="Services">
-            <section ref={containerRef} className="relative h-fit w-screen bg-accent rounded-4xl p-5 md:p-10 overflow-hidden scroll-snap-type-y mandatory">
+            <section ref={containerRef} className="relative h-fit w-screen bg-accent rounded-4xl p-5 md:p-10 overflow-x-clip scroll-snap-type-y mandatory">
                 <div data-cursor-hover className='text-white font-boldonse h-fit font-extrabold w-full overflow-hidden p-4 md:p-9 flex justify-start items-center gap-4'>
                     <AnimatedText className='uppercase text-4xl md:text-[7vw] text-center hover:text-black transition-all ease-in-out duration-500' text={"How can i help you!"} splitByWords />
                 </div>
@@ -149,13 +149,13 @@ const ServiceCard = ({ data, index }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
+                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
                         <ServiceTitle name={data.name} />
                     </div>
                 </>
             ) : (
                 <>
-                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10">
+                    <div className="w-full h-[30vh]  lg:w-1/2 md:h-full flex items-center justify-center relative z-10 px-4 overflow-visible">
                         <ServiceTitle name={data.name} />
                     </div>
 
@@ -180,9 +180,9 @@ const ServiceTitle = ({ name }) => {
     const lines = name.split("\n")
 
     return (
-        <h2 className="flex flex-col items-center gap-2 md:gap-4 text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-boldonse transform -rotate-6 lg:-rotate-12">
+        <h2 className="flex flex-col items-center justify-center gap-3 md:gap-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-boldonse -rotate-3 lg:-rotate-6">
             {lines.map((line) => (
-                <span key={line} className="text-outline text-center leading-none block">
+                <span key={line} className="text-outline text-center leading-none whitespace-nowrap px-2">
                     {line}
                 </span>
             ))}

@@ -21,7 +21,7 @@ export const LINKS = [
 
 export const SERVICES = [
     {
-        name: "APIs &\nSYSTEMS",
+        name: "APIs\n& SYSTEMS",
         description:
             "I design and build production REST APIs that power real products — clear contracts, solid validation, and predictable error handling so your app stays reliable as it grows.",
         features: [
@@ -31,7 +31,7 @@ export const SERVICES = [
         ],
     },
     {
-        name: "PAYMENTS &\nWORKFLOWS",
+        name: "PAYMENTS\n& WORKFLOWS",
         description:
             "I implement the business logic clients actually pay for — orders, subscriptions, billing, and multi-step workflows that must work correctly every time money or state is involved.",
         features: [
@@ -41,7 +41,7 @@ export const SERVICES = [
         ],
     },
     {
-        name: "INTEGRATIONS &\nOPS",
+        name: "INTEGRATIONS\n& OPS",
         description:
             "I connect your product to the tools your business already depends on — and keep those pipelines reliable with retries, notifications, and operational visibility.",
         features: [
@@ -51,7 +51,7 @@ export const SERVICES = [
         ],
     },
     {
-        name: "PRODUCTION &\nIMPROVE",
+        name: "PRODUCTION\n& IMPROVE",
         description:
             "I take existing systems seriously — fix production bugs, improve performance, refactor messy backends, and ship maintainable architecture you can keep building on.",
         features: [
