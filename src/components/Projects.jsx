@@ -20,17 +20,17 @@ const Projects = () => {
                 const indexEl = row.querySelector(".project-index")
 
                 gsap.fromTo(
-                    [indexEl, media, content],
-                    { y: 80, opacity: 0 },
+                    [indexEl, media, content].filter(Boolean),
+                    { y: 50, opacity: 0 },
                     {
                         y: 0,
                         opacity: 1,
-                        duration: 1,
-                        stagger: 0.12,
+                        duration: 0.85,
+                        stagger: 0.1,
                         ease: "power3.out",
                         scrollTrigger: {
                             trigger: row,
-                            start: "top 85%",
+                            start: "top 88%",
                             toggleActions: "play none none reverse",
                         },
                     }
@@ -43,24 +43,24 @@ const Projects = () => {
 
     return (
         <Element name="Projects">
-            <section ref={projectsSectionRef} className="relative w-screen overflow-hidden pb-24 md:pb-32">
-                <div className="w-full px-6 md:px-12 pt-10 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                    <div data-cursor-hover className="text-white font-boldonse font-extrabold">
+            <section ref={projectsSectionRef} className="relative w-full max-w-[100vw] overflow-x-clip pb-16 md:pb-32">
+                <div className="w-full px-4 sm:px-6 md:px-12 pt-10 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6">
+                    <div data-cursor-hover className="text-white font-boldonse font-extrabold min-w-0">
                         <AnimatedText
-                            className="uppercase text-[12vw] md:text-[7vw] leading-none hover:text-accent transition-colors duration-500"
+                            className="uppercase text-[11vw] sm:text-[9vw] md:text-[7vw] leading-[0.95] hover:text-accent transition-colors duration-500"
                             text="Selected"
                         />
                         <AnimatedText
-                            className="mt-6 md:mt-8 block font-extralight font-brittany text-[10vw] md:text-[5vw] leading-none text-accent"
+                            className="mt-3 sm:mt-5 md:mt-8 block font-extralight font-brittany text-[9vw] sm:text-[7vw] md:text-[5vw] leading-none text-accent"
                             text="Cases"
                         />
                     </div>
-                    <p className="max-w-xs font-roboto text-white/60 text-sm md:text-base md:text-right pb-2">
+                    <p className="max-w-xs font-roboto text-white/60 text-sm md:text-base md:text-right pb-1">
                         A mix of shipped products and focused builds — hover to explore.
                     </p>
                 </div>
 
-                <div className="mt-12 md:mt-20 border-t border-white/10">
+                <div className="mt-10 md:mt-20 border-t border-white/10">
                     {PROJECTS.map((project, index) => (
                         <ProjectRow
                             key={project._id}
@@ -87,6 +87,9 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
         const previewImg = previewRef.current
         const media = mediaRef.current
         if (!row || !previewImg || !media) return
+
+        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+        if (!canHover) return
 
         const onEnter = () => setIsHoverOnProjects(true)
         const onLeave = () => {
@@ -143,21 +146,21 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
     return (
         <article
             ref={rowRef}
-            className={`project-row group relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center px-6 md:px-12 py-14 md:py-20 border-b border-white/10 ${
+            className={`project-row group relative grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center px-4 sm:px-6 md:px-12 py-10 sm:py-14 md:py-20 border-b border-white/10 overflow-hidden ${
                 isReversed ? "lg:[direction:rtl]" : ""
             }`}
         >
             <span
-                className={`project-index pointer-events-none absolute top-6 ${
-                    isReversed ? "left-6 md:left-12" : "right-6 md:right-12"
-                } font-boldonse text-[18vw] md:text-[9vw] leading-none text-outline opacity-30 select-none lg:[direction:ltr]`}
+                className={`project-index pointer-events-none absolute top-3 sm:top-6 z-0 ${
+                    isReversed ? "left-3 sm:left-6 md:left-12" : "right-3 sm:right-6 md:right-12"
+                } font-boldonse text-[22vw] sm:text-[14vw] md:text-[9vw] leading-none text-outline opacity-20 sm:opacity-30 select-none lg:[direction:ltr]`}
             >
                 {number}
             </span>
 
             <div
                 ref={mediaRef}
-                className="project-media relative lg:col-span-7 h-[42vh] md:h-[56vh] overflow-hidden rounded-2xl lg:[direction:ltr]"
+                className="project-media relative z-10 lg:col-span-7 h-[34vh] sm:h-[42vh] md:h-[56vh] w-full overflow-hidden rounded-xl sm:rounded-2xl lg:[direction:ltr]"
             >
                 <img
                     src={image}
@@ -169,24 +172,24 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
                     ref={previewRef}
                     src={preview}
                     alt={`${name} preview`}
-                    className="pointer-events-none absolute inset-0 m-auto h-2/3 w-[55%] rounded-xl object-cover opacity-0 shadow-2xl shadow-black/50 border border-white/20"
+                    className="pointer-events-none absolute inset-0 m-auto h-2/3 w-[55%] max-w-[220px] rounded-xl object-cover opacity-0 shadow-2xl shadow-black/50 border border-white/20 hidden sm:block"
                     style={{ transformStyle: "preserve-3d" }}
                 />
             </div>
 
-            <div className="project-content lg:col-span-5 flex flex-col gap-5 lg:[direction:ltr] relative z-10">
-                <p className="font-syne-mono text-xs md:text-sm tracking-[0.2em] uppercase text-accent/90">
+            <div className="project-content relative z-10 lg:col-span-5 flex flex-col gap-3 sm:gap-5 lg:[direction:ltr] min-w-0">
+                <p className="font-syne-mono text-[10px] sm:text-xs md:text-sm tracking-[0.15em] sm:tracking-[0.2em] uppercase text-accent/90 break-words">
                     {tech?.join(" / ")}
                 </p>
 
                 <h3
                     data-cursor-hover
-                    className="font-boldonse text-3xl md:text-5xl lg:text-6xl text-white leading-[1.05] group-hover:text-accent transition-colors duration-500"
+                    className="font-boldonse text-[1.65rem] sm:text-3xl md:text-5xl lg:text-6xl text-white leading-[1.15] sm:leading-[1.1] group-hover:text-accent transition-colors duration-500"
                 >
                     <AnimatedText text={name} />
                 </h3>
 
-                <div className="flex items-center gap-6 pt-2">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1 sm:pt-2">
                     {livelink && (
                         <a
                             href={livelink}

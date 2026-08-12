@@ -36,12 +36,30 @@ const AnimatedText = ({
     }, [start, duration, revert])
 
     const renderText = () => {
-        const parts = splitByWords ? text.split(/(\s+)/) : text.split('')
-        return parts.map((part, idx) => (
-            <span key={idx} className={`char inline-block ${hoverClass}`}>
-                {part === ' ' ? '\u00A0' : part}
-            </span>
-        ))
+        if (splitByWords) {
+            return text.split(/(\s+)/).map((part, idx) => (
+                <span key={idx} className={`char inline-block ${hoverClass}`}>
+                    {part === ' ' || part === '' ? '\u00A0' : part}
+                </span>
+            ))
+        }
+
+        // Keep words together so titles don't break mid-word on mobile
+        return text.split(/(\s+)/).map((part, idx) => {
+            if (/^\s+$/.test(part) || part === '') {
+                return <span key={idx}>{'\u00A0'}</span>
+            }
+
+            return (
+                <span key={idx} className="inline-block whitespace-nowrap">
+                    {part.split('').map((char, charIdx) => (
+                        <span key={charIdx} className={`char inline-block ${hoverClass}`}>
+                            {char}
+                        </span>
+                    ))}
+                </span>
+            )
+        })
     }
 
     return (

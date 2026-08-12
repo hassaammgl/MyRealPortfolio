@@ -71,7 +71,7 @@ const Services = () => {
                         </p>
                         <h2
                             data-cursor-hover
-                            className="font-boldonse uppercase text-4xl md:text-6xl lg:text-[5.5vw] leading-[0.95] max-w-3xl hover:service-title-glow transition-all duration-500"
+                            className="font-boldonse uppercase text-[1.85rem] sm:text-4xl md:text-6xl lg:text-[5.5vw] leading-[1.15] sm:leading-[1.05] max-w-3xl hover:service-title-glow transition-all duration-500"
                         >
                             <AnimatedText text="How can i help you!" splitByWords />
                         </h2>
@@ -92,13 +92,13 @@ const Services = () => {
                                 key={title}
                                 className="service-accordion-item border-b border-white/20"
                             >
-                                <div className="w-full grid grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-8 py-6 md:py-8">
+                                <div className="w-full grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 md:gap-8 py-5 md:py-8">
                                     <span className="font-syne-mono text-sm text-white/45">
                                         {number}
                                     </span>
                                     <span
                                         data-cursor-hover
-                                        className={`font-boldonse uppercase text-2xl md:text-4xl lg:text-5xl leading-none transition-all duration-300 ${
+                                        className={`font-boldonse uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl leading-tight sm:leading-none transition-all duration-300 min-w-0 ${
                                             isOpen ? "text-white service-title-glow" : "text-white/80"
                                         }`}
                                     >

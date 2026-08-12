@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { Link } from 'react-scroll'
-import Hamburger from 'hamburger-react'
 import { useWindowScroll } from "react-use"
 
 const navLinks = [
@@ -71,10 +70,13 @@ const Navbar = () => {
         tl.current?.reverse()
     }
 
-    const handleMenuToggle = (next) => {
-        setOpen(next)
-        if (next) tl.current?.play()
-        else tl.current?.reverse()
+    const handleMenuToggle = () => {
+        setOpen((prev) => {
+            const next = !prev
+            if (next) tl.current?.play()
+            else tl.current?.reverse()
+            return next
+        })
     }
 
     return (
@@ -148,6 +150,44 @@ const Navbar = () => {
     )
 }
 
+const MenuToggle = ({ open, onToggle }) => {
+    return (
+        <button
+            type="button"
+            onClick={onToggle}
+            data-cursor-hover
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className={`relative z-50 flex items-center gap-3 rounded-full border h-11 pl-4 pr-3 transition-all duration-300 ${
+                open
+                    ? "border-white/40 bg-black/35 text-white"
+                    : "border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/15"
+            }`}
+        >
+            <span className="font-syne-mono text-[10px] tracking-[0.22em] uppercase pointer-events-none">
+                {open ? "Close" : "Menu"}
+            </span>
+            <span className="relative w-5 h-3.5 pointer-events-none" aria-hidden>
+                <span
+                    className={`absolute left-0 top-0 h-[1.5px] w-full bg-current rounded-full transition-all duration-300 origin-center ${
+                        open ? "translate-y-[6px] rotate-45" : ""
+                    }`}
+                />
+                <span
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 h-[1.5px] w-full bg-current rounded-full transition-all duration-300 ${
+                        open ? "opacity-0 scale-x-0" : "opacity-100"
+                    }`}
+                />
+                <span
+                    className={`absolute left-0 bottom-0 h-[1.5px] w-full bg-current rounded-full transition-all duration-300 origin-center ${
+                        open ? "-translate-y-[6px] -rotate-45" : ""
+                    }`}
+                />
+            </span>
+        </button>
+    )
+}
+
 const TopNav = ({ open, onToggle }) => {
     const [isNavVisible, setIsNavVisible] = useState(true)
     const navRef = useRef(null)
@@ -195,24 +235,7 @@ const TopNav = ({ open, onToggle }) => {
                 </span>
             </a>
 
-            <div
-                data-cursor-hover
-                className={`relative z-50 flex items-center gap-2 rounded-full border px-2 pl-4 transition-colors duration-300 ${
-                    open
-                        ? "border-white/30 bg-black/20 text-white"
-                        : "border-white/15 bg-white/5 text-white backdrop-blur-md"
-                }`}
-            >
-                <span className="font-syne-mono text-[10px] tracking-[0.2em] uppercase hidden sm:inline pointer-events-none">
-                    {open ? "Close" : "Menu"}
-                </span>
-                <Hamburger
-                    toggled={open}
-                    toggle={onToggle}
-                    size={18}
-                    label="Toggle menu"
-                />
-            </div>
+            <MenuToggle open={open} onToggle={onToggle} />
         </nav>
     )
 }
