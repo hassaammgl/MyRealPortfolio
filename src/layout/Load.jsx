@@ -62,7 +62,7 @@ const Load = ({ setOnLoadComplete }) => {
                     clipPath: "inset(0 0 0 0)",
                     WebkitClipPath: "inset(0 0 0 0)"
                 }}
-                className='bg-primary font-ruslan text-[6vw] gap-9 text-white w-full h-full flex items-center justify-center'
+                className='bg-primary font-ruslan text-[7vw] sm:text-[6vw] gap-3 sm:gap-6 md:gap-9 text-white w-full h-full flex flex-wrap items-center justify-center px-4'
             >
                 <span className='load'>Yo</span>
                 <span className='load'>Its,</span>

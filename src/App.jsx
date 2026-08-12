@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from 'react'
 import Wrapper from '@/layout/Wrapper'
 import AnimatedCursor from '@/utils/Cursor';
 import Navbar from '@/layout/Navbar'
-import Footer from '@/layout/Footer';
+import Footer from '@/layout/Footer'
+import ScrollProgress from '@/components/ScrollProgress'
 
 const Hero = lazy(() => import('@/components/Hero'))
 const About = lazy(() => import('@/components/About'))
@@ -15,6 +16,7 @@ const App = () => {
     <Wrapper className='w-full bg-primary font-poppins'>
       <Navbar />
       <AnimatedCursor />
+      <ScrollProgress />
       <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
         <Hero />
         <About />
