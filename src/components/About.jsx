@@ -18,48 +18,146 @@ const FOCUS = [
 
 const About = () => {
     const section = useRef(null)
+    const headRef = useRef(null)
+    const copyRef = useRef(null)
+    const imgWrapRef = useRef(null)
+    const imgRef = useRef(null)
+    const code1Ref = useRef(null)
+    const code2Ref = useRef(null)
+    const badgeRef = useRef(null)
 
     useGSAP(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section.current,
-                start: "top 65%",
-                end: "top 20%",
-                scrub: 1.2,
-            },
+        if (!section.current) return
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        const tweens = []
+
+        const killAll = () => {
+            tweens.forEach((t) => {
+                t.scrollTrigger?.kill()
+                t.kill()
+            })
+        }
+
+        // One-shot reveals — not scrubbed opacity (avoids sticky fade feel)
+        const reveal = (targets, vars, st = {}) => {
+            const t = gsap.from(targets, {
+                ...vars,
+                scrollTrigger: {
+                    trigger: section.current,
+                    start: "top 72%",
+                    toggleActions: "play none none none",
+                    ...st,
+                },
+            })
+            tweens.push(t)
+            return t
+        }
+
+        if (reduceMotion) {
+            reveal([headRef.current, copyRef.current, imgWrapRef.current].filter(Boolean), {
+                opacity: 0,
+                duration: 0.4,
+                stagger: 0.08,
+                ease: "power2.out",
+            })
+            return killAll
+        }
+
+        // Reveals use opacity / x / rotate — parallax owns y (no fights)
+        reveal(headRef.current, {
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
         })
 
-        tl.fromTo(
-            ".about-copy",
-            { y: 60, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1 },
-        )
-            .fromTo(
-                ".about-img-wrap",
-                { scale: 1.08, opacity: 0.6 },
-                { scale: 1, opacity: 1, duration: 1 },
-                "<",
-            )
-            .fromTo(
-                "#code-img-1",
-                { y: 120, opacity: 0, rotate: 6 },
-                { y: 0, opacity: 1, rotate: -3, duration: 1 },
-                "-=0.4",
-            )
-            .fromTo(
-                "#code-img-2",
-                { y: -120, opacity: 0, rotate: -6 },
-                { y: 0, opacity: 1, rotate: 4, duration: 1 },
-                "<",
-            )
-            .fromTo(
-                ".about-chip",
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, stagger: 0.08, duration: 0.5 },
-                "-=0.6",
-            )
+        reveal(copyRef.current, {
+            y: 56,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.08,
+        })
 
-        return () => tl.kill()
+        reveal(".about-chip", {
+            y: 24,
+            opacity: 0,
+            duration: 0.55,
+            stagger: 0.07,
+            ease: "power2.out",
+            delay: 0.22,
+        })
+
+        reveal(imgWrapRef.current, {
+            opacity: 0,
+            duration: 0.85,
+            ease: "power2.out",
+        })
+
+        reveal(badgeRef.current, {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.35,
+        })
+
+        reveal(code1Ref.current, {
+            opacity: 0,
+            rotate: 8,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: 0.28,
+        })
+
+        reveal(code2Ref.current, {
+            opacity: 0,
+            rotate: -8,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: 0.36,
+        })
+
+        // Continuous parallax while scrolling through About
+        const scrollRange = {
+            trigger: section.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.15,
+        }
+
+        tweens.push(
+            gsap.fromTo(
+                imgRef.current,
+                { yPercent: -8 },
+                { yPercent: 12, ease: "none", scrollTrigger: { ...scrollRange } },
+            ),
+        )
+
+        tweens.push(
+            gsap.fromTo(
+                code1Ref.current,
+                { y: 40 },
+                { y: -90, ease: "none", scrollTrigger: { ...scrollRange } },
+            ),
+        )
+
+        tweens.push(
+            gsap.fromTo(
+                code2Ref.current,
+                { y: -30 },
+                { y: 70, ease: "none", scrollTrigger: { ...scrollRange } },
+            ),
+        )
+
+        tweens.push(
+            gsap.fromTo(
+                headRef.current,
+                { y: 20 },
+                { y: -40, ease: "none", scrollTrigger: { ...scrollRange } },
+            ),
+        )
+
+        return killAll
     }, { scope: section })
 
     return (
@@ -68,7 +166,10 @@ const About = () => {
             <section ref={section} className="relative w-screen z-10 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(141,86,204,0.18),transparent_55%)] pointer-events-none" />
 
-                <div className="px-6 md:px-12 pt-12 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                <div
+                    ref={headRef}
+                    className="px-6 md:px-12 pt-12 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4 will-change-transform"
+                >
                     <div data-cursor-hover>
                         <p className="font-syne-mono text-xs tracking-[0.3em] uppercase text-white/40 mb-3">
                             ( About )
@@ -86,7 +187,10 @@ const About = () => {
                 </div>
 
                 <div className="mt-10 md:mt-14 flex flex-col lg:flex-row bg-primary text-white">
-                    <div className="about-copy w-full lg:w-[48%] px-6 md:px-12 py-10 md:py-16 flex flex-col justify-center gap-8">
+                    <div
+                        ref={copyRef}
+                        className="w-full lg:w-[48%] px-6 md:px-12 py-10 md:py-16 flex flex-col justify-center gap-8"
+                    >
                         <h3
                             data-cursor-hover
                             className="font-Audiowide text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl font-bold leading-snug uppercase"
@@ -115,25 +219,32 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className="about-img-wrap w-full lg:w-[52%] relative overflow-hidden min-h-[70vh] lg:min-h-screen">
+                    <div
+                        ref={imgWrapRef}
+                        className="w-full lg:w-[52%] relative overflow-hidden min-h-[70vh] lg:min-h-screen"
+                    >
                         <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent z-10 pointer-events-none" />
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent z-10 pointer-events-none hidden lg:block" />
 
                         <img
+                            ref={imgRef}
                             data-cursor-hover
                             loading="lazy"
                             src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337391/portfolio/about_ts5fqu.png"
                             alt="Portrait"
-                            className="about-img absolute inset-0 h-full w-full object-cover scale-105"
+                            className="absolute inset-0 h-[120%] w-full object-cover -top-[10%] will-change-transform"
                         />
 
-                        <div className="absolute top-6 left-6 z-20 font-syne-mono text-[10px] tracking-[0.25em] uppercase text-white/70 border border-white/20 bg-black/30 backdrop-blur-md px-3 py-2">
+                        <div
+                            ref={badgeRef}
+                            className="absolute top-6 left-6 z-20 font-syne-mono text-[10px] tracking-[0.25em] uppercase text-white/70 border border-white/20 bg-black/30 backdrop-blur-md px-3 py-2"
+                        >
                             Available for work
                         </div>
 
                         <div
-                            id="code-img-1"
-                            className="absolute bottom-10 right-6 md:right-10 w-40 h-28 md:w-52 md:h-36 z-20 overflow-hidden border border-white/20 shadow-2xl shadow-black/50 -rotate-3"
+                            ref={code1Ref}
+                            className="absolute bottom-10 right-6 md:right-10 w-40 h-28 md:w-52 md:h-36 z-20 overflow-hidden border border-white/20 shadow-2xl shadow-black/50 -rotate-3 will-change-transform"
                         >
                             <img
                                 src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337805/portfolio/portfolio/code_peehjo.png"
@@ -143,8 +254,8 @@ const About = () => {
                             />
                         </div>
                         <div
-                            id="code-img-2"
-                            className="absolute top-24 left-6 md:left-10 w-40 h-28 md:w-52 md:h-36 z-20 overflow-hidden border border-white/20 shadow-2xl shadow-black/50 rotate-3"
+                            ref={code2Ref}
+                            className="absolute top-24 left-6 md:left-10 w-40 h-28 md:w-52 md:h-36 z-20 overflow-hidden border border-white/20 shadow-2xl shadow-black/50 rotate-3 will-change-transform"
                         >
                             <img
                                 src="https://res.cloudinary.com/dnpeaebgu/image/upload/v1748337805/portfolio/portfolio/code-2_qijuqf.png"

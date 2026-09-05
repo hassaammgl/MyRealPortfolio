@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useState, useEffect } from 'react'
 import Wrapper from '@/layout/Wrapper'
+import Load from '@/layout/Load'
 import AnimatedCursor from '@/utils/Cursor';
 import Navbar from '@/layout/Navbar'
 import Footer from '@/layout/Footer'
@@ -12,19 +13,36 @@ const Projects = lazy(() => import('@/components/Projects'))
 const Contact = lazy(() => import('@/components/Contact'))
 
 const App = () => {
+  const [ready, setReady] = useState(false)
+
+  // Warm chunks while the intro loader plays
+  useEffect(() => {
+    import('@/components/Hero')
+    import('@/components/About')
+    import('@/components/Services')
+    import('@/components/Projects')
+    import('@/components/Contact')
+  }, [])
+
   return (
-    <Wrapper className='w-full bg-primary font-poppins'>
-      <Navbar />
-      <AnimatedCursor />
-      <ScrollProgress />
-      <Suspense fallback={<div className="flex items-center justify-center h-screen bg-accent">Loading...</div>}>
-        <Hero />
-        <About />
-        <Services />
-        <Projects />
-        <Contact />
-        <Footer />
-      </Suspense>
+    <Wrapper className={`w-full bg-primary font-poppins min-h-dvh ${ready ? '' : 'h-dvh overflow-hidden'}`}>
+      {!ready && <Load onComplete={() => setReady(true)} />}
+
+      {ready && (
+        <>
+          <Navbar />
+          <AnimatedCursor />
+          <ScrollProgress />
+          <Suspense fallback={<div className="h-dvh w-full bg-primary" aria-hidden />}>
+            <Hero />
+            <About />
+            <Services />
+            <Projects />
+            <Contact />
+            <Footer />
+          </Suspense>
+        </>
+      )}
     </Wrapper>
   )
 }

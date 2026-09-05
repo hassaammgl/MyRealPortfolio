@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useProjectHoverStore } from '@/store'
-import { GoArrowUpRight } from "react-icons/go"
+import { GoArrowUpRight } from 'react-icons/go'
 
 const AnimatedCursor = () => {
     const dotRef = useRef(null)
@@ -10,7 +10,6 @@ const AnimatedCursor = () => {
     const mouse = useRef({ x: -100, y: -100 })
     const pos = useRef({ x: -100, y: -100 })
     const ringPos = useRef({ x: -100, y: -100 })
-
     const { isHoverOnProjects } = useProjectHoverStore()
 
     useGSAP(() => {
@@ -18,13 +17,11 @@ const AnimatedCursor = () => {
         const ring = ringRef.current
         if (!dot || !ring) return
 
-        // Touch / coarse pointer: keep native cursor
         if (window.matchMedia('(hover: none), (pointer: coarse)').matches) {
             return
         }
 
         document.documentElement.classList.add('custom-cursor-active')
-
         gsap.set([dot, ring], { xPercent: -50, yPercent: -50 })
 
         const onMove = (e) => {
@@ -35,12 +32,10 @@ const AnimatedCursor = () => {
         const tick = () => {
             const d = 1 - Math.pow(1 - 0.45, gsap.ticker.deltaRatio())
             const r = 1 - Math.pow(1 - 0.18, gsap.ticker.deltaRatio())
-
             pos.current.x += (mouse.current.x - pos.current.x) * d
             pos.current.y += (mouse.current.y - pos.current.y) * d
             ringPos.current.x += (mouse.current.x - ringPos.current.x) * r
             ringPos.current.y += (mouse.current.y - ringPos.current.y) * r
-
             gsap.set(dot, { x: pos.current.x, y: pos.current.y })
             gsap.set(ring, { x: ringPos.current.x, y: ringPos.current.y })
         }
@@ -65,7 +60,6 @@ const AnimatedCursor = () => {
         const onOut = (e) => {
             if (useProjectHoverStore.getState().isHoverOnProjects) return
             if (!isInteractive(e.target)) return
-            // Don't reset if moving between interactive children
             if (isInteractive(e.relatedTarget)) return
             gsap.to(dot, { scale: 1, duration: 0.25, ease: 'power2.out' })
             gsap.to(ring, {
