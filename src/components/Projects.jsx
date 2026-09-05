@@ -5,47 +5,153 @@ import { useProjectHoverStore } from "@/store"
 import { PROJECTS } from "@/constants"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
 import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6"
+import {
+    prefersReducedMotion,
+    revealIn,
+    parallaxY,
+    killTweens,
+    scrubSoft,
+} from '@/utils/scrollMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Projects = () => {
     const projectsSectionRef = useRef(null)
+    const headRef = useRef(null)
+    const subRef = useRef(null)
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.utils.toArray(".project-row").forEach((row) => {
-                const media = row.querySelector(".project-media")
-                const content = row.querySelector(".project-content")
-                const indexEl = row.querySelector(".project-index")
+    useGSAP(() => {
+        if (!projectsSectionRef.current) return
 
-                gsap.fromTo(
-                    [indexEl, media, content].filter(Boolean),
-                    { y: 50, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.85,
-                        stagger: 0.1,
-                        ease: "power3.out",
+        const reduceMotion = prefersReducedMotion()
+        const tweens = []
+
+        tweens.push(
+            revealIn(headRef.current, {
+                filter: reduceMotion ? 'none' : 'blur(10px)',
+                duration: reduceMotion ? 0.4 : 1.1,
+            }, { trigger: headRef.current, start: 'top 84%' }),
+        )
+        tweens.push(
+            revealIn(subRef.current, {
+                filter: reduceMotion ? 'none' : 'blur(6px)',
+                duration: reduceMotion ? 0.35 : 1,
+                delay: 0.14,
+            }, { trigger: headRef.current, start: 'top 84%' }),
+        )
+
+        gsap.utils.toArray('.project-row').forEach((row, rowIndex) => {
+            const media = row.querySelector('.project-media')
+            const content = row.querySelector('.project-content')
+            const indexEl = row.querySelector('.project-index')
+            const gif = row.querySelector('.project-gif')
+            const fromLeft = rowIndex % 2 === 0
+
+            if (media) {
+                tweens.push(
+                    gsap.from(media, {
+                        opacity: 0,
+                        clipPath: reduceMotion
+                            ? 'inset(0% 0% 0% 0%)'
+                            : 'inset(12% 8% 12% 8%)',
+                        duration: 1.15,
+                        ease: 'expo.out',
                         scrollTrigger: {
                             trigger: row,
-                            start: "top 88%",
-                            toggleActions: "play none none reverse",
+                            start: 'top 86%',
+                            toggleActions: 'play none none none',
                         },
-                    }
+                    }),
                 )
-            })
-        }, projectsSectionRef)
+            }
 
-        return () => ctx.revert()
-    }, [])
+            tweens.push(
+                revealIn([indexEl, content].filter(Boolean), {
+                    x: reduceMotion ? 0 : fromLeft ? -28 : 28,
+                    duration: 0.9,
+                    stagger: 0.12,
+                    delay: 0.08,
+                }, {
+                    trigger: row,
+                    start: 'top 86%',
+                }),
+            )
+
+            if (reduceMotion) return
+
+            const range = {
+                trigger: row,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: scrubSoft,
+            }
+
+            if (indexEl) {
+                tweens.push(
+                    gsap.fromTo(
+                        indexEl,
+                        { y: 28, opacity: 0.12 },
+                        { y: -70, opacity: 0.35, ease: 'none', scrollTrigger: { ...range } },
+                    ),
+                )
+            }
+
+            if (gif) {
+                tweens.push(
+                    gsap.fromTo(
+                        gif,
+                        { yPercent: -5, scale: 1.04 },
+                        { yPercent: 8, scale: 1.12, ease: 'none', scrollTrigger: { ...range } },
+                    ),
+                )
+            }
+
+            if (content) {
+                tweens.push(
+                    gsap.fromTo(
+                        content,
+                        { y: 22 },
+                        { y: -32, ease: 'none', scrollTrigger: { ...range } },
+                    ),
+                )
+            }
+        })
+
+        if (!reduceMotion) {
+            tweens.push(
+                parallaxY(headRef.current, 28, -22, projectsSectionRef.current, {
+                    scrollTrigger: {
+                        start: 'top bottom',
+                        end: 'top 15%',
+                        scrub: scrubSoft,
+                    },
+                }),
+            )
+            tweens.push(
+                parallaxY(subRef.current, 44, -36, projectsSectionRef.current, {
+                    scrollTrigger: {
+                        start: 'top bottom',
+                        end: 'top 15%',
+                        scrub: scrubSoft,
+                    },
+                }),
+            )
+        }
+
+        return () => killTweens(tweens)
+    }, { scope: projectsSectionRef })
 
     return (
         <Element name="Projects">
             <section ref={projectsSectionRef} className="relative w-full max-w-[100vw] overflow-x-clip pb-16 md:pb-32">
                 <div className="w-full px-4 sm:px-6 md:px-12 pt-10 md:pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6">
-                    <div data-cursor-hover className="text-white font-boldonse font-extrabold min-w-0">
+                    <div
+                        ref={headRef}
+                        data-cursor-hover
+                        className="text-white font-boldonse font-extrabold min-w-0 will-change-transform"
+                    >
                         <AnimatedText
                             className="uppercase text-[11vw] sm:text-[9vw] md:text-[7vw] leading-[0.95] hover:text-accent transition-colors duration-500"
                             text="Selected"
@@ -55,7 +161,10 @@ const Projects = () => {
                             text="Cases"
                         />
                     </div>
-                    <p className="max-w-xs font-roboto text-white/60 text-sm md:text-base md:text-right pb-1">
+                    <p
+                        ref={subRef}
+                        className="max-w-xs font-roboto text-white/60 text-sm md:text-base md:text-right pb-1 will-change-transform"
+                    >
                         A mix of shipped products and focused builds — hover to explore.
                     </p>
                 </div>
@@ -151,7 +260,7 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
             }`}
         >
             <span
-                className={`project-index pointer-events-none absolute top-3 sm:top-6 z-0 ${
+                className={`project-index pointer-events-none absolute top-3 sm:top-6 z-0 will-change-transform ${
                     isReversed ? "left-3 sm:left-6 md:left-12" : "right-3 sm:right-6 md:right-12"
                 } font-boldonse text-[22vw] sm:text-[14vw] md:text-[9vw] leading-none text-outline opacity-20 sm:opacity-30 select-none lg:[direction:ltr]`}
             >
@@ -165,7 +274,7 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
                 <img
                     src={image}
                     alt={name}
-                    className="project-gif h-full w-full object-cover will-change-transform"
+                    className="project-gif h-[115%] w-full object-cover -mt-[5%] will-change-transform"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-80" />
                 <img
@@ -177,7 +286,7 @@ const ProjectRow = ({ name, tech, image, livelink, preview, githublink, index })
                 />
             </div>
 
-            <div className="project-content relative z-10 lg:col-span-5 flex flex-col gap-3 sm:gap-5 lg:[direction:ltr] min-w-0">
+            <div className="project-content relative z-10 lg:col-span-5 flex flex-col gap-3 sm:gap-5 lg:[direction:ltr] min-w-0 will-change-transform">
                 <p className="font-syne-mono text-[10px] sm:text-xs md:text-sm tracking-[0.15em] sm:tracking-[0.2em] uppercase text-accent/90 break-words">
                     {tech?.join(" / ")}
                 </p>

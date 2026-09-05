@@ -85,7 +85,7 @@ export const PROJECTS = [
   },
   {
     _id: crypto.randomUUID(),
-    name: "Zentry Website Clone",
+    name: "Zentry Website",
     tech: ["React", "GSAP", "Tailwind CSS"],
     githublink: "https://github.com/hassaammgl/zentry-awwards-game-website",
     livelink: "https://awwards-zentry-website-clone.vercel.app/",

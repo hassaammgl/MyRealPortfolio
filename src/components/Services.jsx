@@ -6,6 +6,13 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useRef, useState, useEffect } from "react"
 import { FaPlus, FaMinus } from "react-icons/fa6"
+import {
+    prefersReducedMotion,
+    revealIn,
+    parallaxY,
+    killTweens,
+    scrubSoft,
+} from '@/utils/scrollMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,29 +21,58 @@ const SHOW_OLD_SERVICES = false
 
 const Services = () => {
     const containerRef = useRef(null)
+    const headRef = useRef(null)
+    const copyRef = useRef(null)
+    const listRef = useRef(null)
     const [openIndex, setOpenIndex] = useState(0)
 
     useGSAP(() => {
         if (SHOW_OLD_SERVICES) return
+        if (!containerRef.current) return
 
+        const reduceMotion = prefersReducedMotion()
         const items = gsap.utils.toArray(".service-accordion-item")
+        const tweens = []
 
-        gsap.fromTo(
-            items,
-            { opacity: 0, y: 50 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.75,
-                stagger: 0.12,
+        tweens.push(
+            revealIn(items, {
+                y: reduceMotion ? 16 : 36,
+                duration: reduceMotion ? 0.4 : 0.85,
+                stagger: 0.1,
                 ease: "power3.out",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 70%",
-                    toggleActions: "play none none reverse",
-                },
-            }
+            }, {
+                trigger: containerRef.current,
+                start: "top 72%",
+                toggleActions: "play none none reverse",
+            }),
         )
+
+        if (!reduceMotion) {
+            tweens.push(
+                revealIn(headRef.current, {
+                    filter: "blur(8px)",
+                    duration: 1.05,
+                }, { trigger: containerRef.current, start: "top 78%" }),
+            )
+            tweens.push(
+                revealIn(copyRef.current, {
+                    filter: "blur(6px)",
+                    duration: 1.15,
+                    delay: 0.12,
+                }, { trigger: containerRef.current, start: "top 78%" }),
+            )
+
+            tweens.push(
+                parallaxY(headRef.current, 24, -36, containerRef.current, {
+                    scrollTrigger: { scrub: scrubSoft },
+                }),
+            )
+            tweens.push(
+                parallaxY(copyRef.current, 40, -72, containerRef.current, {
+                    scrollTrigger: { scrub: scrubSoft },
+                }),
+            )
+        }
 
         items.forEach((item, i) => {
             ScrollTrigger.create({
@@ -47,6 +83,8 @@ const Services = () => {
                 onEnterBack: () => setOpenIndex(i),
             })
         })
+
+        return () => killTweens(tweens)
     }, { scope: containerRef })
 
     useEffect(() => {
@@ -65,7 +103,7 @@ const Services = () => {
                 className="relative w-screen bg-accent text-white rounded-4xl overflow-hidden py-16 md:py-24 px-5 md:px-12 lg:px-20"
             >
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-20">
-                    <div>
+                    <div ref={headRef} className="will-change-transform">
                         <p className="font-syne-mono text-xs tracking-[0.3em] uppercase text-white/50 mb-4">
                             ( Services )
                         </p>
@@ -76,12 +114,15 @@ const Services = () => {
                             How can i help you!
                         </h2>
                     </div>
-                    <p className="font-roboto text-white/75 text-base md:text-lg max-w-sm lg:text-right leading-relaxed">
+                    <p
+                        ref={copyRef}
+                        className="font-roboto text-white/75 text-base md:text-lg max-w-sm lg:text-right leading-relaxed will-change-transform"
+                    >
                         Production backends, clear APIs, and systems that stay reliable when real users and money are involved.
                     </p>
                 </div>
 
-                <div className="border-t border-white/20">
+                <div ref={listRef} className="border-t border-white/20">
                     {SERVICES.map((service, index) => {
                         const isOpen = openIndex === index
                         const title = service.name.replace(/\n/g, " ")
@@ -90,7 +131,7 @@ const Services = () => {
                         return (
                             <div
                                 key={title}
-                                className="service-accordion-item border-b border-white/20"
+                                className="service-accordion-item border-b border-white/20 will-change-transform"
                             >
                                 <div className="w-full grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 md:gap-8 py-5 md:py-8">
                                     <span className="font-syne-mono text-sm text-white/45">

@@ -5,32 +5,73 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CONTACTS } from '@/constants'
 import { useGSAP } from '@gsap/react'
+import {
+    prefersReducedMotion,
+    revealIn,
+    parallaxY,
+    killTweens,
+    scrubSoft,
+} from '@/utils/scrollMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Contact = () => {
     const sectionRef = useRef(null)
+    const headRef = useRef(null)
+    const subRef = useRef(null)
     const listRef = useRef(null)
 
     useGSAP(() => {
-        if (!listRef.current) return
+        if (!sectionRef.current || !listRef.current) return
 
-        gsap.fromTo(
-            listRef.current.querySelectorAll(".contact-row"),
-            { opacity: 0, y: 40 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                stagger: 0.08,
-                ease: "power3.out",
+        const reduceMotion = prefersReducedMotion()
+        const rows = listRef.current.querySelectorAll('.contact-row')
+        const tweens = []
+
+        tweens.push(
+            revealIn(headRef.current, {
+                filter: reduceMotion ? 'none' : 'blur(8px)',
+                duration: reduceMotion ? 0.35 : 1,
+            }, { trigger: sectionRef.current, start: 'top 80%' }),
+        )
+        tweens.push(
+            revealIn(subRef.current, {
+                filter: reduceMotion ? 'none' : 'blur(6px)',
+                duration: reduceMotion ? 0.35 : 1.05,
+                delay: 0.12,
+            }, { trigger: sectionRef.current, start: 'top 80%' }),
+        )
+
+        // Row reveals only — no y-parallax on links (keeps clicks stable)
+        tweens.push(
+            gsap.from(rows, {
+                opacity: 0,
+                x: reduceMotion ? 0 : -20,
+                duration: reduceMotion ? 0.4 : 0.75,
+                stagger: 0.07,
+                ease: 'expo.out',
                 scrollTrigger: {
                     trigger: listRef.current,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse",
+                    start: 'top 88%',
+                    toggleActions: 'play none none none',
                 },
-            }
+            }),
         )
+
+        if (!reduceMotion) {
+            tweens.push(
+                parallaxY(headRef.current, 28, -48, sectionRef.current, {
+                    scrollTrigger: { scrub: scrubSoft },
+                }),
+            )
+            tweens.push(
+                parallaxY(subRef.current, 44, -78, sectionRef.current, {
+                    scrollTrigger: { scrub: scrubSoft },
+                }),
+            )
+        }
+
+        return () => killTweens(tweens)
     }, { scope: sectionRef })
 
     return (
@@ -38,10 +79,16 @@ const Contact = () => {
             <section ref={sectionRef} className="relative w-screen text-white overflow-hidden">
                 <div className="px-6 md:px-16 lg:px-28 py-16 md:py-24">
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
-                        <h3 className="font-boldonse uppercase text-3xl md:text-5xl lg:text-6xl hover:text-accent transition-colors duration-500">
+                        <h3
+                            ref={headRef}
+                            className="font-boldonse uppercase text-3xl md:text-5xl lg:text-6xl hover:text-accent transition-colors duration-500 will-change-transform"
+                        >
                             Connect
                         </h3>
-                        <p className="font-roboto text-white/50 text-sm md:text-base md:text-right max-w-xs">
+                        <p
+                            ref={subRef}
+                            className="font-roboto text-white/50 text-sm md:text-base md:text-right max-w-xs will-change-transform"
+                        >
                             Email, socials, or freelance platforms — pick what works.
                         </p>
                     </div>

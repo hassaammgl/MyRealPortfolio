@@ -27,7 +27,17 @@ const Wrapper = ({ children, className }) => {
     }, [])
 
     return (
-        <ReactLenis options={{ autoRaf: false, lerp: 0.08, smoothWheel: true }} ref={lenisRef} root>
+        <ReactLenis
+            options={{
+                autoRaf: false,
+                lerp: 0.1,
+                smoothWheel: true,
+                wheelMultiplier: 0.92,
+                touchMultiplier: 1.15,
+            }}
+            ref={lenisRef}
+            root
+        >
             <div className={className}>
                 {children}
             </div>
